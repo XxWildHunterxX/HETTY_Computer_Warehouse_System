@@ -8,4 +8,6 @@
     <dimen name="_60sdp">60dp</dimen>
     <dimen name="edittextsize">12sp</dimen>
     <dimen name="textviewtextsize">14sp</dimen>
+    <dimen name="appbar_padding">16dp</dimen>
+    <dimen name="appbar_padding_top">8dp</dimen>
 </resources>
