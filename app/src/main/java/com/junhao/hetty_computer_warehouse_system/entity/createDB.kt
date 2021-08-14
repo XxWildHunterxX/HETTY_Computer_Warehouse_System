@@ -5,8 +5,6 @@ import androidx.room.Entity
 import androidx.room.ForeignKey
 import androidx.room.PrimaryKey
 
-
-
 @Entity
 data class Warehouse(
     @PrimaryKey val warehouseID: String,
@@ -14,8 +12,7 @@ data class Warehouse(
     @ColumnInfo val warehousePhoneNum: String
 )
 
-@Entity(foreignKeys = [ForeignKey(entity = Warehouse::class, parentColumns = arrayOf("warehouseID"),
-    childColumns = arrayOf("warehouseUserID"),onDelete=ForeignKey.CASCADE)])
+@Entity(foreignKeys = [ForeignKey(entity = Warehouse::class, parentColumns = arrayOf("warehouseID"), childColumns = arrayOf("warehouseUserID"))])
 data class User(
     @PrimaryKey val userID:String,
     @ColumnInfo val userName: String,
@@ -24,8 +21,7 @@ data class User(
     @ColumnInfo val warehouseUserID:String
 )
 
-@Entity(foreignKeys = [ForeignKey(entity = Warehouse::class, parentColumns = arrayOf("warehouseID"),
-    childColumns = arrayOf("warehouseInvWarID"),onDelete=ForeignKey.CASCADE)])
+@Entity(foreignKeys = [ForeignKey(entity = Warehouse::class, parentColumns = arrayOf("warehouseID"), childColumns = arrayOf("warehouseInvWarID"))])
 data class WarehouseInventory(
     @PrimaryKey val warehouseInvID: String,
     @ColumnInfo val warehouseInvQTY: Int,
@@ -51,24 +47,30 @@ data class Purchase(
     @ColumnInfo val purchaseUserID:String
 )
 
-
-@Entity
+@Entity(foreignKeys = [ForeignKey(entity = WarehouseInventory::class, parentColumns = arrayOf("warehouseInvID"), childColumns = arrayOf("trackWarehouseInvID")),
+    ForeignKey(entity= User::class,parentColumns = arrayOf("userID"),childColumns = arrayOf("trackUserID"))])
 data class Tracking(
     @PrimaryKey val trackID: String,
     @ColumnInfo val trackSection: String,
-    @ColumnInfo val trackFloor: String
+    @ColumnInfo val trackFloor: String,
+    @ColumnInfo val trackWarehouseInvID:String,
+    @ColumnInfo val trackUserID:String
 )
 
-@Entity
+@Entity(foreignKeys = [ForeignKey(entity = User::class, parentColumns = arrayOf("userID"), childColumns = arrayOf("salesUserID"))])
 data class salesTransaction(
     @PrimaryKey val salesTransID: String,
-    @ColumnInfo val salesTransDate: Int
+    @ColumnInfo val salesTransDate: String,
+    @ColumnInfo val salesUserID:String
 )
 
-@Entity
+@Entity(foreignKeys = [ForeignKey(entity = salesTransaction::class, parentColumns = arrayOf("salesTransID"), childColumns = arrayOf("salesDetailTransID")),
+    ForeignKey(entity= WarehouseInventory::class,parentColumns = arrayOf("warehouseInvID"),childColumns = arrayOf("salesDetailWarehouseInvID"))])
 data class salesDetail(
     @PrimaryKey val salesDetailID: String,
-    @ColumnInfo val salesDetailQTY: Int
+    @ColumnInfo val salesDetailQTY: Int,
+    @ColumnInfo val salesDetailTransID:String,
+    @ColumnInfo val salesDetailWarehouseInvID:String
 )
 
 
