@@ -3,8 +3,27 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@+id/nav_home">
+    app:startDestination="@id/nav_salesOrder">
 
+    <fragment
+        android:id="@+id/nav_settings"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_salesorder"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_purchaseOrders"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_salesorder"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_salesOrder"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.fragment_addsales"
+        android:label="@string/menu_salesorder" />
+    <fragment
+        android:id="@+id/nav_warehouseTracking"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_warehousetracking"
+        tools:layout="@layout/fragment_slideshow" />
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
@@ -12,14 +31,14 @@
         tools:layout="@layout/fragment_home" />
 
     <fragment
-        android:id="@+id/nav_gallery"
+        android:id="@+id/nav_profile"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.gallery.GalleryFragment"
-        android:label="@string/menu_gallery"
+        android:label="@string/menu_profile"
         tools:layout="@layout/fragment_gallery" />
 
     <fragment
-        android:id="@+id/nav_slideshow"
+        android:id="@+id/nav_items"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_slideshow"
+        android:label="@string/menu_items"
         tools:layout="@layout/fragment_slideshow" />
 </navigation>

@@ -1,0 +1,228 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <include layout="@layout/toolbar" />
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_60sdp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false">
+
+            <AutoCompleteTextView
+                android:id="@+id/autotv_productname_salesentry"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_item_name"
+                android:drawableEnd="@drawable/ic_barcode_scanner"
+                android:hint="@string/product_name"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_1.2" />
+
+            <AutoCompleteTextView
+                android:id="@+id/autotv_customername_salesentry"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_user_name"
+                android:drawableEnd="@drawable/ic_plus"
+                android:hint="@string/customer_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView3" />
+
+            <EditText
+                android:id="@+id/edt_salesquantity_salesentry"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_quantity"
+                android:ems="10"
+                android:hint="@string/sales_quantity"
+                android:inputType="numberDecimal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+
+            <EditText
+                android:id="@+id/edt_salesdate_salesentry"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:drawableStart="@drawable/ic_calendar"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:hint="@string/sales_date"
+                android:inputType="number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView5" />
+
+            <EditText
+                android:id="@+id/edt_salesprice_salesentry"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_price"
+                android:ems="10"
+                android:hint="@string/default_price"
+                android:inputType="numberDecimal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_1.3" />
+
+            <TextView
+                android:id="@+id/tv_1.2"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/product_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/textView3"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/customer_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autotv_productname_salesentry" />
+
+            <TextView
+                android:id="@+id/textView4"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/sales_quantity"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/autotv_customername_salesentry" />
+
+            <TextView
+                android:id="@+id/tv_availquant_salesentry"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/note"
+                android:textColor="@color/green_color"
+                android:textSize="12sp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_salesquantity_salesentry" />
+
+            <TextView
+                android:id="@+id/textView5"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/sales_date"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_availquant_salesentry" />
+
+            <TextView
+                android:id="@+id/tv_1.3"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/sales_price"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_salesdate_salesentry" />
+
+            <TextView
+                android:id="@+id/textView11"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/sales_type"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_salesprice_salesentry" />
+
+            <Spinner
+                android:id="@+id/spin_salestype_salesentry"
+                android:layout_width="0dp"
+                android:layout_height="40dp"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginBottom="32dp"
+                android:background="@drawable/spinner_background_left"
+                android:entries="@array/purchase_sales_type"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toStartOf="@+id/iv_dropdownimage"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView11" />
+
+            <ImageView
+                android:id="@+id/iv_dropdownimage"
+                android:layout_width="40dp"
+                android:layout_height="40dp"
+                android:layout_marginEnd="16dp"
+                android:background="@drawable/spinner_background_right"
+                android:contentDescription="@string/imageDescription"
+                app:layout_constraintBottom_toBottomOf="@+id/spin_salestype_salesentry"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/spin_salestype_salesentry"
+                app:layout_constraintTop_toBottomOf="@+id/textView11"
+                app:layout_constraintTop_toTopOf="@+id/spin_salestype_salesentry"
+                app:srcCompat="@drawable/ic_spinner_dropdown" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>
