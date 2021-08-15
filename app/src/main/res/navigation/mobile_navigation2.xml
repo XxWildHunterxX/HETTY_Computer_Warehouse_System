@@ -7,9 +7,9 @@
 
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
+        android:name="com.junhao.hetty_computer_warehouse_system.fragment_userProfile"
         android:label="@string/menu_home"
-        tools:layout="@layout/fragment_home" />
+        tools:layout="@layout/fragment_user_profile" />
 
     <fragment
         android:id="@+id/nav_gallery"
