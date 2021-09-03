@@ -14,9 +14,12 @@
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
             android:layout_width="match_parent"
+            android:layout_gravity="center"
             android:layout_height="?attr/actionBarSize"
-            android:background="?attr/colorPrimary"
-            app:popupTheme="@style/Theme.HETTY_Computer_Warehouse_System.PopupOverlay" />
+            android:background="@color/black_theme_color"
+            app:popupTheme="@style/Theme.HETTY_Computer_Warehouse_System.PopupOverlay">
+
+        </androidx.appcompat.widget.Toolbar>
 
     </com.google.android.material.appbar.AppBarLayout>
 
@@ -29,6 +32,9 @@
         android:layout_gravity="bottom|end"
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
-        app:srcCompat="@android:drawable/ic_dialog_email" />
+        app:backgroundTint="@color/black_theme_color"
+        app:srcCompat="@drawable/ic_add_white"
+        app:tint="@android:color/white"
+        tools:ignore="SpeakableTextPresentCheck" />
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>

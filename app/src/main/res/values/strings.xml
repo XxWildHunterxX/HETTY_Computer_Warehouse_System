@@ -31,4 +31,23 @@
     <string name="tab_text_2">Tab 2</string>
     <!-- TODO: Remove or change this placeholder text -->
 
+    <string name="warehouse_activity">Warehouse Activity</string>
+    <string name="to_be_pending">Quantity to be pending</string>
+    <string name="to_be_packed">Quantity to be packed</string>
+    <string name="to_be_shipped">Packages to be shipped</string>
+    <string name="to_be_delivered">Packages to be delivered</string>
+    <string name="to_be_invoiced">Quantity to be invoiced</string>
+    <string name="inventory_summary">Inventory Summary (In Quantity)</string>
+    <string name="in_hand">In hand</string>
+    <string name="to_be_received">To be received</string>
+
+    <string name="product_barcode">Product Barcode</string>
+    <string name="product_color">Product Color</string>
+    <string name="product_image">Product Image</string>
+    <string name="product_size">Product Size</string>
+    <string name="product_desc">Product Description</string>
+    <string name="do_you_need_low_stock_alert_on_this_product">Do you need low stock Alert on this product ?</string>
+    <string name="minimum_quantity_for_alert">Minimum quantity for alert</string>
+
+
 </resources>
