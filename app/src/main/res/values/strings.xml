@@ -52,16 +52,8 @@
     <string name="do_you_need_low_stock_alert_on_this_product">Do you need low stock Alert on this product ?</string>
     <string name="minimum_quantity_for_alert">Minimum quantity for alert</string>
 
-
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
-    <string name="product_barcode">Product Barcode</string>
-    <string name="product_color">Product Color</string>
-    <string name="product_image">Product Image</string>
-    <string name="product_size">Product Size</string>
-    <string name="product_desc">Product Description</string>
-    <string name="do_you_need_low_stock_alert_on_this_product">Do you need low stock Alert on this product ?</string>
-    <string name="minimum_quantity_for_alert">Minimum quantity for alert</string>
 
     <string name="staff_name">Staff Name</string>
     <string name="staff_image">Staff Image</string>
