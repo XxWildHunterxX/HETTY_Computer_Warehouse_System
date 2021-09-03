@@ -24,6 +24,9 @@
     <string name="sales_price">Sales Price</string>
     <string name="sales_type">Sales Type</string>
     <string name="imageDescription" />
+    <string name="quantity_invoiced">Invoiced</string>
+    <string name="packed">Packed</string>
+    <string name="shipped">Shipped</string>
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="title_activity_tracking_page">TrackingPage</string>

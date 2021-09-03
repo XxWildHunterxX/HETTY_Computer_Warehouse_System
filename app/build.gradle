@@ -1,6 +1,7 @@
 plugins {
     id 'com.android.application'
     id 'kotlin-android'
+    id 'com.google.gms.google-services'
 }
 
 android {
@@ -47,6 +48,7 @@ dependencies {
     implementation 'androidx.navigation:navigation-ui-ktx:2.3.5'
     implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     implementation 'com.android.support:multidex:1.0.3'
+    implementation 'com.google.firebase:firebase-database:20.0.1'
     testImplementation 'junit:junit:4.+'
     androidTestImplementation 'androidx.test.ext:junit:1.1.3'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.4.0'
@@ -63,5 +65,5 @@ dependencies {
     implementation "androidx.room:room-guava:$room_version"
 // Test helpers
     testImplementation "androidx.room:room-testing:$room_version"
-
+    implementation "com.google.android:flexbox:0.3.0"
 }

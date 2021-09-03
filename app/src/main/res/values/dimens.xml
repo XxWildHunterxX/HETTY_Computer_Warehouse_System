@@ -10,4 +10,14 @@
     <dimen name="textviewtextsize">14sp</dimen>
     <dimen name="appbar_padding">16dp</dimen>
     <dimen name="appbar_padding_top">8dp</dimen>
+    <dimen name="dimen_20dp">20dp</dimen>
+    <dimen name="dimen_15dp">15dp</dimen>
+    <dimen name="dimen_5dp">5dp</dimen>
+    <dimen name="dimen_16sp">16sp</dimen>
+    <dimen name="dimen_7dp">7dp</dimen>
+    <dimen name="dimen_10dp">10dp</dimen>
+    <dimen name="dimen_13sp">13sp</dimen>
+    <dimen name="dimen_12sp">12sp</dimen>
+    <dimen name="dimen_14sp">14sp</dimen>
+    <dimen name="dimen_11sp">11sp</dimen>
 </resources>
