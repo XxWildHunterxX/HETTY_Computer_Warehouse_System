@@ -17,7 +17,7 @@
         tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/nav_salesOrder"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.fragment_addsales"
+        android:name="com.junhao.hetty_computer_warehouse_system.fragment_display_salesorder"
         android:label="@string/menu_salesorder" />
     <fragment
         android:id="@+id/nav_warehouseTracking"

@@ -3,6 +3,9 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Henry/Desktop/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_backorder.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/Henry/Desktop/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_dropshipment.xml" value="0.23541666666666666" />
+        <entry key="..\:/Users/Henry/Desktop/HETTY_Computer_Warehouse_System/app/src/main/res/layout/fragment_display_salesorder.xml" value="0.21927083333333333" />
         <entry key="..\:/Android/HETTY_Computer_Warehouse_System/app/src/main/res/drawable-anydpi/ic_menu_profile.xml" value="0.16354166666666667" />
         <entry key="..\:/Android/HETTY_Computer_Warehouse_System/app/src/main/res/drawable-anydpi/ic_menu_sales.xml" value="0.16354166666666667" />
         <entry key="..\:/Android/HETTY_Computer_Warehouse_System/app/src/main/res/drawable-anydpi/ic_menu_warehouse.xml" value="0.16354166666666667" />
