@@ -1,0 +1,40 @@
+{
+  "project_info": {
+    "project_number": "419971831864",
+    "firebase_url": "https://hettywarehouse-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "hettywarehouse",
+    "storage_bucket": "hettywarehouse.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:419971831864:android:f3b01bd2ad90b2cd66eecd",
+        "android_client_info": {
+          "package_name": "com.junhao.hetty_computer_warehouse_system"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "419971831864-5ijek6in58b25lttkd38o9puv76v03lg.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyD-HBM4AJ-WOISUz-c8fkV_kCfP2-Hxgvs"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "419971831864-5ijek6in58b25lttkd38o9puv76v03lg.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
