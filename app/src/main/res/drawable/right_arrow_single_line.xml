@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<rotate xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:drawable="@drawable/ic_arrow_drop_down_single_line"
+    android:fromDegrees="270"
+    android:toDegrees="270"
+    android:visible="true" />

@@ -11,6 +11,7 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.appcompat.widget.Toolbar
 import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
 
 class HomePage : AppCompatActivity() {
@@ -20,7 +21,7 @@ class HomePage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
+        /*setContentView( R.layout.fragment_home)*/
         binding = ActivityHomePage2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
@@ -30,6 +31,7 @@ class HomePage : AppCompatActivity() {
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
         }
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home_page2)
@@ -40,11 +42,17 @@ class HomePage : AppCompatActivity() {
                 R.id.nav_home, R.id.nav_profile, R.id.nav_items
             ), drawerLayout
         )
+
+
+
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
+
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home_page, menu)
         return true

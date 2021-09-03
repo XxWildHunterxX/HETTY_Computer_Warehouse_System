@@ -1,0 +1,249 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:isScrollContainer="true"
+            android:orientation="vertical"
+            android:paddingBottom="@dimen/_60sdp"
+            android:scrollbarAlwaysDrawHorizontalTrack="false">
+
+            <ImageView
+                android:id="@+id/imagebtn_proimage_addedit"
+                android:layout_width="150dp"
+                android:layout_height="150dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:adjustViewBounds="true"
+                android:contentDescription="@string/imageDescription"
+                android:cropToPadding="false"
+                android:scaleType="centerCrop"
+                app:srcCompat="@drawable/ic_default_product_select_img"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <TextView
+                android:id="@+id/tv_1.1"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/CustomTextView"
+                android:text="@string/product_name"
+                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/edt_productname_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_item_name"
+                android:hint="@string/product_name"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                style="@style/CustomEdittextStyle"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_1.1" />
+
+            <TextView
+                android:id="@+id/textviewww"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/CustomTextView"
+                android:text="@string/product_barcode"
+                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_productname_addedit" />
+
+            <EditText
+                android:id="@+id/edt_productbarcode_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableLeft="@drawable/ic_barcode"
+                android:drawableRight="@drawable/ic_barcode_scanner"
+                android:ems="10"
+                android:hint="@string/product_barcode"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                style="@style/CustomEdittextStyle"
+                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textviewww" />
+
+            <TextView
+                android:id="@+id/tvdsfsdfsdf"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/CustomTextView"
+                android:text="@string/product_color"
+                app:layout_constraintEnd_toStartOf="@+id/tvdsfsdfsdf2"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_productbarcode_addedit" />
+
+            <TextView
+                android:id="@+id/tvdsfsdfsdf2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:foregroundGravity="center"
+                android:gravity="center"
+                style="@style/CustomTextView"
+                android:text="@string/product_image"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toEndOf="@+id/edt_productbarcode_addedit"
+                app:layout_constraintTop_toBottomOf="@+id/imagebtn_proimage_addedit" />
+
+            <EditText
+                android:id="@+id/edt_productcolor_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_color"
+                android:hint="@string/product_color"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                style="@style/CustomEdittextStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvdsfsdfsdf" />
+
+            <TextView
+                android:id="@+id/textView8"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/CustomTextView"
+                android:text="@string/product_size"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_productcolor_addedit" />
+
+            <EditText
+                android:id="@+id/edt_productsize_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_size"
+                android:ems="10"
+                android:hint="@string/product_size"
+                android:inputType="text"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                style="@style/CustomEdittextStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView8" />
+
+            <TextView
+                android:id="@+id/textView9"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/CustomTextView"
+                android:text="@string/product_desc"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_productsize_addedit" />
+
+            <EditText
+                android:id="@+id/edt_productdescription_addedit"
+                android:layout_width="0dp"
+                android:layout_height="80dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_description"
+                android:hint="@string/product_desc"
+                android:inputType="textMultiLine"
+                style="@style/CustomEdittextStyle"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <CheckBox
+                android:id="@+id/chkbox_lowstock_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:checked="true"
+                android:text="@string/do_you_need_low_stock_alert_on_this_product"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/edt_productdescription_addedit" />
+
+            <TextView
+                android:id="@+id/tv_minimumquanalert_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                style="@style/CustomTextView"
+                android:text="@string/minimum_quantity_for_alert"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/chkbox_lowstock_addedit" />
+
+            <EditText
+                android:id="@+id/edt_minimumquanalert_addedit"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_alert"
+                android:ems="10"
+                android:hint="@string/minimum_quantity_for_alert"
+                android:inputType="number"
+                android:minHeight="48dp"
+                android:singleLine="true"
+                style="@style/CustomEdittextStyle"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_minimumquanalert_addedit" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </ScrollView>
+</LinearLayout>

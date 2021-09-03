@@ -1,0 +1,10 @@
+<?xml version="1.0" encoding="utf-8"?>
+<shape xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:innerRadius="0dp"
+    android:shape="ring"
+    android:thickness="@dimen/dimen_20dp"
+    android:useLevel="false">
+    <solid android:color="@color/dashboard_to_be_delivered" />
+</shape>

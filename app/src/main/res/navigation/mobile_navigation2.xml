@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/nav_salesOrder">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_settings"
@@ -27,7 +27,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
-        android:label="@string/menu_home"
+        android:label="@string/app_name"
         tools:layout="@layout/fragment_home" />
 
     <fragment
@@ -41,4 +41,13 @@
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_items"
         tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_tracking_all"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
+        android:label="@string/menu_items"
+        tools:layout="@layout/fragment_slideshow" />
+    <fragment
+        android:id="@+id/nav_tracking_all2"
+        android:name="com.junhao.hetty_computer_warehouse_system.Fragment_Add_Item"
+        android:label="@string/menu_items" />
 </navigation>
