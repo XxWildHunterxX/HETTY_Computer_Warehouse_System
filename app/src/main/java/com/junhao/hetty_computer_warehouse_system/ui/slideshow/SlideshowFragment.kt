@@ -9,12 +9,13 @@ import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
 import com.junhao.hetty_computer_warehouse_system.R
-import com.junhao.hetty_computer_warehouse_system.databinding.FragmentSlideshowBinding
+import com.junhao.hetty_computer_warehouse_system.databinding.FragmentGalleryBinding
+import com.junhao.hetty_computer_warehouse_system.databinding.FragmentHomeBinding
 
 class SlideshowFragment : Fragment() {
 
     private lateinit var slideshowViewModel: SlideshowViewModel
-    private var _binding: FragmentSlideshowBinding? = null
+    private var _binding: FragmentGalleryBinding? = null
 
     // This property is only valid between onCreateView and
     // onDestroyView.
@@ -28,10 +29,10 @@ class SlideshowFragment : Fragment() {
         slideshowViewModel =
             ViewModelProvider(this).get(SlideshowViewModel::class.java)
 
-        _binding = FragmentSlideshowBinding.inflate(inflater, container, false)
+        _binding = FragmentGalleryBinding.inflate(inflater, container, false)
         val root: View = binding.root
 
-        val textView: TextView = binding.textSlideshow
+        val textView: TextView = binding.textGallery
         slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
