@@ -4,4 +4,16 @@
         <item>Cash</item>
         <item>Debit</item>
     </array>
+    <array name="purchase_search">
+        <item>All</item>
+        <item>Pending</item>
+        <item>Delivering</item>
+        <item>Received</item>
+    </array>
+    <array name="filter_purchase">
+        <item>All</item>
+        <item>Pending</item>
+        <item>Rejected</item>
+        <item>Received</item>
+    </array>
 </resources>

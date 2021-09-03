@@ -1,12 +1,11 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:tools="http://schemas.android.com/tools"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:orientation="vertical">
-
-    <include layout="@layout/toolbar" />
+    android:orientation="vertical"
+    tools:context=".fragment_purchase_create" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,37 +19,6 @@
             android:paddingBottom="@dimen/_60sdp"
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
-            <AutoCompleteTextView
-                android:id="@+id/autotv_productname_salesentry"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:drawableStart="@drawable/ic_item_name"
-                android:drawableEnd="@drawable/ic_barcode_scanner"
-                android:hint="@string/product_name"
-                app:layout_constraintHorizontal_bias="1"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_1.2" />
-
-            <AutoCompleteTextView
-                android:id="@+id/autotv_customername_salesentry"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:drawableStart="@drawable/ic_user_name"
-                android:drawableEnd="@drawable/ic_plus"
-                android:hint="@string/customer_name"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView3" />
-
             <EditText
                 android:id="@+id/tf_purchaseQuantity"
                 style="@style/CustomEdittextStyle"
@@ -61,11 +29,43 @@
                 android:layout_marginRight="16dp"
                 android:drawableStart="@drawable/ic_quantity"
                 android:ems="10"
-                android:hint="@string/sales_quantity"
+                android:hint="@string/purchase_quantity"
                 android:inputType="numberDecimal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView4" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity" />
+
+            <EditText
+                android:id="@+id/tf_productID"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_item_name"
+                android:ems="10"
+                android:hint="@string/product_id"
+                android:inputType="text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_productID" />
+
+            <EditText
+                android:id="@+id/tf_productName"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_item_name"
+                android:ems="10"
+                android:hint="@string/product_name"
+                android:inputType="text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
 
             <EditText
                 android:id="@+id/tf_supplierName"
@@ -77,15 +77,55 @@
                 android:layout_marginRight="16dp"
                 android:clickable="true"
                 android:cursorVisible="false"
-                android:drawableStart="@drawable/ic_calendar"
+                android:drawableStart="@drawable/ic_supplier"
                 android:ems="10"
                 android:focusable="true"
                 android:focusableInTouchMode="false"
-                android:hint="@string/sales_date"
-                android:inputType="number"
+                android:hint="@string/supplier_name"
+                android:inputType="text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
+
+            <EditText
+                android:id="@+id/tf_supplierAddress"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:drawableStart="@drawable/ic_address"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:hint="@string/supplier_address"
+                android:inputType="text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_supplierAddress" />
+
+            <EditText
+                android:id="@+id/tf_supplierContact"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:cursorVisible="false"
+                android:drawableStart="@drawable/ic_contact"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                android:hint="07-123456"
+                android:inputType="text"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_supplierContact" />
 
             <EditText
                 android:id="@+id/tf_requestDate"
@@ -95,66 +135,51 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:drawableStart="@drawable/ic_price"
+                android:drawableStart="@drawable/ic_calendar"
                 android:ems="10"
-                android:hint="@string/default_price"
-                android:inputType="numberDecimal"
+                android:inputType="date"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_RequestDate" />
 
             <TextView
-                android:id="@+id/tv_1.2"
+                android:id="@+id/tv_productID"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/product_name"
+                android:text="@string/product_id"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/textView3"
+                android:id="@+id/tv_productName"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="3dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/product_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_productID" />
+
+            <TextView
+                android:id="@+id/tv_productQuantity"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/customer_name"
+                android:text="@string/purchase_quantity"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/autotv_productname_salesentry" />
-
-            <TextView
-                android:id="@+id/textView4"
-                style="@style/CustomTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/sales_quantity"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/autotv_customername_salesentry" />
-
-            <TextView
-                android:id="@+id/tv_availquant_salesentry"
-                style="@style/CustomTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/note"
-                android:textColor="@color/green_color"
-                android:textSize="12sp"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_productName" />
 
             <TextView
                 android:id="@+id/tv_SupplierName"
@@ -164,10 +189,10 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/sales_date"
+                android:text="@string/supplier_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_availquant_salesentry" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
 
             <TextView
                 android:id="@+id/tv_RequestDate"
@@ -175,54 +200,53 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="96dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/sales_price"
+                android:text="@string/request_date"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress" />
 
             <TextView
-                android:id="@+id/textView11"
+                android:id="@+id/tv_supplierAddress"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/sales_type"
+                android:text="@string/supplier_address"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName" />
+
+            <TextView
+                android:id="@+id/tv_supplierContact"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/supplier_contact"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress" />
+
+            <Button
+                android:id="@+id/btn_Submit"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/submit"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tf_requestDate" />
 
-            <Spinner
-                android:id="@+id/spin_salestype_salesentry"
-                android:layout_width="0dp"
-                android:layout_height="40dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginBottom="32dp"
-                android:background="@drawable/spinner_background_left"
-                android:entries="@array/purchase_sales_type"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toStartOf="@+id/iv_dropdownimage"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/textView11" />
-
-            <ImageView
-                android:id="@+id/iv_dropdownimage"
-                android:layout_width="40dp"
-                android:layout_height="40dp"
-                android:layout_marginEnd="16dp"
-                android:background="@drawable/spinner_background_right"
-                android:contentDescription="@string/imageDescription"
-                app:layout_constraintBottom_toBottomOf="@+id/spin_salestype_salesentry"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/spin_salestype_salesentry"
-                app:layout_constraintTop_toBottomOf="@+id/textView11"
-                app:layout_constraintTop_toTopOf="@+id/spin_salestype_salesentry"
-                app:srcCompat="@drawable/ic_spinner_dropdown" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
+
 </LinearLayout>

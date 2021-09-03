@@ -26,4 +26,20 @@
     <string name="imageDescription" />
     <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="product_id">Product ID</string>
+    <string name="purchase_quantity">Purchase Quantity</string>
+    <string name="supplier_name">Supplier Name</string>
+    <string name="submit">SUBMIT</string>
+    <string name="request_date">Request Date</string>
+    <string name="supplier_address">Supplier Address</string>
+    <string name="supplier_contact">Supplier Contact</string>
+    <string name="purchase_search">Enter Purchase ID or Supplier Name</string>
+    <string name="search">SEARCH</string>
+    <string name="done">DONE</string>
+    <string name="purchase_id">Purchase ID</string>
+    <string name="edit">EDIT</string>
+    <string name="status">Status</string>
+    <string name="save">SAVE</string>
+    <string name="status">Status</string>
+    <string name="received_date">Received Date</string>
 </resources>
