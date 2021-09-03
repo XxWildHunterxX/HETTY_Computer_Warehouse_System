@@ -19,8 +19,7 @@
         android:layout_width="@dimen/dimen_50dp"
         android:layout_height="@dimen/dimen_50dp"
         android:layout_gravity="center"
-        android:layout_marginEnd="@dimen/dimen_10dp"
-        android:srcCompat="@drawable/ic_empty_image" />
+        android:layout_marginEnd="@dimen/dimen_10dp"/>
 
     <LinearLayout
         android:layout_width="match_parent"

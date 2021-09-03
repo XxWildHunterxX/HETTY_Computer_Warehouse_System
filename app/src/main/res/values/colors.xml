@@ -328,4 +328,5 @@
     <color name="zf_light_whiteish_gray">#f4f4f4</color>
     <color name="zf_link_blue">#397ff6</color>
     <color name="zf_yellow_color">#fde085</color>
+    <color name="product_default_image_color">#b1b0b0</color>
 </resources>
