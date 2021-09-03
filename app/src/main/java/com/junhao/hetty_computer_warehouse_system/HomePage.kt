@@ -1,7 +1,14 @@
 package com.junhao.hetty_computer_warehouse_system
 
+import android.content.Intent
+import android.graphics.Color
+import android.os.Build
 import android.os.Bundle
+import android.os.Handler
 import android.view.Menu
+import android.view.View
+import android.view.Window
+import android.view.WindowManager
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -11,7 +18,9 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
+import androidx.core.content.ContextCompat
 import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
+import com.readystatesoftware.systembartint.SystemBarTintManager
 
 class HomePage : AppCompatActivity() {
 
@@ -20,6 +29,7 @@ class HomePage : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        setTheme(R.style.Theme_HETTY_Computer_Warehouse_System_NoActionBar)
 
         binding = ActivityHomePage2Binding.inflate(layoutInflater)
         setContentView(binding.root)
@@ -54,4 +64,5 @@ class HomePage : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_home_page2)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
+
 }

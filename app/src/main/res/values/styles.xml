@@ -10,4 +10,5 @@
         <item name="android:textSize">@dimen/textviewtextsize</item>
         <item name="android:textColor">#808080</item>
     </style>
+
 </resources>

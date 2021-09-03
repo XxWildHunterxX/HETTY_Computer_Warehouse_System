@@ -1,0 +1,117 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:aapt="http://schemas.android.com/aapt"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:id="@+id/item_list_item"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/selectableItemBackground"
+    android:gravity="center"
+    android:orientation="horizontal"
+    android:paddingLeft="@dimen/dimen_20dp"
+    android:paddingTop="@dimen/dimen_15dp"
+    android:paddingRight="@dimen/dimen_20dp"
+    android:paddingBottom="@dimen/dimen_15dp"
+    android:tag="layout/item_list_item_0">
+
+    <ImageView
+        android:id="@+id/item_image"
+        android:layout_width="@dimen/dimen_50dp"
+        android:layout_height="@dimen/dimen_50dp"
+        android:layout_gravity="center"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        android:srcCompat="@drawable/ic_empty_image" />
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:baselineAligned="false"
+        android:gravity="center"
+        android:orientation="horizontal">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginEnd="@dimen/dimen_10dp"
+            android:layout_weight="0.7"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/item_name"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:tag="binding_1"
+                android:text="hi"
+                android:textSize="@dimen/dimen_16sp"
+                android:textStyle="bold" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/dimen_5dp"
+                android:orientation="horizontal"
+                android:tag="binding_2">
+
+                <TextView
+                    android:id="@+id/sku_text"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:tag="binding_3"
+                    android:text="hi"
+                    android:textSize="@dimen/dimen_12sp" />
+
+                <TextView
+                    android:id="@+id/sku"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:gravity="center_vertical"
+                    android:singleLine="true"
+                    android:tag="binding_4"
+                    android:textSize="@dimen/dimen_15sp" />
+            </LinearLayout>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_gravity="top"
+            android:layout_weight="0.3"
+            android:gravity="top"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:paddingBottom="@dimen/dimen_5dp"
+                android:tag="binding_5">
+
+                <TextView
+                    android:id="@+id/available_stock"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="end"
+                    android:background="@drawable/contact_currency_border"
+                    android:paddingLeft="@dimen/dimen_3dp"
+                    android:paddingRight="@dimen/dimen_3dp"
+                    android:singleLine="true"
+                    android:tag="binding_6"
+                    android:text="hiiii"
+                    android:textSize="@dimen/dimen_15sp" />
+            </LinearLayout>
+
+            <TextView
+                android:id="@+id/unit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="end"
+                android:singleLine="true"
+                android:tag="binding_7"
+                android:text="50"
+                android:textSize="@dimen/dimen_15sp" />
+        </LinearLayout>
+    </LinearLayout>
+</LinearLayout>

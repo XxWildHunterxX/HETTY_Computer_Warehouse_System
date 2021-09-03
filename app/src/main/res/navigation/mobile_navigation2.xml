@@ -3,18 +3,18 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/mobile_navigation2"
-    app:startDestination="@id/nav_salesOrder">
+    app:startDestination="@id/nav_home">
 
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_salesorder"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/nav_purchaseOrders"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_salesorder"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/nav_salesOrder"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.fragment_addsales"
@@ -23,7 +23,7 @@
         android:id="@+id/nav_warehouseTracking"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_warehousetracking"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
@@ -40,5 +40,5 @@
         android:id="@+id/nav_items"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
         android:label="@string/menu_items"
-        tools:layout="@layout/fragment_slideshow" />
+        tools:layout="@layout/fragment_gallery" />
 </navigation>
