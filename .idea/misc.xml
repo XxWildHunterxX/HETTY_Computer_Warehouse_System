@@ -115,6 +115,31 @@
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/menu/home_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/drawable-anydpi/ic_menu_home.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/drawable/ic_item_name.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/drawable/ic_launcher_background.xml" value="0.31197916666666664" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/activity_home_page2.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/activity_purchase_main.xml" value="0.2957427536231884" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/app_bar_home_page2.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/content_home_page2.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_addsales.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_gallery.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_home.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_create.xml" value="0.4192513368983957" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_create_success.xml" value="0.33" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_create_sucessfully.xml" value="0.20364583333333333" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_delete.xml" value="0.20416666666666666" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_main.xml" value="0.3342391304347826" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_received.xml" value="0.259963768115942" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_update.xml" value="0.33" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_view.xml" value="0.4562770562770563" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_purchase_view_details.xml" value="0.33" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/fragment_slideshow.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/nav_header_home_page2.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/layout/toolbar.xml" value="0.33967391304347827" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.2203125" />
+        <entry key="..\:/Users/penny/AndroidStudioProjects/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.2203125" />
       </map>
     </option>
   </component>
