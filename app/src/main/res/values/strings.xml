@@ -11,4 +11,27 @@
     <string name="menu_home">Home</string>
     <string name="menu_gallery">Gallery</string>
     <string name="menu_slideshow">Slideshow</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="product_name">Product Name</string>
+    <string name="product_barcode">Product Barcode</string>
+    <string name="product_color">Product Color</string>
+    <string name="product_image">Product Image</string>
+    <string name="product_size">Product Size</string>
+    <string name="product_desc">Product Description</string>
+    <string name="do_you_need_low_stock_alert_on_this_product">Do you need low stock Alert on this product ?</string>
+    <string name="minimum_quantity_for_alert">Minimum quantity for alert</string>
+    <string name="imageDescription" />
+
+    <string name="staff_name">Staff Name</string>
+    <string name="staff_image">Staff Image</string>
+    <string name="staff_gender">Staff Gender</string>
+    <string name="male">Male</string>
+    <string name="female">Female</string>
+    <string name="date_of_birth">Date of Birth</string>
+    <string name="staff_address">Staff Address</string>
+    <string name="staff_phone_number">Staff Phone Number</string>
+    <string name="staff_email_address">Staff Email Address</string>
+    <string name="staff_position">Staff Position</string>
+    <string name="staff_joined_date">Staff Joined Date</string>
 </resources>
