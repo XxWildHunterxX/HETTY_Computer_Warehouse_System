@@ -1,4 +1,4 @@
-package com.junhao.hetty_computer_warehouse_system.ui.main
+package com.junhao.hetty_computer_warehouse_system.ui.tracking
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,7 +8,7 @@ import android.view.ViewGroup
 import com.junhao.hetty_computer_warehouse_system.R
 
 
-class TrackingFourthFragment : Fragment() {
+class TrackingPreparedFragment : Fragment() {
 
 
     override fun onCreateView(
@@ -16,8 +16,9 @@ class TrackingFourthFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tracking_fourth, container, false)
+        return inflater.inflate(R.layout.fragment_tracking_prepared, container, false)
     }
+
 
 
 }

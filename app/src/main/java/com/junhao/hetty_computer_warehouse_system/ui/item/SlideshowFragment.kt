@@ -1,5 +1,6 @@
-package com.junhao.hetty_computer_warehouse_system.ui.slideshow
+package com.junhao.hetty_computer_warehouse_system.ui.item
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -8,9 +9,8 @@ import android.widget.TextView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
-import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.databinding.FragmentGalleryBinding
-import com.junhao.hetty_computer_warehouse_system.databinding.FragmentHomeBinding
+import com.junhao.hetty_computer_warehouse_system.ui.tracking.TrackingPage
 
 class SlideshowFragment : Fragment() {
 
@@ -36,6 +36,12 @@ class SlideshowFragment : Fragment() {
         slideshowViewModel.text.observe(viewLifecycleOwner, Observer {
             textView.text = it
         })
+
+
+
+
+
+
         return root
     }
 

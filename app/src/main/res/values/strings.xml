@@ -32,7 +32,8 @@
     <string name="title_activity_tracking_page">TrackingPage</string>
     <string name="tab_text_1">Tab 1</string>
     <string name="tab_text_2">Tab 2</string>
-
+    <string name="open">Open</string>
+    <string name="close">Close</string>
 
     <string name="warehouse_activity">Warehouse Activity</string>
     <string name="to_be_pending">Quantity to be pending</string>

@@ -7,47 +7,41 @@
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_salesorder"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SlideshowFragment"
+        android:label="@string/menu_salesorder" />
     <fragment
         android:id="@+id/nav_purchaseOrders"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_salesorder"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view"
+        android:label="@string/menu_salesorder" />
     <fragment
         android:id="@+id/nav_salesOrder"
-        android:name="com.junhao.hetty_computer_warehouse_system.fragment_display_salesorder"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.Fragment_display_salesorder"
         android:label="@string/menu_salesorder"/>
     <fragment
         android:id="@+id/nav_warehouseTracking"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.tracking.TrackingPage"
         android:label="@string/menu_warehousetracking"
-        tools:layout="@layout/fragment_gallery" />
+        tools:layout="@layout/activity_tracking_page" />
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
-        android:label="@string/app_name"
-        tools:layout="@layout/fragment_home" />
+        android:label="@string/app_name" />
 
     <fragment
         android:id="@+id/nav_profile"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.gallery.GalleryFragment"
-        android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_userProfile"
+        android:label="@string/menu_profile" />
 
     <fragment
         android:id="@+id/nav_items"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_items"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
+        android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_tracking_all"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_items"
-        tools:layout="@layout/fragment_gallery" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SlideshowFragment"
+        android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_tracking_all2"
-        android:name="com.junhao.hetty_computer_warehouse_system.Fragment_Add_Item"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
         android:label="@string/menu_items" />
 </navigation>

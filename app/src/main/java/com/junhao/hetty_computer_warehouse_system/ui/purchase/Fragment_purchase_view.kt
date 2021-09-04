@@ -1,13 +1,14 @@
-package com.junhao.hetty_computer_warehouse_system
+package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import com.junhao.hetty_computer_warehouse_system.R
 
 
-class fragment_purchase_view_details : Fragment() {
+class Fragment_purchase_view : Fragment() {
 
 
     override fun onCreateView(
@@ -15,7 +16,7 @@ class fragment_purchase_view_details : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_purchase_view_details, container, false)
+        return inflater.inflate(R.layout.fragment_purchase_view, container, false)
     }
 
 

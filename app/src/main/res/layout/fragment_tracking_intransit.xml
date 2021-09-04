@@ -3,13 +3,14 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.TrackingThirdFragment">
+    tools:context=".ui.tracking.TrackingInTransitFragment">
 
     <!-- TODO: Update blank fragment layout -->
     <TextView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="Third Tab"
-        android:gravity="center"/>
+        android:text="In Transit"
+        android:textColor="@color/black"
+        android:textSize="30sp"/>
 
 </FrameLayout>
