@@ -11,10 +11,12 @@
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable-v21/ic_menu_gallery.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable-v21/ic_menu_slideshow.xml" value="0.12760416666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable-v24/ic_launcher_foreground.xml" value="0.12760416666666666" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/bottom_sheet_bg.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/contact_currency_border.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_barcode_scanner.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_calendar.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_default_product_select_img.xml" value="0.20092592592592592" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_done.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_empty_image.xml" value="0.20092592592592592" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_item_name.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_launcher_background.xml" value="0.12760416666666666" />
@@ -24,6 +26,7 @@
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_quantity.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_spinner_dropdown.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_user_name.xml" value="0.14166666666666666" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/ic_zf_close.xml" value="0.21666666666666667" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/side_nav_bar.xml" value="0.1" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/spinner_background_left.xml" value="0.14166666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/drawable/spinner_background_right.xml" value="0.14166666666666666" />
@@ -37,6 +40,7 @@
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/activity_verify_code.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/app_bar_home_page2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/content_home_page2.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/floating_context_homepage.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/fragment__add__item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/fragment_addsales.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/fragment_display_salesorder.xml" value="0.2765625" />
@@ -54,12 +58,17 @@
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/fragment_tracking_second.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/fragment_tracking_third.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/inventory_loading_layout.xml" value="0.2765625" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/list_advance_search.xml" value="0.296875" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/list_fab_fragment.xml" value="0.17291666666666666" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/list_sort.xml" value="0.296875" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/nav_header_home_page2.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/product_item.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/sales_loading_layout.xml" value="0.20520833333333333" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/screen_overlay.xml" value="0.296875" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/simple_toolbar.xml" value="0.2765625" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/layout/toolbar.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/menu/activity_main_drawer.xml" value="0.36666666666666664" />
+        <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/menu/floating_context_menu.xml" value="0.17291666666666666" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/menu/home_page.xml" value="0.36666666666666664" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/mipmap-anydpi-v26/ic_launcher.xml" value="0.1" />
         <entry key="..\:/Users/User/Desktop/Mobile App/HETTY_Computer_Warehouse_System/app/src/main/res/mipmap-anydpi-v26/ic_launcher_round.xml" value="0.1" />

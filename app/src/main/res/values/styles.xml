@@ -9,6 +9,10 @@
     <style name="CustomTextView">
         <item name="android:textSize">@dimen/textviewtextsize</item>
         <item name="android:textColor">#808080</item>
+        <item name="bottomSheetStyle">@style/Custom_Bottom_Sheet_Style</item>
+    </style>
+    <style name="Custom_Bottom_Sheet_Style">
+        <item name="android:background">@drawable/bottom_sheet_bg</item>
     </style>
 
 </resources>
