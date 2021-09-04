@@ -22,8 +22,7 @@
     <fragment
         android:id="@+id/nav_warehouseTracking"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_warehousetracking"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="@string/menu_warehousetracking" />
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
@@ -44,8 +43,7 @@
     <fragment
         android:id="@+id/nav_tracking_all"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.slideshow.SlideshowFragment"
-        android:label="@string/menu_items"
-        tools:layout="@layout/fragment_gallery" />
+        android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_tracking_all2"
         android:name="com.junhao.hetty_computer_warehouse_system.Fragment_Add_Item"
