@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".fragment_purchase_update" >
+    tools:context=".ui.purchase.Fragment_purchase_update" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -286,7 +286,7 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_purchase_details"
+                app:srcCompat="@drawable/ic_purchase_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />

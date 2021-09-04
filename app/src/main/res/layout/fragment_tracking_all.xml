@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:tools="http://schemas.android.com/tools"
+    tools:context=".ui.tracking.TrackingAllFragment">
+
+
+        <TextView
+            android:id="@+id/tv_fragment_name"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:text="All"
+            android:gravity="center"
+            android:textColor="@color/black"
+            android:textSize="30sp" />
+
+
+</FrameLayout>
