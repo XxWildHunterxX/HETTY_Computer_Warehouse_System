@@ -26,9 +26,8 @@
         tools:layout="@layout/fragment_gallery" />
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
-        android:label="@string/app_name"
-        tools:layout="@layout/fragment_home" />
+        android:name="com.junhao.hetty_computer_warehouse_system.fragment_addStaff"
+        android:label="@string/app_name" />
 
     <fragment
         android:id="@+id/nav_profile"

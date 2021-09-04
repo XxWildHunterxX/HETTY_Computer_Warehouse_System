@@ -22,7 +22,19 @@
                 android:layout_gravity="center_horizontal"
                 android:layout_marginTop="93dp"
                 android:src="@mipmap/ic_hetty_round" />
+
         </FrameLayout>
+
+        <TextView
+            android:id="@+id/textView5"
+            android:layout_width="match_parent"
+            android:layout_height="33dp"
+            android:fontFamily="sans-serif"
+            android:gravity="center"
+            android:text="HETTY WAREHOUSE  SYSTEM"
+            android:textColor="#216EF3"
+            android:textSize="24sp"
+            android:textStyle="bold" />
 
         <RelativeLayout
             android:layout_width="wrap_content"
