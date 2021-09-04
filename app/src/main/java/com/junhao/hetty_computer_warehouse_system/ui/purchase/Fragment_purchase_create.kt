@@ -1,14 +1,13 @@
-package com.junhao.hetty_computer_warehouse_system
+package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.TextView
-import java.text.SimpleDateFormat
+import com.junhao.hetty_computer_warehouse_system.R
 
-class fragment_purchase_create : Fragment() {
+class Fragment_purchase_create : Fragment() {
 
 
     override fun onCreateView(

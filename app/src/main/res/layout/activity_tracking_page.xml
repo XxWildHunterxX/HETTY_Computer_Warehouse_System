@@ -5,7 +5,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".ui.main.TrackingPage"
+    tools:context=".ui.tracking.TrackingPage"
     android:orientation="vertical">
 
 
@@ -22,7 +22,6 @@
         app:tabInlineLabel="true"
         app:tabMaxWidth="0dp"
         app:tabMode="scrollable">
-
 
         <com.google.android.material.tabs.TabItem
             android:layout_width="wrap_content"
@@ -45,6 +44,7 @@
             android:text="In Transit" />
 
     </com.google.android.material.tabs.TabLayout>
+
 
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/view_pager"

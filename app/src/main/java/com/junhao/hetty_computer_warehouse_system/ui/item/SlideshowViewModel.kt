@@ -1,4 +1,4 @@
-package com.junhao.hetty_computer_warehouse_system.ui.slideshow
+package com.junhao.hetty_computer_warehouse_system.ui.item
 
 import androidx.lifecycle.LiveData
 import androidx.lifecycle.MutableLiveData

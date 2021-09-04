@@ -1,14 +1,8 @@
-package com.junhao.hetty_computer_warehouse_system
+package com.junhao.hetty_computer_warehouse_system.ui.home
 
-import android.content.Intent
-import android.graphics.Color
-import android.os.Build
 import android.os.Bundle
-import android.os.Handler
 import android.view.Menu
-import android.view.View
-import android.view.Window
-import android.view.WindowManager
+import android.view.MenuItem
 import com.google.android.material.snackbar.Snackbar
 import com.google.android.material.navigation.NavigationView
 import androidx.navigation.findNavController
@@ -18,14 +12,19 @@ import androidx.navigation.ui.setupActionBarWithNavController
 import androidx.navigation.ui.setupWithNavController
 import androidx.drawerlayout.widget.DrawerLayout
 import androidx.appcompat.app.AppCompatActivity
-import androidx.core.content.ContextCompat
+import androidx.viewpager.widget.ViewPager
+import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
-import com.readystatesoftware.systembartint.SystemBarTintManager
+import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.material.tabs.TabLayout
 
 class HomePage : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomePage2Binding
+    var trackingtab: TabLayout? = null
+    var trackingviewpager: ViewPager? = null
+    lateinit var toggle : ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -47,11 +46,18 @@ class HomePage : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profile, R.id.nav_items
+                R.id.nav_home, R.id.nav_profile, R.id.nav_items,R.id.nav_warehouseTracking,R.id.nav_salesOrder,R.id.nav_purchaseOrders,R.id.nav_settings
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
+
+    }
+
+    override fun onOptionsItemSelected(item: MenuItem): Boolean {
+
+        return super.onOptionsItemSelected(item)
     }
 
     override fun onCreateOptionsMenu(menu: Menu): Boolean {

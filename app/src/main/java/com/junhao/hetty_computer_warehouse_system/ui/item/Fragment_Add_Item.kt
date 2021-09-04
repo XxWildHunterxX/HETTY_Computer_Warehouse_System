@@ -1,4 +1,4 @@
-package com.junhao.hetty_computer_warehouse_system.ui.main
+package com.junhao.hetty_computer_warehouse_system.ui.item
 
 import android.os.Bundle
 import androidx.fragment.app.Fragment
@@ -8,16 +8,14 @@ import android.view.ViewGroup
 import com.junhao.hetty_computer_warehouse_system.R
 
 
-class TrackingSecondFragment : Fragment() {
-
+class Fragment_Add_Item : Fragment() {
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tracking_second, container, false)
+        return inflater.inflate(R.layout.fragment__add__item, container, false)
     }
-
 
 }
