@@ -37,7 +37,7 @@ class HomePage : AppCompatActivity() {
         setContentView(binding.root)
 
         setSupportActionBar(binding.appBarHomePage2.toolbar)
-        //registerForContextMenu(binding.appBarHomePage2.fab)
+        registerForContextMenu(binding.appBarHomePage2.fab)
 
         binding.appBarHomePage2.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -74,7 +74,7 @@ class HomePage : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_home_page2)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-/*
+
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -93,7 +93,5 @@ class HomePage : AppCompatActivity() {
         }
         return super.onContextItemSelected(item)
     }
-
-*/
 
 }

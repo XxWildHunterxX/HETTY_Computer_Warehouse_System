@@ -19,7 +19,7 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
             <ImageView
-                android:id="@+id/imagebtn_proimage_addedit"
+                android:id="@+id/btnImg"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
@@ -28,7 +28,7 @@
                 android:contentDescription="@string/imageDescription"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_default_product_select_img"
+                app:srcCompat="@drawable/ic_default_product_select_img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -45,7 +45,7 @@
                 android:text="@string/product_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tfProductBarcode"
-                app:layout_constraintTop_toBottomOf="@+id/imagebtn_proimage_addedit" />
+                app:layout_constraintTop_toBottomOf="@+id/btnImg" />
 
             <TextView
                 android:id="@+id/tv_1.1"
@@ -56,7 +56,7 @@
                 android:layout_marginEnd="10dp"
                 style="@style/CustomTextView"
                 android:text="@string/product_name"
-                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintEnd_toStartOf="@+id/btnImg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -73,7 +73,7 @@
                 android:singleLine="true"
                 style="@style/CustomEdittextStyle"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintEnd_toStartOf="@+id/btnImg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_1.1" />
 
@@ -86,7 +86,7 @@
                 android:layout_marginEnd="10dp"
                 style="@style/CustomTextView"
                 android:text="@string/product_barcode"
-                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintEnd_toStartOf="@+id/btnImg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tfProductName" />
 
@@ -104,32 +104,32 @@
                 android:inputType="number"
                 android:singleLine="true"
                 style="@style/CustomEdittextStyle"
-                app:layout_constraintEnd_toStartOf="@+id/imagebtn_proimage_addedit"
+                app:layout_constraintEnd_toStartOf="@+id/btnImg"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textviewww" />
 
             <TextView
                 android:id="@+id/tvdsfsdfsdf"
+                style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                style="@style/CustomTextView"
-                android:text="@string/product_color"
+                android:text="Product Rack"
                 app:layout_constraintEnd_toStartOf="@+id/tvdsfsdfsdf2"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tfProductBarcode" />
 
             <EditText
-                android:id="@+id/tfProductColor"
+                android:id="@+id/tfProductRack"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_color"
-                android:hint="@string/product_color"
+                android:hint="Product Rack"
                 android:inputType="text"
                 android:singleLine="true"
                 style="@style/CustomEdittextStyle"
@@ -139,19 +139,20 @@
 
             <TextView
                 android:id="@+id/textView8"
+                style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                style="@style/CustomTextView"
-                android:text="@string/product_size"
+                android:text="Product Type"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductColor" />
+                app:layout_constraintTop_toBottomOf="@+id/tfProductRack" />
 
             <EditText
-                android:id="@+id/tfProductSize"
+                android:id="@+id/tfProductType"
+                style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -159,10 +160,9 @@
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_size"
                 android:ems="10"
-                android:hint="@string/product_size"
+                android:hint="Product Type"
                 android:inputType="text"
                 android:singleLine="true"
-                style="@style/CustomEdittextStyle"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView8" />
@@ -178,7 +178,7 @@
                 android:text="@string/product_desc"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductSize" />
+                app:layout_constraintTop_toBottomOf="@+id/tfProductType" />
 
             <EditText
                 android:id="@+id/tfProductDesc"
