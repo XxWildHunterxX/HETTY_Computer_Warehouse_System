@@ -1,7 +1,6 @@
 package com.junhao.hetty_computer_warehouse_system.ui.item
 
 import android.annotation.SuppressLint
-import android.app.Activity
 import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
 import android.content.Intent
@@ -24,23 +23,25 @@ import java.util.*
 import android.view.MotionEvent
 
 import android.view.View.OnTouchListener
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.zxing.integration.android.IntentIntegrator
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
-import java.lang.Exception
 import com.google.firebase.database.DatabaseError
 
 import com.google.firebase.database.DataSnapshot
 
 import com.google.firebase.database.ValueEventListener
 
-import com.google.firebase.database.DatabaseReference
-import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.app_bar_home_page2.view.*
+import com.google.android.gms.tasks.OnCompleteListener
+import com.google.android.gms.tasks.Task
+import com.google.firebase.storage.UploadTask
+
+import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Tasks.await
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
 
 
 class Fragment_Add_Item : Fragment() {
@@ -49,6 +50,7 @@ class Fragment_Add_Item : Fragment() {
     private val database = FirebaseDatabase.getInstance()
     private val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
     private var found: Boolean = false
+    private var getImgValue: String = ""
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -61,8 +63,6 @@ class Fragment_Add_Item : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_item, container, false)
 
 
-
-
         view.btnImg.setOnClickListener {
             selectImage()
         }
@@ -73,7 +73,8 @@ class Fragment_Add_Item : Fragment() {
             val prodBarCode = view.tfProductBarcode.text.toString()
             val prodRack = view.tfProductRack.text.toString()
             val prodType = view.tfProductType.text.toString()
-            val prodDesc = view.tfProductDesc.text.toString()
+            val prodPrice = view.tfProductPrice.text.toString()
+            val prodQTY = view.tfProductQuantity.text.toString()
             val prodMinQty = view.tfMinimumQTY.text.toString()
 
             if (prodName.isEmpty()) {
@@ -88,8 +89,11 @@ class Fragment_Add_Item : Fragment() {
             } else if (prodType.isEmpty()) {
                 view.tfProductType.error = "Product Type Required!"
                 return@setOnClickListener
-            } else if (prodDesc.isEmpty()) {
-                view.tfProductDesc.error = "Product Description Required!"
+            } else if (prodPrice.isEmpty() || prodPrice == "0" || prodPrice == "0.0") {
+                view.tfProductPrice.error = "Product Price Required!"
+                return@setOnClickListener
+            } else if (prodQTY.isEmpty() || prodQTY == "0") {
+                view.tfProductQuantity.error = "Product Quantity Required!"
                 return@setOnClickListener
             } else if (prodMinQty.isEmpty()) {
                 view.tfMinimumQTY.error = "Product Minimum Quantity Required!"
@@ -113,36 +117,42 @@ class Fragment_Add_Item : Fragment() {
                         val eventListener: ValueEventListener = object : ValueEventListener {
                             override fun onDataChange(dataSnapshot: DataSnapshot) {
                                 for (ds in dataSnapshot.children) {
-                                    val barCode = ds.child("productBarcode").getValue(String::class.java)
+                                    val barCode =
+                                        ds.child("productBarcode").getValue(String::class.java)
                                     Log.d("TAG", barCode!!)
-                                    if(barCode == prodBarCode){
+                                    if (barCode == prodBarCode) {
                                         found = true
                                         view.tfProductBarcode.error = "Product Barcode Existed!"
                                         break
-                                    }else{
+                                    } else {
                                         found = false
                                     }
                                 }
                                 if (!found) {
+
+                                    //upload image
+                                    uploadImage()
+
                                     val product = Product(
                                         prodName,
                                         prodBarCode,
                                         prodRack,
                                         prodType,
-                                        prodDesc,
+                                        prodPrice,
+                                        prodQTY,
                                         prodMinQty,
-                                        view.chkbox_lowstock_addedit.isChecked.toString()
-                                    )
+                                        view.chkbox_lowstock_addedit.isChecked.toString(),
+                                        getImgValue
+                                        )
 
-                                    myRef.child(product.name).setValue(product)
-                                    //upload image
-                                    uploadImage()
+                                    myRef.child(product.productName!!).setValue(product)
 
                                     view.tfProductName.text.clear()
                                     view.tfProductBarcode.text.clear()
                                     view.tfProductRack.text.clear()
                                     view.tfProductType.text.clear()
-                                    view.tfProductDesc.text.clear()
+                                    view.tfProductPrice.setText("0")
+                                    view.tfProductQuantity.setText("0")
                                     view.tfMinimumQTY.setText("0")
 
                                 }
@@ -180,10 +190,21 @@ class Fragment_Add_Item : Fragment() {
             false
         })
 
+        view.chkbox_lowstock_addedit.setOnClickListener() {
+            if (view.chkbox_lowstock_addedit.isChecked) {
+                view.tv_minimumquanalert_addedit.visibility = View.VISIBLE
+                view.tfMinimumQTY.visibility = View.VISIBLE
+            } else {
+                view.tv_minimumquanalert_addedit.visibility = View.INVISIBLE
+                view.tfMinimumQTY.visibility = View.INVISIBLE
+            }
+
+        }
+
+
         // Inflate the layout for this fragment
 
-        (activity as HomePage?)?.showFloatingActionButton()
-
+        (activity as HomePage?)?.hideFloatingActionButton()
 
 
         return view
@@ -200,20 +221,28 @@ class Fragment_Add_Item : Fragment() {
         val fileName = formatter.format(now)
 
         val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
+        CoroutineScope(Dispatchers.IO).launch {
+            storageReference.putFile(imageURI)
+                .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
 
-        storageReference.putFile(imageURI).addOnSuccessListener {
+                    btnImg.setImageURI(null)
+                    Toast.makeText(activity, "Successfully Added", Toast.LENGTH_LONG).show()
+                    imageURI = Uri.EMPTY
+                    btnImg.setImageResource(R.drawable.ic_default_product_select_img)
+                    if (progressDialog.isShowing) progressDialog.dismiss()
 
-            btnImg.setImageURI(null)
-            Toast.makeText(activity, "Successfully Added", Toast.LENGTH_LONG).show()
-            imageURI = Uri.EMPTY
-            btnImg.setImageResource(R.drawable.ic_default_product_select_img)
-            if (progressDialog.isShowing) progressDialog.dismiss()
+                    val downloadUrl =
+                        taskSnapshot.storage.downloadUrl.addOnCompleteListener { task ->
+                            Log.d("TAG", task.result.toString())
+                            getImgValue = task.result.toString()
+                        }
 
-        }.addOnFailureListener {
-            if (progressDialog.isShowing) progressDialog.dismiss()
-            Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+
+                }).addOnFailureListener {
+                    if (progressDialog.isShowing) progressDialog.dismiss()
+                    Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
+                }
         }
-
     }
 
     private fun selectImage() {

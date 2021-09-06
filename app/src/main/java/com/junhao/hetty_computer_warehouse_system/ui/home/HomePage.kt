@@ -1,6 +1,8 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
@@ -22,6 +24,10 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
+import android.content.SharedPreferences
+
+
+
 
 class HomePage : AppCompatActivity() {
 
@@ -41,11 +47,6 @@ class HomePage : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarHomePage2.toolbar)
         registerForContextMenu(binding.appBarHomePage2.fab)
-
-        this.setVisibilityForButton(false)
-
-
-        //registerForContextMenu(binding.appBarHomePage2.fab)
 
         binding.appBarHomePage2.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -90,13 +91,6 @@ class HomePage : AppCompatActivity() {
         binding.appBarHomePage2.fab.hide()
     }
 
-    fun setVisibilityForButton(shouldHide: Boolean) {
-        if (shouldHide) {
-            binding.appBarHomePage2.fab.hide()
-        } else {
-            binding.appBarHomePage2.fab.show()
-        }
-    }
 /*
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -117,4 +111,15 @@ class HomePage : AppCompatActivity() {
         return super.onContextItemSelected(item)
     }
 */
+override fun onStop() {
+    Log.i("Lifecycle", "onStop")
+    super.onStop()
+}
+    override fun onDestroy() {
+
+        Log.i("Lifecycle", "onDestroy")
+        super.onDestroy()
+
+    }
+
 }

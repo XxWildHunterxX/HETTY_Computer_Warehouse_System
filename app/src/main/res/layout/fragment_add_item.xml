@@ -169,31 +169,61 @@
 
             <TextView
                 android:id="@+id/textView9"
+                style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                style="@style/CustomTextView"
-                android:text="@string/product_desc"
+                android:text="Product Price"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tfProductType" />
 
             <EditText
-                android:id="@+id/tfProductDesc"
+                android:id="@+id/tfProductPrice"
+                style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
-                android:layout_height="80dp"
+                android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_description"
-                android:hint="@string/product_desc"
-                android:inputType="textMultiLine"
-                style="@style/CustomEdittextStyle"
+                android:hint="Product Price"
+                android:text="0"
+                android:inputType="numberDecimal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView9" />
+
+            <TextView
+                android:id="@+id/textView10"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="Product Quantity"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tfProductPrice" />
+
+            <EditText
+                android:id="@+id/tfProductQuantity"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:drawableStart="@drawable/ic_product_quantity"
+                android:hint="Product Quantity"
+                android:inputType="number"
+                android:text="0"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <CheckBox
                 android:id="@+id/chkbox_lowstock_addedit"
@@ -206,7 +236,7 @@
                 android:text="@string/do_you_need_low_stock_alert_on_this_product"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductDesc" />
+                app:layout_constraintTop_toBottomOf="@+id/tfProductQuantity" />
 
             <TextView
                 android:id="@+id/tv_minimumquanalert_addedit"

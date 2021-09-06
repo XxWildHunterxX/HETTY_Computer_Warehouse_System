@@ -36,31 +36,18 @@ class HomeFragment : Fragment() {
             ViewModelProvider(this).get(HomeViewModel::class.java)
 
 
-
-            val PREFS_NAME = "MyPrefsFile"
-
-            val settings: SharedPreferences = requireActivity().getSharedPreferences(PREFS_NAME, 0)
-
-            if (settings.getBoolean("my_first_time", true)) {
-                //the app is being launched for first time, do something
-                Log.d("Comments", "First time")
-
-                // first time task
-
-                // record the fact that the app has been started at least once
-                settings.edit().putBoolean("my_first_time", false).commit()
-            }else{
-                (activity as HomePage?)?.showFloatingActionButton()
-            }
-
-
-
-
         /* val textView: TextView = binding.textHome */
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
          /*   textView.text = it */
         })
         return view
+    }
+
+    override fun onStart() {
+        (activity as HomePage?)?.showFloatingActionButton()
+        Log.i("Lifecycle", "onStartFragment")
+        super.onStart()
+
     }
 
 }
