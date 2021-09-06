@@ -24,6 +24,7 @@ import java.util.*
 import android.view.MotionEvent
 
 import android.view.View.OnTouchListener
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.zxing.integration.android.IntentIntegrator
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
@@ -37,13 +38,16 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.ValueEventListener
 
 import com.google.firebase.database.DatabaseReference
+import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
+import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
+import kotlinx.android.synthetic.main.app_bar_home_page2.view.*
 
 
 class Fragment_Add_Item : Fragment() {
 
     private var imageURI: Uri = Uri.EMPTY
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Product")
+    private val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
     private var found: Boolean = false
 
     @SuppressLint("ClickableViewAccessibility")
@@ -55,6 +59,8 @@ class Fragment_Add_Item : Fragment() {
         val patternBarcode = Regex("^123456\\d{4}\$")
         val patternRack = Regex("^[ABC]-\\d{2}\$")
         val view = inflater.inflate(R.layout.fragment_add_item, container, false)
+
+
 
 
         view.btnImg.setOnClickListener {

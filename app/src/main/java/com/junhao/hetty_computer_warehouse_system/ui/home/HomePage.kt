@@ -20,6 +20,7 @@ import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.app_bar_home_page2.*
 
 class HomePage : AppCompatActivity() {
 
@@ -56,7 +57,6 @@ class HomePage : AppCompatActivity() {
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
 
-
     }
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
@@ -74,7 +74,7 @@ class HomePage : AppCompatActivity() {
         val navController = findNavController(R.id.nav_host_fragment_content_home_page2)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
     }
-
+/*
     override fun onCreateContextMenu(
         menu: ContextMenu?,
         v: View?,
@@ -93,5 +93,5 @@ class HomePage : AppCompatActivity() {
         }
         return super.onContextItemSelected(item)
     }
-
+*/
 }
