@@ -84,13 +84,20 @@ class HomePage : AppCompatActivity() {
     }
 
     fun showFloatingActionButton() {
-        binding.appBarHomePage2.fab.show()
+        binding.appBarHomePage2.fab.visibility = View.VISIBLE
     }
 
     fun hideFloatingActionButton() {
-        binding.appBarHomePage2.fab.hide()
+        binding.appBarHomePage2.fab.visibility = View.GONE
     }
 
+    fun setVisibilityForButton(shouldHide: Boolean) {
+        if (shouldHide) {
+            binding.appBarHomePage2.fab.visibility = View.GONE
+        } else {
+            binding.appBarHomePage2.fab.visibility = View.VISIBLE
+        }
+    }
 /*
     override fun onCreateContextMenu(
         menu: ContextMenu?,

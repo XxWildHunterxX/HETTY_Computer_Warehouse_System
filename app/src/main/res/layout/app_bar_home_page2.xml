@@ -25,7 +25,7 @@
 
     <include layout="@layout/content_home_page2" />
 
-    <com.google.android.material.floatingactionbutton.FloatingActionButton
+    <com.getbase.floatingactionbutton.FloatingActionsMenu
         android:id="@+id/fab"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -33,9 +33,35 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         android:visibility="visible"
-        app:backgroundTint="@color/black_theme_color"
-        app:srcCompat="@drawable/ic_add_white"
-        app:tint="@android:color/white"
-        tools:ignore="SpeakableTextPresentCheck" />
+        app:fab_expandDirection="up"
+        app:fab_labelsPosition="left">
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#FFF"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_calendar"
+            app:fab_title="This is icon 1"
+            app:fab_labelStyle="@style/FloatStyle"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#FFF"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_contact"
+            app:fab_title="This is icon 2"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="#FFF"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_address"
+            app:fab_title="This is icon 3"/>
+
+
+    </com.getbase.floatingactionbutton.FloatingActionsMenu>
 
 </androidx.coordinatorlayout.widget.CoordinatorLayout>
