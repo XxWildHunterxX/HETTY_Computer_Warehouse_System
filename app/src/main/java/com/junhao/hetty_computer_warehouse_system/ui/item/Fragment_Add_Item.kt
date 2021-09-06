@@ -231,9 +231,9 @@ class Fragment_Add_Item : Fragment() {
                     btnImg.setImageResource(R.drawable.ic_default_product_select_img)
                     if (progressDialog.isShowing) progressDialog.dismiss()
 
-                    val downloadUrl =
                         taskSnapshot.storage.downloadUrl.addOnCompleteListener { task ->
                             Log.d("TAG", task.result.toString())
+
                             getImgValue = task.result.toString()
                         }
 

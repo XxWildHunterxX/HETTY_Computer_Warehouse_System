@@ -25,8 +25,7 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
-
-
+import com.google.firebase.FirebaseApp
 
 
 class HomePage : AppCompatActivity() {
@@ -39,6 +38,7 @@ class HomePage : AppCompatActivity() {
     lateinit var toggle : ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
+
         super.onCreate(savedInstanceState)
         setTheme(R.style.Theme_HETTY_Computer_Warehouse_System_NoActionBar)
 
