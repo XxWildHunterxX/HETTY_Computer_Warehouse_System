@@ -19,10 +19,12 @@ import androidx.viewpager.widget.ViewPager
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
 import androidx.appcompat.app.ActionBarDrawerToggle
+import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 
 class HomePage : AppCompatActivity() {
+
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomePage2Binding
@@ -39,6 +41,11 @@ class HomePage : AppCompatActivity() {
 
         setSupportActionBar(binding.appBarHomePage2.toolbar)
         registerForContextMenu(binding.appBarHomePage2.fab)
+
+        this.setVisibilityForButton(false)
+
+
+        //registerForContextMenu(binding.appBarHomePage2.fab)
 
         binding.appBarHomePage2.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
@@ -73,6 +80,22 @@ class HomePage : AppCompatActivity() {
     override fun onSupportNavigateUp(): Boolean {
         val navController = findNavController(R.id.nav_host_fragment_content_home_page2)
         return navController.navigateUp(appBarConfiguration) || super.onSupportNavigateUp()
+    }
+
+    fun showFloatingActionButton() {
+        binding.appBarHomePage2.fab.show()
+    }
+
+    fun hideFloatingActionButton() {
+        binding.appBarHomePage2.fab.hide()
+    }
+
+    fun setVisibilityForButton(shouldHide: Boolean) {
+        if (shouldHide) {
+            binding.appBarHomePage2.fab.hide()
+        } else {
+            binding.appBarHomePage2.fab.show()
+        }
     }
 /*
     override fun onCreateContextMenu(

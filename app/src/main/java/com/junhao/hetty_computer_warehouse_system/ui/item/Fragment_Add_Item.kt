@@ -181,6 +181,11 @@ class Fragment_Add_Item : Fragment() {
         })
 
         // Inflate the layout for this fragment
+
+        (activity as HomePage?)?.showFloatingActionButton()
+
+
+
         return view
     }
 
