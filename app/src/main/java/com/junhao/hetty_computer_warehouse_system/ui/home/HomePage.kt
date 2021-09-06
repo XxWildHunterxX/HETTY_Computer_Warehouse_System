@@ -1,6 +1,8 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
+import android.content.Context
 import android.os.Bundle
+import android.util.Log
 import android.view.ContextMenu
 import android.view.Menu
 import android.view.MenuItem
@@ -21,6 +23,11 @@ import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2B
 import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
+import kotlinx.android.synthetic.main.app_bar_home_page2.*
+import android.content.SharedPreferences
+
+
+
 
 class HomePage : AppCompatActivity() {
 
@@ -41,10 +48,6 @@ class HomePage : AppCompatActivity() {
         setSupportActionBar(binding.appBarHomePage2.toolbar)
         registerForContextMenu(binding.appBarHomePage2.fab)
 
-        this.setVisibilityForButton(false)
-
-
-
         binding.appBarHomePage2.fab.setOnClickListener { view ->
             Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
                 .setAction("Action", null).show()
@@ -61,7 +64,6 @@ class HomePage : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
-
 
     }
 
@@ -115,7 +117,16 @@ class HomePage : AppCompatActivity() {
         }
         return super.onContextItemSelected(item)
     }
-
 */
+override fun onStop() {
+    Log.i("Lifecycle", "onStop")
+    super.onStop()
+}
+    override fun onDestroy() {
+
+        Log.i("Lifecycle", "onDestroy")
+        super.onDestroy()
+
+    }
 
 }

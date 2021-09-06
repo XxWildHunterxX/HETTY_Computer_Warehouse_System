@@ -34,8 +34,9 @@
 
     <fragment
         android:id="@+id/nav_items"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
-        android:label="@string/menu_items" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.ShowProduct"
+        android:label="@string/menu_items"
+        tools:layout="@layout/fragment_show_product" />
     <fragment
         android:id="@+id/nav_tracking_all"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SlideshowFragment"
