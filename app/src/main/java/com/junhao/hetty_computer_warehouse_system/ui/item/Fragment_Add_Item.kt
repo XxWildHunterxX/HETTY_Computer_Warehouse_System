@@ -32,16 +32,9 @@ import com.google.firebase.database.ValueEventListener
 
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.app_bar_home_page2.view.*
-import com.google.android.gms.tasks.OnCompleteListener
-import com.google.android.gms.tasks.Task
 import com.google.firebase.storage.UploadTask
 
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.android.gms.tasks.Tasks.await
-import kotlinx.coroutines.CoroutineScope
-import kotlinx.coroutines.Dispatchers
-import kotlinx.coroutines.launch
-import kotlinx.coroutines.tasks.await
 
 
 class Fragment_Add_Item : Fragment() {
@@ -50,7 +43,6 @@ class Fragment_Add_Item : Fragment() {
     private val database = FirebaseDatabase.getInstance()
     private val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
     private var found: Boolean = false
-    private var getImgValue: String = ""
 
     @SuppressLint("ClickableViewAccessibility")
     override fun onCreateView(
@@ -63,7 +55,7 @@ class Fragment_Add_Item : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_item, container, false)
 
 
-        view.btnImg.setOnClickListener {
+        view.updateImgProduct.setOnClickListener {
             selectImage()
         }
 
@@ -130,30 +122,65 @@ class Fragment_Add_Item : Fragment() {
                                 }
                                 if (!found) {
 
-                                    //upload image
-                                    uploadImage()
+                                    val progressDialog = ProgressDialog(activity)
+                                    progressDialog.setMessage("Uploading File ...")
+                                    progressDialog.setCancelable(false)
+                                    progressDialog.show()
 
-                                    val product = Product(
-                                        prodName,
-                                        prodBarCode,
-                                        prodRack,
-                                        prodType,
-                                        prodPrice,
-                                        prodQTY,
-                                        prodMinQty,
-                                        view.chkbox_lowstock_addedit.isChecked.toString(),
-                                        getImgValue
-                                        )
+                                    val formatter =
+                                        SimpleDateFormat("yyyy-MM-dd_hh_mm_ss", Locale.getDefault())
+                                    val now = Date()
+                                    val fileName = formatter.format(now)
 
-                                    myRef.child(product.productName!!).setValue(product)
+                                    val storageReference = FirebaseStorage.getInstance()
+                                        .getReference("images/$fileName")
 
-                                    view.tfProductName.text.clear()
-                                    view.tfProductBarcode.text.clear()
-                                    view.tfProductRack.text.clear()
-                                    view.tfProductType.text.clear()
-                                    view.tfProductPrice.setText("0")
-                                    view.tfProductQuantity.setText("0")
-                                    view.tfMinimumQTY.setText("0")
+                                    storageReference.putFile(imageURI)
+                                        .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+
+                                            updateImgProduct.setImageURI(null)
+                                            Toast.makeText(
+                                                activity,
+                                                "Successfully Added",
+                                                Toast.LENGTH_LONG
+                                            ).show()
+                                            imageURI = Uri.EMPTY
+                                            updateImgProduct.setImageResource(R.drawable.ic_default_product_select_img)
+                                            if (progressDialog.isShowing) progressDialog.dismiss()
+
+                                            taskSnapshot.storage.downloadUrl.addOnCompleteListener { task ->
+                                                val getImgValue = task.result.toString()
+                                                Log.d("TAG", task.result.toString())
+
+                                                val product = Product(
+                                                    prodName,
+                                                    prodBarCode,
+                                                    prodRack,
+                                                    prodType,
+                                                    prodPrice,
+                                                    prodQTY,
+                                                    prodMinQty,
+                                                    view.chkbox_lowstock_addedit.isChecked.toString(),
+                                                    getImgValue
+                                                )
+                                                myRef.child(product.productName!!).setValue(product)
+
+                                                view.tfProductName.text.clear()
+                                                view.tfProductBarcode.text.clear()
+                                                view.tfProductRack.text.clear()
+                                                view.tfProductType.text.clear()
+                                                view.tfProductPrice.setText("0")
+                                                view.tfProductQuantity.setText("0")
+                                                view.tfMinimumQTY.setText("0")
+                                            }
+
+
+                                        }).addOnFailureListener {
+                                            if (progressDialog.isShowing) progressDialog.dismiss()
+                                            Toast.makeText(activity, "Failed", Toast.LENGTH_LONG)
+                                                .show()
+                                        }
+
 
                                 }
 
@@ -210,41 +237,6 @@ class Fragment_Add_Item : Fragment() {
         return view
     }
 
-    private fun uploadImage() {
-        val progressDialog = ProgressDialog(activity)
-        progressDialog.setMessage("Uploading File ...")
-        progressDialog.setCancelable(false)
-        progressDialog.show()
-
-        val formatter = SimpleDateFormat("yyyy-MM-dd_hh_mm_ss", Locale.getDefault())
-        val now = Date()
-        val fileName = formatter.format(now)
-
-        val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
-        CoroutineScope(Dispatchers.IO).launch {
-            storageReference.putFile(imageURI)
-                .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
-
-                    btnImg.setImageURI(null)
-                    Toast.makeText(activity, "Successfully Added", Toast.LENGTH_LONG).show()
-                    imageURI = Uri.EMPTY
-                    btnImg.setImageResource(R.drawable.ic_default_product_select_img)
-                    if (progressDialog.isShowing) progressDialog.dismiss()
-
-                        taskSnapshot.storage.downloadUrl.addOnCompleteListener { task ->
-                            Log.d("TAG", task.result.toString())
-
-                            getImgValue = task.result.toString()
-                        }
-
-
-                }).addOnFailureListener {
-                    if (progressDialog.isShowing) progressDialog.dismiss()
-                    Toast.makeText(activity, "Failed", Toast.LENGTH_LONG).show()
-                }
-        }
-    }
-
     private fun selectImage() {
         val intent = Intent()
         intent.type = "image/*"
@@ -258,7 +250,7 @@ class Fragment_Add_Item : Fragment() {
 
         if (requestCode == 100 && resultCode == RESULT_OK) {
             imageURI = data?.data!!
-            btnImg.setImageURI(imageURI)
+            updateImgProduct.setImageURI(imageURI)
 
         }
         if (resultCode == RESULT_OK) {
@@ -280,6 +272,5 @@ class Fragment_Add_Item : Fragment() {
         }
 
     }
-
 
 }

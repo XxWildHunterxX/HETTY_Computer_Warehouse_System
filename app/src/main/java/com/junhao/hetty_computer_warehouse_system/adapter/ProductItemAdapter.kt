@@ -9,14 +9,27 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.data.Product
-import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
 import com.squareup.picasso.Picasso
 
-class ProductItemAdapter(val context: Context, val ProductItemList: List<Product>) :
+class ProductItemAdapter(val context: Context, private val ProductItemList: List<Product>) :
     RecyclerView.Adapter<ProductItemAdapter.myViewHolder>() {
 
+    private lateinit var  mListener : onItemClickListener
 
-    class myViewHolder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+interface onItemClickListener{
+
+    fun onItemClick(productName: String, productPrice:String,productType:String,productRack:String,productQty:String)
+
+}
+
+    fun setOnItemClickListener(listener:onItemClickListener){
+
+        mListener = listener
+
+    }
+
+
+    class myViewHolder(itemView: View,listener:onItemClickListener) : RecyclerView.ViewHolder(itemView) {
 
         private val productName: TextView = itemView.findViewById(R.id.tvProductName)
         private val productPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
@@ -30,13 +43,29 @@ class ProductItemAdapter(val context: Context, val ProductItemList: List<Product
             var imageUri : String? = null
             imageUri = prod.productImg
             Picasso.get().load(imageUri).into(productImg);
-            productName.text = "Name : " + prod.productName
-            productPrice.text = "Price : RM" + prod.productPrice
-            productType.text = "Type : " + prod.productType
-            productRack.text = "Rack : " + prod.productRack
-            productQty.text = "Qty : " + prod.productQuantity
+            productName.text =  prod.productName
+            productPrice.text = prod.productPrice
+            productType.text =  prod.productType
+            productRack.text =  prod.productRack
+            productQty.text =  prod.productQuantity
 
         }
+
+        init{
+
+            itemView.setOnClickListener {
+                var imageUri : String? = null
+                imageUri = productImg.toString()
+                listener.onItemClick(productName.text.toString(),productPrice.text.toString(),productType.text.toString(),
+                    productRack.text.toString(),productQty.text.toString())
+
+
+
+            }
+
+
+        }
+
 
     }
 
@@ -45,7 +74,8 @@ class ProductItemAdapter(val context: Context, val ProductItemList: List<Product
             R.layout.product_item, parent, false
         )
 
-        return myViewHolder(itemView)
+
+        return myViewHolder(itemView,mListener)
     }
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {

@@ -25,7 +25,12 @@ import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.firebase.FirebaseApp
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.ktx.auth
+import com.google.firebase.ktx.Firebase
 
 
 class HomePage : AppCompatActivity() {
@@ -33,9 +38,6 @@ class HomePage : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomePage2Binding
-    var trackingtab: TabLayout? = null
-    var trackingviewpager: ViewPager? = null
-    lateinit var toggle : ActionBarDrawerToggle
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -44,6 +46,7 @@ class HomePage : AppCompatActivity() {
 
         binding = ActivityHomePage2Binding.inflate(layoutInflater)
         setContentView(binding.root)
+
 
         setSupportActionBar(binding.appBarHomePage2.toolbar)
         registerForContextMenu(binding.appBarHomePage2.fab)

@@ -2,10 +2,11 @@
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/showProductLayout"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.item.ShowProduct" >
+    tools:context=".ui.item.ShowProduct">
 
     <SearchView
         android:id="@+id/searchView"
@@ -15,9 +16,9 @@
         android:layout_marginTop="10dp"
         android:layout_marginBottom="@dimen/dimen_10dp"
         android:background="@drawable/searchview_background"
-        android:queryBackground="@android:color/transparent"
         android:iconifiedByDefault="false"
-        android:queryHint="Search"/>
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Search" />
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/recycleViewProduct"

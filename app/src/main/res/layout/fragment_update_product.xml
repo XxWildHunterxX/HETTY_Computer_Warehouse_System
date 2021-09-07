@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.item.Fragment_Add_Item">
+    tools:context=".ui.item.UpdateProduct">
 
     <ScrollView
         android:layout_width="match_parent"
@@ -26,6 +26,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:adjustViewBounds="true"
+                android:clickable="false"
                 android:contentDescription="@string/imageDescription"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
@@ -70,6 +71,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_item_name"
+                android:enabled="false"
                 android:hint="@string/product_name"
                 android:inputType="text"
                 android:minHeight="48dp"
@@ -103,6 +105,7 @@
                 android:drawableLeft="@drawable/ic_barcode"
                 android:drawableRight="@drawable/ic_barcode_scanner"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/product_barcode"
                 android:inputType="number"
                 android:minHeight="48dp"
@@ -133,6 +136,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_color"
+                android:enabled="false"
                 android:hint="Product Rack"
                 android:inputType="text"
                 android:minHeight="48dp"
@@ -164,6 +168,7 @@
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_size"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="Product Type"
                 android:inputType="text"
                 android:minHeight="48dp"
@@ -194,6 +199,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_description"
+                android:enabled="false"
                 android:hint="Product Price"
                 android:inputType="numberDecimal"
                 android:minHeight="48dp"
@@ -224,6 +230,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_product_quantity"
+                android:enabled="false"
                 android:hint="Product Quantity"
                 android:inputType="number"
                 android:minHeight="48dp"
@@ -240,13 +247,14 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:checked="true"
+                android:enabled="false"
                 android:text="@string/do_you_need_low_stock_alert_on_this_product"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tfProductQuantity" />
 
             <TextView
-                android:id="@+id/tv_minimumquanalert_addedit"
+                android:id="@+id/tv_minquanalert_edit"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -259,7 +267,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/chkbox_lowstock_addedit" />
 
             <EditText
-                android:id="@+id/tfMinimumQTY"
+                android:id="@+id/tfMinQTY"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -268,6 +276,7 @@
                 android:layout_marginEnd="10dp"
                 android:drawableStart="@drawable/ic_alert"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/minimum_quantity_for_alert"
                 android:inputType="number"
                 android:minHeight="48dp"
@@ -276,21 +285,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_minimumquanalert_addedit" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_minquanalert_edit" />
 
             <Button
-                android:id="@+id/btnAddItem"
+                android:id="@+id/btnUpdateItem"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_corners"
-                android:text="Add item"
+                android:text="Edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfMinimumQTY" />
+                app:layout_constraintTop_toBottomOf="@+id/tfMinQTY" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>
