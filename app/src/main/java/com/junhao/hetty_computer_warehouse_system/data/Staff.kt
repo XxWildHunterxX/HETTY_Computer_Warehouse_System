@@ -9,5 +9,6 @@ data class Staff(
     val phoneNum :String,
     val email :String,
     val position :String,
-    val joinDate :String
+    val joinDate :String,
+    val staffImg :String
 )
