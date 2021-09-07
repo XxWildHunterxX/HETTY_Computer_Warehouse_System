@@ -1,15 +1,14 @@
 package com.junhao.hetty_computer_warehouse_system.ui.item
 
+import android.app.AlertDialog
 import android.content.ContentValues.TAG
+import android.content.DialogInterface
 import android.graphics.Path
 import android.os.Bundle
 import android.util.Log
 import android.view.*
-import android.widget.ArrayAdapter
+import android.widget.*
 import androidx.fragment.app.Fragment
-import android.widget.ImageView
-import android.widget.SearchView
-import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.recyclerview.widget.RecyclerView
 import com.junhao.hetty_computer_warehouse_system.R
@@ -102,27 +101,48 @@ class ShowProduct : Fragment() {
                         }
 
                         override fun onDeleteClick(productName: String) {
-                            val queryRef :Query = myRef.orderByChild("productName").equalTo(productName)
 
-                            queryRef.addListenerForSingleValueEvent(object : ValueEventListener{
-                                override fun onDataChange(snapshot: DataSnapshot) {
-                                    for (exist in snapshot.children){
-                                        exist.ref.setValue(null)
-                                    }
+                            val dialog: AlertDialog =
+                                AlertDialog.Builder(activity).setTitle("Delete")
+                                    .setMessage("Are You Sure Want to Delete?").setPositiveButton("Yes", null)
+                                    .setNegativeButton("No", null).show()
 
+                            val positiveButton : Button = dialog.getButton(AlertDialog.BUTTON_POSITIVE)
+
+                            positiveButton.setOnClickListener(object : View.OnClickListener{
+                                override fun onClick(v: View?) {
+
+                                    val queryRef: Query =
+                                        myRef.orderByChild("productName").equalTo(productName)
+
+                                    queryRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                        override fun onDataChange(snapshot: DataSnapshot) {
+                                            for (exist in snapshot.children) {
+                                                exist.ref.setValue(null)
+                                            }
+
+                                            Toast.makeText(activity, "Delete Successfully", Toast.LENGTH_SHORT).show()
+                                        }
+
+                                        override fun onCancelled(error: DatabaseError) {
+                                            Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+                                        }
+
+                                    })
+                                    dialog.dismiss()
                                 }
-
-                                override fun onCancelled(error: DatabaseError) {
-                                    Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
-                                }
-
-
                             })
+
+
 
                         }
 
                         override fun onLocationClick(productName: String, productRack: String) {
-                            Toast.makeText(activity, "This is Location Button $productName,$productRack", Toast.LENGTH_SHORT).show()
+                            Toast.makeText(
+                                activity,
+                                "This is Location Button $productName,$productRack",
+                                Toast.LENGTH_SHORT
+                            ).show()
                         }
 
 
