@@ -28,7 +28,7 @@
                 android:contentDescription="@string/imageDescription"
                 android:cropToPadding="false"
                 android:scaleType="centerCrop"
-                android:src="@drawable/ic_default_product_select_img"
+                app:srcCompat="@drawable/ic_default_product_select_img"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -44,7 +44,7 @@
                 android:gravity="center"
                 android:text="@string/staff_image"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/radioGroup"
+                app:layout_constraintStart_toEndOf="@+id/rgpGender"
                 app:layout_constraintTop_toBottomOf="@+id/btnStaffImage" />
 
             <TextView
@@ -71,6 +71,7 @@
                 android:hint="@string/staff_name"
                 android:inputType="text"
                 android:singleLine="true"
+                android:textColor="#000000"
                 android:textSize="12sp"
                 app:layout_constraintEnd_toStartOf="@+id/btnStaffImage"
                 app:layout_constraintStart_toStartOf="parent"
@@ -90,7 +91,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tfStaffName" />
 
             <RadioGroup
-                android:id="@+id/radioGroup"
+                android:id="@+id/rgpGender"
                 android:layout_width="226dp"
                 android:layout_height="89dp"
                 android:layout_marginTop="10dp"
@@ -112,17 +113,17 @@
             </RadioGroup>
 
             <TextView
-                android:id="@+id/t4"
+                android:id="@+id/findDateDOB"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/date_of_birth"
+                android:text="@string/choose_d_o_b"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/radioGroup" />
+                app:layout_constraintTop_toBottomOf="@+id/rgpGender" />
 
             <EditText
                 android:id="@+id/tfStaffDOB"
@@ -132,12 +133,14 @@
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
+                android:enabled="false"
                 android:hint="@string/date_of_birth"
                 android:inputType="date"
                 android:singleLine="true"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/t4" />
+                app:layout_constraintTop_toBottomOf="@+id/findDateDOB" />
 
             <TextView
                 android:id="@+id/t5"
@@ -164,6 +167,7 @@
                 android:hint="@string/staff_address"
                 android:inputType="textMultiLine"
                 android:singleLine="true"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/t5" />
@@ -193,6 +197,7 @@
                 android:hint="@string/staff_phone_number"
                 android:inputType="phone"
                 android:singleLine="true"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/t6" />
@@ -222,6 +227,7 @@
                 android:hint="@string/staff_email_address"
                 android:inputType="textEmailAddress"
                 android:singleLine="true"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/t7" />
@@ -251,19 +257,20 @@
                 android:hint="@string/staff_position"
                 android:inputType="text"
                 android:singleLine="true"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/t8" />
 
             <TextView
-                android:id="@+id/t9"
+                android:id="@+id/findDateJoin"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                android:text="@string/staff_joined_date"
+                android:text="@string/choose_joined_date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tfStaffPosition" />
@@ -277,12 +284,14 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:ems="10"
+                android:enabled="false"
                 android:hint="@string/staff_joined_date"
                 android:inputType="date"
                 android:singleLine="true"
+                android:textColor="#000000"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/t9" />
+                app:layout_constraintTop_toBottomOf="@+id/findDateJoin" />
 
             <Button
                 android:id="@+id/btnAddStaff"
