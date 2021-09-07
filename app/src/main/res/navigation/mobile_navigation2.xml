@@ -24,8 +24,12 @@
         tools:layout="@layout/activity_tracking_page" />
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff"
-        android:label="@string/app_name" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
+        android:label="@string/app_name" >
+        <action
+            android:id="@+id/action_nav_home_to_fragment_addStaff"
+            app:destination="@id/fragment_addStaff" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_profile"
@@ -48,7 +52,8 @@
     <fragment
         android:id="@+id/nav_add_item"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
-        android:label="@string/menu_items" />
+        android:label="@string/menu_items"
+        tools:layout="@layout/fragment_add_item" />
     <fragment
         android:id="@+id/updateProduct"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.UpdateProduct"
@@ -58,4 +63,8 @@
             android:id="@+id/action_updateProduct_to_nav_items"
             app:destination="@id/nav_items" />
     </fragment>
+    <fragment
+        android:id="@+id/fragment_addStaff"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff"
+        android:label="Add Staff" />
 </navigation>

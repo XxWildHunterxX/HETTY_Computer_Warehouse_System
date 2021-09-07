@@ -1,5 +1,7 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
+import android.content.ActivityNotFoundException
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -15,8 +17,8 @@ import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.databinding.FragmentHomeBinding
 import kotlinx.android.synthetic.main.activity_home_page2.view.*
 import android.content.SharedPreferences
-
-
+import androidx.navigation.Navigation
+import com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff
 
 
 class HomeFragment : Fragment() {
@@ -29,8 +31,7 @@ class HomeFragment : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
 
-        val view = inflater.inflate(R.layout.fragment_home, container, false)
-
+            val view = inflater.inflate(R.layout.fragment_home, container, false)
 
         homeViewModel =
             ViewModelProvider(this).get(HomeViewModel::class.java)
@@ -40,12 +41,15 @@ class HomeFragment : Fragment() {
         homeViewModel.text.observe(viewLifecycleOwner, Observer {
          /*   textView.text = it */
         })
+
+
         return view
     }
 
     override fun onStart() {
         (activity as HomePage?)?.showFloatingActionButton()
         Log.i("Lifecycle", "onStartFragment")
+
         super.onStart()
 
     }

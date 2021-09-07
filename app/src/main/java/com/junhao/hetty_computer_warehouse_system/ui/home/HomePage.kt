@@ -1,6 +1,8 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
+import android.content.ActivityNotFoundException
 import android.content.Context
+import android.content.Intent
 import android.os.Bundle
 import android.util.Log
 import android.view.ContextMenu
@@ -21,11 +23,13 @@ import androidx.viewpager.widget.ViewPager
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
 import androidx.appcompat.app.ActionBarDrawerToggle
-import com.google.android.material.floatingactionbutton.FloatingActionButton
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
+import androidx.navigation.Navigation
+import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.gms.tasks.OnCompleteListener
+import com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff
 
 
 class HomePage : AppCompatActivity() {
@@ -33,6 +37,7 @@ class HomePage : AppCompatActivity() {
 
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomePage2Binding
+    private var fabs :FloatingActionButton? = null
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -51,6 +56,40 @@ class HomePage : AppCompatActivity() {
         }
 
  */
+        val navControl = findNavController(R.id.nav_host_fragment_content_home_page2)
+        val fabSales : FloatingActionButton = findViewById(R.id.fab_sales)
+        val fabItem : FloatingActionButton = findViewById(R.id.fab_item)
+        val fabPurchase : FloatingActionButton = findViewById(R.id.fab_purchase)
+        val fabStaff : FloatingActionButton =findViewById(R.id.fab_staff)
+        val fabWarehouse : FloatingActionButton = findViewById(R.id.fab_warehouse)
+
+        fabSales.setOnClickListener {
+            //Add Sales Order Fragment here
+            Toast.makeText(this, "Add Sales Order", Toast.LENGTH_LONG).show()
+        }
+        fabItem.setOnClickListener {
+            //Add Sales Order Fragment here
+            navControl.navigateUp()
+            navControl.navigate(R.id.nav_add_item)
+            Toast.makeText(this, "Add Item Product", Toast.LENGTH_LONG).show()
+        }
+        fabPurchase.setOnClickListener {
+            //Add Sales Order Fragment here
+            Toast.makeText(this, "Add Purchase Order", Toast.LENGTH_LONG).show()
+        }
+        fabStaff.setOnClickListener {
+            //Add Sales Order Fragment here
+           // Navigation.findNavController(view).navigate(R.id.action_nav_home_to_fragment_addStaff)
+            navControl.navigateUp()
+            navControl.navigate(R.id.action_nav_home_to_fragment_addStaff)
+            Toast.makeText(this, "Add Staff", Toast.LENGTH_LONG).show()
+        }
+        fabWarehouse.setOnClickListener {
+            //Add Sales Order Fragment here
+            Toast.makeText(this, "Sent Warehouse", Toast.LENGTH_LONG).show()
+        }
+
+
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
         val navController = findNavController(R.id.nav_host_fragment_content_home_page2)

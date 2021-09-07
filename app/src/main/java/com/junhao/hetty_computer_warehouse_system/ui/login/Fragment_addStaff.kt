@@ -26,6 +26,7 @@ import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.data.Staff
+import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.android.synthetic.main.fragment_add_item.view.*
 import kotlinx.android.synthetic.main.fragment_add_staff.*
@@ -51,6 +52,8 @@ class Fragment_addStaff : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_staff, container, false)
         val formatPhone = Regex("^((01)[0-46-9]-)*[0-9]{7,8}\$")
         val formatEmail = Regex("^[A-Za-z]+[A-Za-z0-9.]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}\$")
+
+        (activity as HomePage?)?.hideFloatingActionButton()
 
         view.btnStaffImage.setOnClickListener {
             chooseImage()
