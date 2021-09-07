@@ -27,6 +27,7 @@
     <color name="backorder_blue">#2c96dd</color>
     <color name="biometric_error_color">#ff5722</color>
     <color name="black">#000000</color>
+    <color name="half_black">#808080</color>
     <color name="black_semi_transparent">#b2000000</color>
     <color name="black_theme_color">#1d2736</color>
     <color name="blue">#397ff6</color>

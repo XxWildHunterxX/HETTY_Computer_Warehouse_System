@@ -5,10 +5,32 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Toast
+import androidx.databinding.DataBindingUtil
+import androidx.recyclerview.widget.RecyclerView
+import com.google.firebase.FirebaseError
+import com.google.firebase.database.DataSnapshot
+import com.google.firebase.database.DatabaseError
+import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.ValueEventListener
 import com.junhao.hetty_computer_warehouse_system.R
+import com.junhao.hetty_computer_warehouse_system.adapter.TrackingAdapter
+import com.junhao.hetty_computer_warehouse_system.adapter.TrackingItemAdapter
+import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
+import com.junhao.hetty_computer_warehouse_system.databinding.FragmentTrackingAllBinding
+import com.junhao.hetty_computer_warehouse_system.databinding.ProductItemBinding
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.google.android.material.floatingactionbutton.FloatingActionButton
+import com.google.firebase.database.Query;
+import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 
 
 class TrackingAllFragment : Fragment() {
+
+    val database = FirebaseDatabase.getInstance()
+    val myRef = database.getReference("Warehouse")
+    var TrackingItemList : ArrayList<TrackingItem> ? = null
 
 
     override fun onCreateView(
@@ -16,10 +38,50 @@ class TrackingAllFragment : Fragment() {
         savedInstanceState: Bundle?
 
     ): View? {
-        //val binding : FragmentTrackingFirstBinding = DataBindingUtil.inflate(inflater, R.layout.fragment_tracking_first,container,false)
+        val view = inflater.inflate(R.layout.fragment_tracking_all, container, false)
 
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_tracking_all, container, false)
+
+        TrackingItemList = arrayListOf<TrackingItem>()
+
+        /* (activity as HomePage?)?.showFloatingActionButton() */
+        (activity as HomePage?)?.hideFloatingActionButton()
+
+        myRef?.addValueEventListener(object : ValueEventListener {
+            override fun onCancelled(p0: DatabaseError) {
+                TODO("not implemented")
+            }
+
+            override fun onDataChange(snapshot: DataSnapshot) {
+
+                if(snapshot!!.exists()){
+
+                    for (c in snapshot.children){
+
+                        if(c.hasChild("warehouse1") ){
+
+
+                            val trackingItem = c.child("warehouse1").child("product").getValue(TrackingItem::class.java)
+                            TrackingItemList?.add(trackingItem!!)
+
+                        }
+
+                    }
+
+                    val adapter = TrackingItemAdapter(context!!, TrackingItemList!!)
+
+                    val recyclerView: RecyclerView = view.findViewById(R.id.trackingItemRecycleView)
+
+
+                    recyclerView?.adapter = adapter
+                    recyclerView.setHasFixedSize(true)
+
+
+                }
+
+            }
+        })
+
+        return view
     }
 
     //edit text here
@@ -31,3 +93,5 @@ class TrackingAllFragment : Fragment() {
 
 
 }
+
+

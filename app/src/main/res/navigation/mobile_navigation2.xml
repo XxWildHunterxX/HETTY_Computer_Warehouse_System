@@ -34,14 +34,24 @@
 
     <fragment
         android:id="@+id/nav_items"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
-        android:label="@string/menu_items" />
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.ShowProduct"
+        android:label="@string/menu_items"
+        tools:layout="@layout/fragment_show_product">
+        <action
+            android:id="@+id/action_nav_items_to_updateProduct"
+            app:destination="@id/updateProduct" />
+    </fragment>
     <fragment
         android:id="@+id/nav_tracking_all"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SlideshowFragment"
         android:label="@string/menu_items" />
     <fragment
-        android:id="@+id/nav_tracking_all2"
+        android:id="@+id/nav_add_item"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
         android:label="@string/menu_items" />
+    <fragment
+        android:id="@+id/updateProduct"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.UpdateProduct"
+        android:label="fragment_update_product"
+        tools:layout="@layout/fragment_update_product" />
 </navigation>

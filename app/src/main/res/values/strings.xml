@@ -44,9 +44,10 @@
     <string name="inventory_summary">Inventory Summary (In Quantity)</string>
     <string name="in_hand">In hand</string>
     <string name="to_be_received">To be received</string>
-
+    <string name="search_criteria">Search Criteria</string>
     <string name="product_barcode">Product Barcode</string>
     <string name="product_color">Product Color</string>
+    <string name="change_criteria">Change Criteria</string>
     <string name="product_image">Product Image</string>
     <string name="product_size">Product Size</string>
     <string name="product_desc">Product Description</string>

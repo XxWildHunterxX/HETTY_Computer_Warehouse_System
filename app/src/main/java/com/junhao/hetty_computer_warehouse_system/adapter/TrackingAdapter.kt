@@ -1,11 +1,11 @@
 package com.junhao.hetty_computer_warehouse_system.adapter
 
-import android.content.Context
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
 
-class TrackingAdapter(manager:FragmentManager) : FragmentPagerAdapter(manager) {
+class TrackingAdapter(manager: FragmentManager) : FragmentPagerAdapter(manager) {
 
     private val fragmentList : MutableList<Fragment> = ArrayList()
     private val titleList : MutableList<String> = ArrayList()

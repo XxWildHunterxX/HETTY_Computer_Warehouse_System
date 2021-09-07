@@ -5,12 +5,10 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentActivity
 import androidx.viewpager.widget.ViewPager
 import com.google.android.material.tabs.TabLayout
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.TrackingAdapter
-import com.junhao.hetty_computer_warehouse_system.databinding.ActivityTrackingPageBinding
 
 
 class TrackingPage : Fragment() {
@@ -34,6 +32,8 @@ class TrackingPage : Fragment() {
         adapter.addFragment(TrackingPendingFragment(),"Pending")
         adapter.addFragment(TrackingPreparedFragment(),"Prepared")
         adapter.addFragment(TrackingInTransitFragment(),"In Transit")
+        adapter.addFragment(TrackingDeliveredFragment(),"Delivered")
+
 
         trackingviewpager!!.adapter = adapter
         trackingtab!!.setupWithViewPager(trackingviewpager)
