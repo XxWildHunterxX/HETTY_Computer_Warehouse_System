@@ -83,4 +83,6 @@
     <string name="status">Status</string>
     <string name="save">SAVE</string>
     <string name="received_date">Received Date</string>
+    <string name="choose_d_o_b">Choose D.O.B</string>
+    <string name="choose_joined_date">Choose Joined Date</string>
 </resources>

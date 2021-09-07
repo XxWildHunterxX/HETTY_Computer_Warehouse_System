@@ -24,7 +24,7 @@
         tools:layout="@layout/activity_tracking_page" />
     <fragment
         android:id="@+id/nav_home"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff"
         android:label="@string/app_name" />
 
     <fragment
