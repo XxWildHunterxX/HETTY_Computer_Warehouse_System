@@ -29,7 +29,7 @@ import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 class TrackingAllFragment : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    val myRef = database.getReference("Warehouse")
+    val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
     var TrackingItemList : ArrayList<TrackingItem> ? = null
 
 
@@ -57,13 +57,8 @@ class TrackingAllFragment : Fragment() {
 
                     for (c in snapshot.children){
 
-                        if(c.hasChild("warehouse1") ){
-
-
-                            val trackingItem = c.child("warehouse1").child("product").getValue(TrackingItem::class.java)
+                            val trackingItem = c.getValue(TrackingItem::class.java)
                             TrackingItemList?.add(trackingItem!!)
-
-                        }
 
                     }
 
