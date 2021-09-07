@@ -34,32 +34,56 @@
         android:layout_marginBottom="16dp"
         android:visibility="visible"
         app:fab_expandDirection="up"
-        app:fab_labelsPosition="left">
+        app:fab_labelsPosition="left"
+        tools:ignore="MissingConstraints"
+        app:fab_labelStyle="@style/FloatStyle"
+        app:fab_addButtonColorNormal="@color/black_theme_color"
+        app:fab_addButtonColorPressed="@color/gray">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#FFF"
+            app:fab_title="Sales Order"
+            app:fab_colorNormal="@color/black_theme_color"
             app:fab_size="mini"
-            app:fab_icon="@drawable/ic_calendar"
-            app:fab_title="This is icon 1"
-            app:fab_labelStyle="@style/FloatStyle"/>
+            app:fab_icon="@drawable/ic_shopping_cart"
+            app:fab_colorPressed="@color/gray"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#FFF"
+            app:fab_colorNormal="@color/black_theme_color"
             app:fab_size="mini"
-            app:fab_icon="@drawable/ic_contact"
-            app:fab_title="This is icon 2"/>
+            app:fab_icon="@drawable/ic_shopping_basket"
+            app:fab_title="Item"
+            app:fab_colorPressed="@color/gray"/>
 
         <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            app:fab_colorNormal="#FFF"
+            app:fab_colorNormal="@color/black_theme_color"
             app:fab_size="mini"
-            app:fab_icon="@drawable/ic_address"
-            app:fab_title="This is icon 3"/>
+            app:fab_icon="@drawable/ic_shopping_bag"
+            app:fab_title="Purchase Order"
+            app:fab_colorPressed="@color/gray"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/black_theme_color"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_person"
+            app:fab_title="Staff"
+            app:fab_colorPressed="@color/gray"/>
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/black_theme_color"
+            app:fab_size="mini"
+            app:fab_icon="@drawable/ic_local_shipping"
+            app:fab_title="Sent Warehouse Product"
+            app:fab_colorPressed="@color/gray"/>
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>

@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
+import com.squareup.picasso.Picasso
 
 class TrackingItemAdapter(val context: Context, val TrackingItemList: ArrayList<TrackingItem>) :
     RecyclerView.Adapter<TrackingItemAdapter.ViewHolder>(){
@@ -19,11 +20,15 @@ class TrackingItemAdapter(val context: Context, val TrackingItemList: ArrayList<
 
         val TrackingItemName : TextView = itemView.findViewById(R.id.tvTrackingItemName)
         val TrackingItemPrice : TextView = itemView.findViewById(R.id.tvTrackingItemPrice)
+        val TrackingItemImage: ImageView = itemView.findViewById(R.id.imgTrackingItem)
 
 
         fun bind(ti: TrackingItem, context: Context) {
-            TrackingItemName?.text = ti.name
-            TrackingItemPrice?.text = ti.productDescription
+            var imageUri : String? = null
+            imageUri = ti.productImg
+            Picasso.get().load(imageUri).into(TrackingItemImage);
+            TrackingItemName?.text = ti.productName
+            TrackingItemPrice?.text = ti.productType
 
         }
 
