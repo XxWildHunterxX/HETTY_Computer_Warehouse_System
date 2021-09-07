@@ -14,22 +14,33 @@ import com.squareup.picasso.Picasso
 class ProductItemAdapter(val context: Context, private val ProductItemList: List<Product>) :
     RecyclerView.Adapter<ProductItemAdapter.myViewHolder>() {
 
-    private lateinit var  mListener : onItemClickListener
+    private lateinit var mListener: onItemClickListener
 
-interface onItemClickListener{
+    interface onItemClickListener {
 
-    fun onItemClick(productName: String, productPrice:String,productType:String,productRack:String,productQty:String)
+        fun onItemClick(
+            productName: String,
+            productPrice: String,
+            productType: String,
+            productRack: String,
+            productQty: String
+        )
 
-}
+        fun onDeleteClick(productName: String)
 
-    fun setOnItemClickListener(listener:onItemClickListener){
+        fun onLocationClick(productName: String, productRack: String)
+
+    }
+
+    fun setOnItemClickListener(listener: onItemClickListener) {
 
         mListener = listener
 
     }
 
 
-    class myViewHolder(itemView: View,listener:onItemClickListener) : RecyclerView.ViewHolder(itemView) {
+    class myViewHolder(itemView: View, listener: onItemClickListener) :
+        RecyclerView.ViewHolder(itemView) {
 
         private val productName: TextView = itemView.findViewById(R.id.tvProductName)
         private val productPrice: TextView = itemView.findViewById(R.id.tvProductPrice)
@@ -38,30 +49,72 @@ interface onItemClickListener{
         private val productQty: TextView = itemView.findViewById(R.id.tvProductQty)
         private val productImg: ImageView = itemView.findViewById(R.id.imgViewProduct)
 
+        //delete product
+        private val mDeleteImg: ImageView = itemView.findViewById(R.id.imgDeleteBtn)
+
+        //location rack
+        private val mLocationImg: ImageView = itemView.findViewById(R.id.btnLocationRack)
+
         fun bind(prod: Product, context: Context) {
 
-            var imageUri : String? = null
+            var imageUri: String? = null
             imageUri = prod.productImg
             Picasso.get().load(imageUri).into(productImg);
-            productName.text =  prod.productName
+            productName.text = prod.productName
             productPrice.text = prod.productPrice
-            productType.text =  prod.productType
-            productRack.text =  prod.productRack
-            productQty.text =  prod.productQuantity
+            productType.text = prod.productType
+            productRack.text = prod.productRack
+            productQty.text = prod.productQuantity
 
         }
 
-        init{
+        init {
 
             itemView.setOnClickListener {
-                var imageUri : String? = null
+                var imageUri: String? = null
                 imageUri = productImg.toString()
-                listener.onItemClick(productName.text.toString(),productPrice.text.toString(),productType.text.toString(),
-                    productRack.text.toString(),productQty.text.toString())
-
+                listener.onItemClick(
+                    productName.text.toString(),
+                    productPrice.text.toString(),
+                    productType.text.toString(),
+                    productRack.text.toString(),
+                    productQty.text.toString()
+                )
 
 
             }
+
+            mDeleteImg.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+
+                    if (listener != null) {
+                        val position: Int = adapterPosition
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeleteClick(productName.text.toString())
+                        }
+
+                    }
+
+
+                }
+
+            })
+
+            mLocationImg.setOnClickListener(object : View.OnClickListener {
+                override fun onClick(v: View?) {
+
+                    if (listener != null) {
+                        val position: Int = adapterPosition
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onLocationClick(productName.text.toString(),productRack.text.toString())
+                        }
+
+                    }
+
+
+                }
+
+            })
 
 
         }
@@ -75,7 +128,7 @@ interface onItemClickListener{
         )
 
 
-        return myViewHolder(itemView,mListener)
+        return myViewHolder(itemView, mListener)
     }
 
     override fun onBindViewHolder(holder: myViewHolder, position: Int) {

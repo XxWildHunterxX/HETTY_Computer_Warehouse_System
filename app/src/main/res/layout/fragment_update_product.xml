@@ -29,7 +29,6 @@
                 android:clickable="false"
                 android:contentDescription="@string/imageDescription"
                 android:cropToPadding="false"
-                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_default_product_select_img" />
@@ -46,7 +45,7 @@
                 android:gravity="center"
                 android:text="@string/product_image"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/tfProductBarcode"
+                app:layout_constraintStart_toEndOf="@+id/etProductBarcode"
                 app:layout_constraintTop_toBottomOf="@+id/updateImgProduct" />
 
             <TextView
@@ -63,7 +62,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/tfProductName"
+                android:id="@+id/etProductName"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -92,10 +91,10 @@
                 android:text="@string/product_barcode"
                 app:layout_constraintEnd_toStartOf="@+id/updateImgProduct"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductName" />
+                app:layout_constraintTop_toBottomOf="@+id/etProductName" />
 
             <EditText
-                android:id="@+id/tfProductBarcode"
+                android:id="@+id/etProductBarcode"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,10 +124,10 @@
                 android:text="Product Rack"
                 app:layout_constraintEnd_toStartOf="@+id/tvdsfsdfsdf2"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductBarcode" />
+                app:layout_constraintTop_toBottomOf="@+id/etProductBarcode" />
 
             <EditText
-                android:id="@+id/tfProductRack"
+                android:id="@+id/etProductRack"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -156,10 +155,10 @@
                 android:text="Product Type"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductRack" />
+                app:layout_constraintTop_toBottomOf="@+id/etProductRack" />
 
             <EditText
-                android:id="@+id/tfProductType"
+                android:id="@+id/etProductType"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -188,10 +187,10 @@
                 android:text="Product Price"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductType" />
+                app:layout_constraintTop_toBottomOf="@+id/etProductType" />
 
             <EditText
-                android:id="@+id/tfProductPrice"
+                android:id="@+id/etProductPrice"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -219,10 +218,10 @@
                 android:text="Product Quantity"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/etProductPrice" />
 
             <EditText
-                android:id="@+id/tfProductQuantity"
+                android:id="@+id/etProductQuantity"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -240,7 +239,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView10" />
 
             <CheckBox
-                android:id="@+id/chkbox_lowstock_addedit"
+                android:id="@+id/chkbox_lowstock_edit"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
@@ -251,10 +250,10 @@
                 android:text="@string/do_you_need_low_stock_alert_on_this_product"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfProductQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/etProductQuantity" />
 
             <TextView
-                android:id="@+id/tv_minquanalert_edit"
+                android:id="@+id/et_minquanalert_edit"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -264,10 +263,10 @@
                 android:text="@string/minimum_quantity_for_alert"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/chkbox_lowstock_addedit" />
+                app:layout_constraintTop_toBottomOf="@+id/chkbox_lowstock_edit" />
 
             <EditText
-                android:id="@+id/tfMinQTY"
+                android:id="@+id/etMinQTY"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -285,21 +284,21 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_minquanalert_edit" />
+                app:layout_constraintTop_toBottomOf="@+id/et_minquanalert_edit" />
 
             <Button
                 android:id="@+id/btnUpdateItem"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_corners"
                 android:text="Edit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tfMinQTY" />
+                app:layout_constraintTop_toBottomOf="@+id/etMinQTY" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>

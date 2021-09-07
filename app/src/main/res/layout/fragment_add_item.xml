@@ -20,7 +20,7 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
             <ImageView
-                android:id="@+id/updateImgProduct"
+                android:id="@+id/addImgProduct"
                 android:layout_width="150dp"
                 android:layout_height="150dp"
                 android:layout_marginTop="10dp"
@@ -28,7 +28,6 @@
                 android:adjustViewBounds="true"
                 android:contentDescription="@string/imageDescription"
                 android:cropToPadding="false"
-                android:scaleType="centerCrop"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:srcCompat="@drawable/ic_default_product_select_img" />
@@ -46,7 +45,7 @@
                 android:text="@string/product_image"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toEndOf="@+id/tfProductBarcode"
-                app:layout_constraintTop_toBottomOf="@+id/updateImgProduct" />
+                app:layout_constraintTop_toBottomOf="@+id/addImgProduct" />
 
             <TextView
                 android:id="@+id/tv_1.1"
@@ -57,7 +56,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/product_name"
-                app:layout_constraintEnd_toStartOf="@+id/updateImgProduct"
+                app:layout_constraintEnd_toStartOf="@+id/addImgProduct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
 
@@ -75,7 +74,7 @@
                 android:minHeight="48dp"
                 android:singleLine="true"
                 android:textSize="12sp"
-                app:layout_constraintEnd_toStartOf="@+id/updateImgProduct"
+                app:layout_constraintEnd_toStartOf="@+id/addImgProduct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_1.1" />
 
@@ -88,7 +87,7 @@
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
                 android:text="@string/product_barcode"
-                app:layout_constraintEnd_toStartOf="@+id/updateImgProduct"
+                app:layout_constraintEnd_toStartOf="@+id/addImgProduct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tfProductName" />
 
@@ -107,7 +106,7 @@
                 android:inputType="number"
                 android:minHeight="48dp"
                 android:singleLine="true"
-                app:layout_constraintEnd_toStartOf="@+id/updateImgProduct"
+                app:layout_constraintEnd_toStartOf="@+id/addImgProduct"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textviewww" />
 
@@ -283,7 +282,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
+                android:layout_marginTop="24dp"
                 android:layout_marginEnd="10dp"
                 android:background="@drawable/rounded_corners"
                 android:text="Add item"

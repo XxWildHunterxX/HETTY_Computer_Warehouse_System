@@ -52,6 +52,10 @@
     <fragment
         android:id="@+id/updateProduct"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.UpdateProduct"
-        android:label="fragment_update_product"
-        tools:layout="@layout/fragment_update_product" />
+        android:label="Product Details"
+        tools:layout="@layout/fragment_update_product" >
+        <action
+            android:id="@+id/action_updateProduct_to_nav_items"
+            app:destination="@id/nav_items" />
+    </fragment>
 </navigation>

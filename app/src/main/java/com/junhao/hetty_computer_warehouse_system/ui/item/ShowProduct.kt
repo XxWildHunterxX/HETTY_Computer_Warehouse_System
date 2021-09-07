@@ -4,34 +4,23 @@ import android.content.ContentValues.TAG
 import android.graphics.Path
 import android.os.Bundle
 import android.util.Log
+import android.view.*
+import android.widget.ArrayAdapter
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
-import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.ProductItemAdapter
-import com.junhao.hetty_computer_warehouse_system.adapter.TrackingItemAdapter
 import com.junhao.hetty_computer_warehouse_system.data.Product
-import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
-import androidx.fragment.app.FragmentManager
-import androidx.fragment.app.FragmentTransaction
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
-import androidx.navigation.ui.NavigationUI.setupActionBarWithNavController
-import androidx.navigation.ui.navigateUp
-import androidx.navigation.ui.setupActionBarWithNavController
-import androidx.navigation.ui.setupWithNavController
-import kotlinx.android.synthetic.main.product_item.view.*
+import com.google.firebase.database.*
+import kotlinx.android.synthetic.main.fragment_show_product.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class ShowProduct : Fragment() {
@@ -39,6 +28,8 @@ class ShowProduct : Fragment() {
     val database = FirebaseDatabase.getInstance()
     private val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
     var ProductItemList: ArrayList<Product>? = null
+    var tempArrayList: ArrayList<Product>? = null
+
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -49,17 +40,18 @@ class ShowProduct : Fragment() {
         val view = inflater.inflate(R.layout.fragment_show_product, container, false)
 
         ProductItemList = arrayListOf<Product>()
+        tempArrayList = arrayListOf<Product>()
 
-        /* (activity as HomePage?)?.showFloatingActionButton() */
         (activity as HomePage?)?.showFloatingActionButton()
 
         myRef?.addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
-
+                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                ProductItemList!!.clear()
+                tempArrayList!!.clear()
                 if (snapshot!!.exists()) {
 
                     for (c in snapshot.children) {
@@ -71,9 +63,10 @@ class ShowProduct : Fragment() {
                         }
 
                     }
+                    tempArrayList!!.addAll(ProductItemList!!)
 
 
-                    val adapter = ProductItemAdapter(context!!, ProductItemList!!)
+                    val adapter = ProductItemAdapter(context!!, tempArrayList!!)
 
                     val recyclerView: RecyclerView = view.findViewById(R.id.recycleViewProduct)
 
@@ -89,21 +82,17 @@ class ShowProduct : Fragment() {
                         ) {
                             val bundle = bundleOf(
                                 Pair("productName", productName),
-                                Pair("productPrice",productPrice),
-                                Pair("productType",productType),
+                                Pair("productPrice", productPrice),
+                                Pair("productType", productType),
                                 Pair("productRack", productRack),
-                                Pair("productQty",productQty)
+                                Pair("productQty", productQty)
                             )
 
-                            findNavController(view).navigate(R.id.action_nav_items_to_updateProduct,bundle)
-                            /*
-                              val fragment: Fragment = Fragment_Add_Item()
-                              val fragmentManager = activity!!.supportFragmentManager
-                              val fragmentTransaction = fragmentManager.beginTransaction()
-                              fragmentTransaction.replace(R.id.nav_host_fragment_content_home_page2, fragment)
-                              fragmentTransaction.addToBackStack(null)
-                              fragmentTransaction.commit()
-  */
+                            findNavController(view).navigate(
+                                R.id.action_nav_items_to_updateProduct,
+                                bundle
+                            )
+
                             Toast.makeText(
                                 activity,
                                 "You Clicked on item no, $productName",
@@ -112,9 +101,35 @@ class ShowProduct : Fragment() {
 
                         }
 
+                        override fun onDeleteClick(productName: String) {
+                            val queryRef :Query = myRef.orderByChild("productName").equalTo(productName)
+
+                            queryRef.addListenerForSingleValueEvent(object : ValueEventListener{
+                                override fun onDataChange(snapshot: DataSnapshot) {
+                                    for (exist in snapshot.children){
+                                        exist.ref.setValue(null)
+                                    }
+
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+                                }
+
+
+                            })
+
+                        }
+
+                        override fun onLocationClick(productName: String, productRack: String) {
+                            Toast.makeText(activity, "This is Location Button $productName,$productRack", Toast.LENGTH_SHORT).show()
+                        }
+
 
                     })
+
                     recyclerView.setHasFixedSize(true)
+
 
                 }
 
@@ -129,5 +144,52 @@ class ShowProduct : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
     }
+
+    override fun onStart() {
+        super.onStart()
+
+        searchView.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempArrayList?.clear()
+                val searchText = newText!!.lowercase(Locale.getDefault())
+                if (searchText.isNotEmpty()) {
+                    search(searchText)
+                } else {
+
+                    tempArrayList!!.clear()
+                    tempArrayList?.addAll(ProductItemList!!)
+                    recycleViewProduct.adapter!!.notifyDataSetChanged()
+                }
+
+                return true
+            }
+
+        })
+
+    }
+
+    fun search(str: String) {
+
+        ProductItemList!!.forEach {
+            if (it.productName!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productType!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productPrice!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productRack!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productQuantity!!.lowercase(Locale.getDefault())
+                    .contains(str)
+            ) {
+                tempArrayList?.add(it)
+
+            }
+        }
+        recycleViewProduct.adapter!!.notifyDataSetChanged()
+
+    }
+
 
 }

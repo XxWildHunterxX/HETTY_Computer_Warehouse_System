@@ -55,7 +55,7 @@ class Fragment_Add_Item : Fragment() {
         val view = inflater.inflate(R.layout.fragment_add_item, container, false)
 
 
-        view.updateImgProduct.setOnClickListener {
+        view.addImgProduct.setOnClickListener {
             selectImage()
         }
 
@@ -138,14 +138,14 @@ class Fragment_Add_Item : Fragment() {
                                     storageReference.putFile(imageURI)
                                         .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
 
-                                            updateImgProduct.setImageURI(null)
+                                            addImgProduct.setImageURI(null)
                                             Toast.makeText(
                                                 activity,
                                                 "Successfully Added",
                                                 Toast.LENGTH_LONG
                                             ).show()
                                             imageURI = Uri.EMPTY
-                                            updateImgProduct.setImageResource(R.drawable.ic_default_product_select_img)
+                                            addImgProduct.setImageResource(R.drawable.ic_default_product_select_img)
                                             if (progressDialog.isShowing) progressDialog.dismiss()
 
                                             taskSnapshot.storage.downloadUrl.addOnCompleteListener { task ->
@@ -172,6 +172,9 @@ class Fragment_Add_Item : Fragment() {
                                                 view.tfProductPrice.setText("0")
                                                 view.tfProductQuantity.setText("0")
                                                 view.tfMinimumQTY.setText("0")
+                                                view.chkbox_lowstock_addedit.isChecked = true
+                                                view.tv_minimumquanalert_addedit.visibility = View.VISIBLE
+                                                view.tfMinimumQTY.visibility = View.VISIBLE
                                             }
 
 
@@ -222,8 +225,8 @@ class Fragment_Add_Item : Fragment() {
                 view.tv_minimumquanalert_addedit.visibility = View.VISIBLE
                 view.tfMinimumQTY.visibility = View.VISIBLE
             } else {
-                view.tv_minimumquanalert_addedit.visibility = View.INVISIBLE
-                view.tfMinimumQTY.visibility = View.INVISIBLE
+                view.tv_minimumquanalert_addedit.visibility = View.GONE
+                view.tfMinimumQTY.visibility = View.GONE
             }
 
         }
@@ -250,7 +253,7 @@ class Fragment_Add_Item : Fragment() {
 
         if (requestCode == 100 && resultCode == RESULT_OK) {
             imageURI = data?.data!!
-            updateImgProduct.setImageURI(imageURI)
+            addImgProduct.setImageURI(imageURI)
 
         }
         if (resultCode == RESULT_OK) {
