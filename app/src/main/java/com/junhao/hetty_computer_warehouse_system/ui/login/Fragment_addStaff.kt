@@ -166,7 +166,7 @@ class Fragment_addStaff : Fragment() {
                                                 getImgValue
                                             )
 
-                                            myRef.child(staff.id).setValue(staff)
+                                            myRef.child(staff.id!!).setValue(staff)
 
                                             view.tfStaffName.text.clear()
                                             view.rgpGender.clearCheck()
