@@ -49,10 +49,11 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffID"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
-                            android:hint="User Name"
+                            android:hint="Staff ID"
                             android:imeOptions="actionNext"
                             android:textColor="#0B0B0B" />
 
@@ -66,6 +67,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffGender"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -83,6 +85,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffDOB"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -101,6 +104,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffAddress"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -118,6 +122,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffPhoneNo"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -136,6 +141,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffEmail"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -153,6 +159,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffPosition"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -168,6 +175,7 @@
                         app:boxBackgroundColor="#FFFFFF">
 
                         <EditText
+                            android:id="@+id/tvStaffJoinedDate"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:enabled="false"
@@ -209,7 +217,7 @@
                     app:civ_border_width="2dp" />
 
                 <TextView
-                    android:id="@+id/textView8"
+                    android:id="@+id/tvStaffName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"

@@ -48,17 +48,50 @@
                 app:layout_constraintTop_toBottomOf="@+id/btnStaffImage" />
 
             <TextView
-                android:id="@+id/t1"
+                android:id="@+id/t"
+                style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="10dp"
-                style="@style/CustomTextView"
-                android:text="@string/staff_name"
+                android:text="@string/staff_id"
                 app:layout_constraintEnd_toStartOf="@+id/btnStaffImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/tvStaffID"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:enabled="false"
+                android:hint="@string/staff_id"
+                android:inputType="text"
+                android:singleLine="true"
+                android:textColor="#000000"
+                android:textSize="12sp"
+                app:layout_constraintEnd_toStartOf="@+id/btnStaffImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/t" />
+
+            <TextView
+                android:id="@+id/t1"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="10dp"
+                android:text="@string/staff_name"
+                app:layout_constraintEnd_toStartOf="@+id/btnStaffImage"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvStaffID" />
+
+
 
             <EditText
                 android:id="@+id/tfStaffName"
@@ -76,6 +109,8 @@
                 app:layout_constraintEnd_toStartOf="@+id/btnStaffImage"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/t1" />
+
+
 
             <TextView
                 android:id="@+id/t3"
