@@ -1,6 +1,7 @@
 package com.junhao.hetty_computer_warehouse_system.ui.tracking
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,9 +30,9 @@ import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 class TrackingAllFragment : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
+    val myRef = database.getReference("Warehouse").child("warehouse1")
     var TrackingItemList : ArrayList<TrackingItem> ? = null
-
+    private lateinit var eventListener : ValueEventListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -46,13 +47,13 @@ class TrackingAllFragment : Fragment() {
         /* (activity as HomePage?)?.showFloatingActionButton() */
         (activity as HomePage?)?.hideFloatingActionButton()
 
-        myRef?.addValueEventListener(object : ValueEventListener {
+        eventListener = myRef?.child("product").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented")
             }
 
             override fun onDataChange(snapshot: DataSnapshot) {
-
+                TrackingItemList!!.clear()
                 if(snapshot!!.exists()){
 
                     for (c in snapshot.children){
@@ -85,7 +86,12 @@ class TrackingAllFragment : Fragment() {
         super.onViewCreated(view, savedInstanceState)
     }
 
+    override fun onStop() {
+        super.onStop()
+        Log.d("TAG","onStopShow")
 
+        myRef.child("product").removeEventListener(eventListener)
+    }
 
 }
 

@@ -113,6 +113,7 @@ class Fragment_Add_Item : Fragment() {
                                         ds.child("productBarcode").getValue(String::class.java)
                                     Log.d("TAG", barCode!!)
                                     if (barCode == prodBarCode) {
+                                        Log.d("TAG", "existed Barcode")
                                         found = true
                                         view.tfProductBarcode.error = "Product Barcode Existed!"
                                         break
@@ -183,8 +184,6 @@ class Fragment_Add_Item : Fragment() {
                                             Toast.makeText(activity, "Failed", Toast.LENGTH_LONG)
                                                 .show()
                                         }
-
-
                                 }
 
                             }
@@ -230,7 +229,6 @@ class Fragment_Add_Item : Fragment() {
             }
 
         }
-
 
         // Inflate the layout for this fragment
 

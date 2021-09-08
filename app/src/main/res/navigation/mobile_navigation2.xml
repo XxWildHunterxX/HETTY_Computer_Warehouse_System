@@ -29,6 +29,12 @@
         <action
             android:id="@+id/action_nav_home_to_fragment_addStaff"
             app:destination="@id/fragment_addStaff" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_add_item"
+            app:destination="@id/nav_add_item" />
+        <action
+            android:id="@+id/action_nav_home_to_nav_items"
+            app:destination="@id/nav_items" />
     </fragment>
 
     <fragment
@@ -44,6 +50,9 @@
         <action
             android:id="@+id/action_nav_items_to_updateProduct"
             app:destination="@id/updateProduct" />
+        <action
+            android:id="@+id/action_nav_items_to_nav_add_item"
+            app:destination="@id/nav_add_item" />
     </fragment>
     <fragment
         android:id="@+id/nav_tracking_all"

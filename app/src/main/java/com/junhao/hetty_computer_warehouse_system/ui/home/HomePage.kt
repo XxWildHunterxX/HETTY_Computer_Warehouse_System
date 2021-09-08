@@ -26,6 +26,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
+import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.gms.tasks.OnCompleteListener
@@ -38,6 +39,7 @@ class HomePage : AppCompatActivity() {
     private lateinit var appBarConfiguration: AppBarConfiguration
     private lateinit var binding: ActivityHomePage2Binding
     private var fabs :FloatingActionButton? = null
+    private lateinit var optionsMenu : Menu
 
     override fun onCreate(savedInstanceState: Bundle?) {
 
@@ -69,8 +71,9 @@ class HomePage : AppCompatActivity() {
         }
         fabItem.setOnClickListener {
             //Add Sales Order Fragment here
+
             navControl.navigateUp()
-            navControl.navigate(R.id.nav_add_item)
+            navControl.navigate(R.id.action_nav_home_to_nav_add_item)
             Toast.makeText(this, "Add Item Product", Toast.LENGTH_LONG).show()
         }
         fabPurchase.setOnClickListener {
@@ -88,7 +91,6 @@ class HomePage : AppCompatActivity() {
             //Add Sales Order Fragment here
             Toast.makeText(this, "Sent Warehouse", Toast.LENGTH_LONG).show()
         }
-
 
         val drawerLayout: DrawerLayout = binding.drawerLayout
         val navView: NavigationView = binding.navView
@@ -113,6 +115,9 @@ class HomePage : AppCompatActivity() {
     override fun onCreateOptionsMenu(menu: Menu): Boolean {
         // Inflate the menu; this adds items to the action bar if it is present.
         menuInflater.inflate(R.menu.home_page, menu)
+        optionsMenu = menu
+        optionsMenu.findItem(R.id.action_add).isVisible = false
+
         return true
     }
 
@@ -136,6 +141,8 @@ class HomePage : AppCompatActivity() {
             binding.appBarHomePage2.fab.visibility = View.VISIBLE
         }
     }
+
+
 /*
     override fun onCreateContextMenu(
         menu: ContextMenu?,
@@ -159,6 +166,7 @@ class HomePage : AppCompatActivity() {
 override fun onStop() {
     Log.i("Lifecycle", "onStop")
     super.onStop()
+
 }
     override fun onDestroy() {
 

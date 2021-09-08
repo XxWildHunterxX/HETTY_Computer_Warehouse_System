@@ -33,62 +33,62 @@
         android:layout_marginEnd="@dimen/fab_margin"
         android:layout_marginBottom="16dp"
         android:visibility="visible"
-        app:fab_expandDirection="up"
-        app:fab_labelsPosition="left"
-        tools:ignore="MissingConstraints"
-        app:fab_labelStyle="@style/FloatStyle"
         app:fab_addButtonColorNormal="@color/black_theme_color"
-        app:fab_addButtonColorPressed="@color/gray">
+        app:fab_addButtonColorPressed="@color/gray"
+        app:fab_expandDirection="up"
+        app:fab_labelStyle="@style/FloatStyle"
+        app:fab_labelsPosition="left"
+        tools:ignore="MissingConstraints">
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
             android:id="@+id/fab_sales"
-            app:fab_title="Sales Order"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             app:fab_colorNormal="@color/black_theme_color"
-            app:fab_size="mini"
+            app:fab_colorPressed="@color/gray"
             app:fab_icon="@drawable/ic_shopping_cart"
-            app:fab_colorPressed="@color/gray"/>
+            app:fab_size="mini"
+            app:fab_title="Sales Order" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/black_theme_color"
-            app:fab_size="mini"
             android:id="@+id/fab_item"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/black_theme_color"
+            app:fab_colorPressed="@color/gray"
             app:fab_icon="@drawable/ic_shopping_basket"
-            app:fab_title="Item"
-            app:fab_colorPressed="@color/gray"/>
+            app:fab_size="mini"
+            app:fab_title="Item" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/black_theme_color"
-            app:fab_size="mini"
             android:id="@+id/fab_purchase"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/black_theme_color"
+            app:fab_colorPressed="@color/gray"
             app:fab_icon="@drawable/ic_shopping_bag"
-            app:fab_title="Purchase Order"
-            app:fab_colorPressed="@color/gray"/>
+            app:fab_size="mini"
+            app:fab_title="Purchase Order" />
 
         <com.getbase.floatingactionbutton.FloatingActionButton
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            app:fab_colorNormal="@color/black_theme_color"
-            app:fab_size="mini"
             android:id="@+id/fab_staff"
-            app:fab_icon="@drawable/ic_person"
-            app:fab_title="Staff"
-            app:fab_colorPressed="@color/gray"/>
-
-        <com.getbase.floatingactionbutton.FloatingActionButton
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             app:fab_colorNormal="@color/black_theme_color"
+            app:fab_colorPressed="@color/gray"
+            app:fab_icon="@drawable/ic_person"
             app:fab_size="mini"
+            app:fab_title="Staff" />
+
+        <com.getbase.floatingactionbutton.FloatingActionButton
             android:id="@+id/fab_warehouse"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            app:fab_colorNormal="@color/black_theme_color"
+            app:fab_colorPressed="@color/gray"
             app:fab_icon="@drawable/ic_local_shipping"
-            app:fab_title="Sent Warehouse Product"
-            app:fab_colorPressed="@color/gray"/>
+            app:fab_size="mini"
+            app:fab_title="Sent Warehouse Product" />
 
 
     </com.getbase.floatingactionbutton.FloatingActionsMenu>
