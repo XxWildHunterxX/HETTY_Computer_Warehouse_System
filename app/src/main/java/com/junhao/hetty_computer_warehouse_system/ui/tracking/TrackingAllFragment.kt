@@ -65,7 +65,7 @@ class TrackingAllFragment : Fragment() {
 
                     val adapter = TrackingItemAdapter(context!!, TrackingItemList!!)
 
-                    val recyclerView: RecyclerView = view.findViewById(R.id.trackingItemRecycleView)
+                    val recyclerView: RecyclerView = view.findViewById(R.id.trackingItemRecycleViewAll)
 
 
                     recyclerView?.adapter = adapter
