@@ -18,8 +18,6 @@ import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.TrackingAdapter
 import com.junhao.hetty_computer_warehouse_system.adapter.TrackingItemAdapter
 import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
-import com.junhao.hetty_computer_warehouse_system.databinding.FragmentTrackingAllBinding
-import com.junhao.hetty_computer_warehouse_system.databinding.ProductItemBinding
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.google.android.material.floatingactionbutton.FloatingActionButton

@@ -10,5 +10,6 @@ data class Staff(
     val email :String?=null,
     val position :String?=null,
     val joinDate :String?=null,
-    val staffImg :String?=null
+    val staffImg :String?=null,
+    val warehouse : String? = null
 )

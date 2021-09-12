@@ -66,29 +66,32 @@ class HomePage : AppCompatActivity() {
         val fabWarehouse : FloatingActionButton = findViewById(R.id.fab_warehouse)
 
         fabSales.setOnClickListener {
+
+            navControl.navigateUp()
+            navControl.navigate(R.id.fragment_addsales)
             //Add Sales Order Fragment here
             Toast.makeText(this, "Add Sales Order", Toast.LENGTH_LONG).show()
         }
         fabItem.setOnClickListener {
-            //Add Sales Order Fragment here
+            //Add item Fragment here
 
             navControl.navigateUp()
             navControl.navigate(R.id.action_nav_home_to_nav_add_item)
             Toast.makeText(this, "Add Item Product", Toast.LENGTH_LONG).show()
         }
         fabPurchase.setOnClickListener {
-            //Add Sales Order Fragment here
+            //Add purchase Fragment here
             Toast.makeText(this, "Add Purchase Order", Toast.LENGTH_LONG).show()
         }
         fabStaff.setOnClickListener {
-            //Add Sales Order Fragment here
+            //Add Staff Fragment here
            // Navigation.findNavController(view).navigate(R.id.action_nav_home_to_fragment_addStaff)
             navControl.navigateUp()
             navControl.navigate(R.id.action_nav_home_to_fragment_addStaff)
             Toast.makeText(this, "Add Staff", Toast.LENGTH_LONG).show()
         }
         fabWarehouse.setOnClickListener {
-            //Add Sales Order Fragment here
+            //Add warehouse Fragment here
             Toast.makeText(this, "Sent Warehouse", Toast.LENGTH_LONG).show()
         }
 

@@ -66,7 +66,7 @@ class UpdateProduct : Fragment() {
             if (it.exists()) {
                 var imageUri: String? = null
                 imageUri = it.child("productImg").value.toString()
-                Picasso.get().load(imageUri).into(productImg);
+                Picasso.get().load(imageUri).into(productImg)
 
 
                 view.etProductBarcode.setText(it.child("productBarcode").value.toString())

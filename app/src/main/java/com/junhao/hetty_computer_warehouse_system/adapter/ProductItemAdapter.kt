@@ -84,37 +84,28 @@ class ProductItemAdapter(val context: Context, private val ProductItemList: List
 
             }
 
-            mDeleteImg.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-
-                    if (listener != null) {
-                        val position: Int = adapterPosition
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onDeleteClick(productName.text.toString())
-                        }
-
+            mDeleteImg.setOnClickListener {
+                if (listener != null) {
+                    val position: Int = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onDeleteClick(productName.text.toString())
                     }
 
-
                 }
+            }
 
-            })
-
-            mLocationImg.setOnClickListener(object : View.OnClickListener {
-                override fun onClick(v: View?) {
-
-                    if (listener != null) {
-                        val position: Int = adapterPosition
-                        if (position != RecyclerView.NO_POSITION) {
-                            listener.onLocationClick(productName.text.toString(),productRack.text.toString())
-                        }
-
+            mLocationImg.setOnClickListener {
+                if (listener != null) {
+                    val position: Int = adapterPosition
+                    if (position != RecyclerView.NO_POSITION) {
+                        listener.onLocationClick(
+                            productName.text.toString(),
+                            productRack.text.toString()
+                        )
                     }
 
-
                 }
-
-            })
+            }
 
 
         }

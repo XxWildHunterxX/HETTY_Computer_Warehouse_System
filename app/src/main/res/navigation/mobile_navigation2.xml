@@ -16,7 +16,7 @@
     <fragment
         android:id="@+id/nav_salesOrder"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.Fragment_display_salesorder"
-        android:label="@string/menu_salesorder"/>
+        android:label="@string/menu_salesorder" />
     <fragment
         android:id="@+id/nav_warehouseTracking"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.tracking.TrackingPage"
@@ -76,4 +76,8 @@
         android:id="@+id/fragment_addStaff"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff"
         android:label="Add Staff" />
+    <fragment
+        android:id="@+id/fragment_addsales"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.Fragment_addsales"
+        android:label="Add Sales" />
 </navigation>

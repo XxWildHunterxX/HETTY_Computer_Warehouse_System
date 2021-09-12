@@ -86,6 +86,13 @@
             android:textColor="#ffffff"
             android:textSize="12sp" />
 
+        <ProgressBar
+            android:id="@+id/pbForgotPassword"
+            style="?android:attr/progressBarStyle"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:visibility="gone"/>
+
     </LinearLayout>
 
 </RelativeLayout>

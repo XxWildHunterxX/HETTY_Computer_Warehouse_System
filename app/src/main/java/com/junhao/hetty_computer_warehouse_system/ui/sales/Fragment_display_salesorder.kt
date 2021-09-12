@@ -14,7 +14,10 @@ class Fragment_display_salesorder : Fragment() {
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_display_salesorder, container, false)
+        val view = inflater.inflate(R.layout.fragment_display_salesorder, container, false)
+
+
+        return view
     }
 
 

@@ -3,8 +3,9 @@ package com.junhao.hetty_computer_warehouse_system.ui.login
 import android.app.Activity
 import android.app.DatePickerDialog
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
-import android.graphics.Color
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -12,12 +13,15 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.Button
-import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
+import com.google.android.gms.tasks.OnCompleteListener
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.gms.tasks.Task
 import com.google.android.material.snackbar.Snackbar
+import com.google.firebase.auth.AuthResult
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.auth.UserProfileChangeRequest
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -30,30 +34,73 @@ import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.android.synthetic.main.fragment_add_item.view.*
 import kotlinx.android.synthetic.main.fragment_add_staff.*
+import kotlinx.android.synthetic.main.fragment_add_staff.tvStaffID
 import kotlinx.android.synthetic.main.fragment_add_staff.view.*
+import kotlinx.android.synthetic.main.fragment_user_profile.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.tasks.await
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 import java.text.SimpleDateFormat
 import java.util.*
 
 class Fragment_addStaff : Fragment() {
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Warehouse").child("warehouse3").child("Staff")
+    private val myRef = database.getReference("Staff")
     private var imageURI: Uri = Uri.EMPTY
     private var found: Boolean = false
     private lateinit var findDateDOB: TextView
     private lateinit var showDateDOB: TextView
     private lateinit var findDateJoin: TextView
     private lateinit var showDateJoin: TextView
+    lateinit var auth: FirebaseAuth
+    var oldStaffID :String = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
 
+        auth = FirebaseAuth.getInstance()
+
         val view = inflater.inflate(R.layout.fragment_add_staff, container, false)
         val formatPhone = Regex("^((01)[0-46-9]-)*[0-9]{7,8}\$")
-        val formatEmail = Regex("^[A-Za-z]+[A-Za-z0-9.]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}\$")
+        val formatEmail = Regex("^[A-Za-z]+[A-Za-z0-9._]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}\$")
 
         (activity as HomePage?)?.hideFloatingActionButton()
+
+
+        myRef.orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot: DataSnapshot) {
+                for(childSnapshot in snapshot.children){
+                    oldStaffID = childSnapshot.key!!.drop(1)
+                    oldStaffID = (Integer.parseInt(oldStaffID) + 1).toString()
+
+                    view.tvStaffID.setText("S$oldStaffID")
+                    Toast.makeText(
+                        activity,
+                        oldStaffID,
+                        Toast.LENGTH_LONG
+                    ).show()
+                }
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+
+            }
+
+        })
+
+
+if(view.tvStaffID.text.toString() == ""){
+
+    view.tvStaffID.setText("S1001")
+
+}
 
         view.btnStaffImage.setOnClickListener {
             chooseImage()
@@ -69,7 +116,7 @@ class Fragment_addStaff : Fragment() {
                 }
             }
 
-
+            val staffID = view.tvStaffID.text.toString().trim()
             val staffName = view.tfStaffName.text.toString().trim()
             val staffGender = getGender()
             val staffDOB = view.tfStaffDOB.text.toString().trim()
@@ -78,6 +125,8 @@ class Fragment_addStaff : Fragment() {
             val staffEmail = view.tfStaffEmail.text.toString().trim()
             val staffPosition = view.tfStaffPosition.text.toString().trim()
             val staffJoinedDate = view.tfStaffJoinedDate.text.toString().trim()
+
+
 
             if (staffName.isEmpty()) {
                 view.tfStaffName.error = "Staff Name Required!"
@@ -135,17 +184,19 @@ class Fragment_addStaff : Fragment() {
                                 progressDialog.setCancelable(false)
                                 progressDialog.show()
 
-                                val formatter = SimpleDateFormat("yyyy-MM-dd_hh_mm_ss", Locale.getDefault())
+                                val formatter =
+                                    SimpleDateFormat("yyyy-MM-dd_hh_mm_ss", Locale.getDefault())
                                 val now = Date()
                                 val fileName = formatter.format(now)
 
-                                val storageReference = FirebaseStorage.getInstance().getReference("images/$fileName")
+                                val storageReference =
+                                    FirebaseStorage.getInstance().getReference("images/$fileName")
 
-                                storageReference.putFile(imageURI).addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
+                                storageReference.putFile(imageURI)
+                                    .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
 
                                         btnStaffImage.setImageURI(null)
-                                        Toast.makeText(activity, "Staff Added Successfully", Toast.LENGTH_LONG).show()
-                                        imageURI = Uri.EMPTY
+
                                         btnStaffImage.setImageResource(R.drawable.ic_default_product_select_img)
                                         if (progressDialog.isShowing) progressDialog.dismiss()
 
@@ -153,8 +204,19 @@ class Fragment_addStaff : Fragment() {
                                             val getImgValue = task.result.toString()
                                             Log.d("TAG", task.result.toString())
 
+                                            val sharedPreferences :SharedPreferences = activity!!.getSharedPreferences("sharedPrefs",
+                                                Context.MODE_PRIVATE)
+
+                                            val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+
+                                            Toast.makeText(
+                                                activity,
+                                                savedWarehouse,
+                                                Toast.LENGTH_LONG
+                                            ).show()
+
                                             val staff = Staff(
-                                                "S1003",
+                                                staffID,
                                                 staffName,
                                                 staffGender,
                                                 staffDOB,
@@ -163,11 +225,15 @@ class Fragment_addStaff : Fragment() {
                                                 staffEmail,
                                                 staffPosition,
                                                 staffJoinedDate,
-                                                getImgValue
+                                                getImgValue,
+                                                savedWarehouse
                                             )
 
                                             myRef.child(staff.id!!).setValue(staff)
+                                            registerUser()
+                                            //updateProfile()
 
+                                            imageURI = Uri.EMPTY
                                             view.tfStaffName.text.clear()
                                             view.rgpGender.clearCheck()
                                             view.tfStaffDOB.text.clear()
@@ -177,12 +243,17 @@ class Fragment_addStaff : Fragment() {
                                             view.tfStaffPosition.text.clear()
                                             view.tfStaffJoinedDate.text.clear()
                                             view.tfStaffName.requestFocus()
+
                                         }
 
 
                                     }).addOnFailureListener {
                                     if (progressDialog.isShowing) progressDialog.dismiss()
-                                    Toast.makeText(activity, "Please add staff image", Toast.LENGTH_LONG).show()
+                                    Toast.makeText(
+                                        activity,
+                                        "Please add staff image",
+                                        Toast.LENGTH_LONG
+                                    ).show()
                                 }
 
                             }
@@ -272,4 +343,102 @@ class Fragment_addStaff : Fragment() {
         val sdf = SimpleDateFormat(myFormat, Locale.UK)
         showDateJoin.setText(sdf.format(myCalendar.time))
     }
+
+    private fun registerUser() {
+
+        val email = tfStaffEmail.text.toString()
+        val defaultPassword = tfStaffPhoneNum.text.toString()
+
+        if (email.isNotEmpty() && defaultPassword.isNotEmpty()) {
+            CoroutineScope(Dispatchers.IO).launch {
+
+                try {
+
+                    auth.createUserWithEmailAndPassword(email, defaultPassword).addOnCompleteListener { p0 ->
+                        if (p0.isSuccessful) {
+                            auth.currentUser!!.sendEmailVerification().addOnCompleteListener {
+
+                                if (it.isSuccessful) {
+                                    Toast.makeText(
+                                        activity,
+                                        "Staff Added Successfully,Please Verify Your Email",
+                                        Toast.LENGTH_LONG
+                                    ).show()
+
+                                } else {
+                                    Toast.makeText(
+                                        activity,
+                                        it.exception!!.message,
+                                        Toast.LENGTH_LONG
+                                    ).show()
+                                }
+
+                            }
+                        }
+                    }
+
+                    withContext(Dispatchers.Main) {
+
+                    }
+
+                } catch (e: Exception) {
+
+                    withContext(Dispatchers.Main) {
+
+                        Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
+
+                    }
+
+
+                }
+
+
+            }
+
+
+        }
+
+    }
+
+
+/*
+    private fun updateProfile() {
+
+        auth.currentUser?.let { user ->
+
+            val staffID = tvStaffID.text.toString()
+            val photoUri = imageURI
+
+            val profileUpdates =
+                UserProfileChangeRequest.Builder().setDisplayName(staffID).setPhotoUri(photoUri)
+                    .build()
+
+            CoroutineScope(Dispatchers.IO).launch {
+                try {
+                    user.updateProfile(profileUpdates).await()
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(
+                            activity,
+                            "Successfully updated user profile",
+                            Toast.LENGTH_LONG
+                        ).show()
+                    }
+
+                } catch (e: Exception) {
+                    withContext(Dispatchers.Main) {
+                        Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
+                    }
+
+                }
+
+            }
+
+        }
+
+
+    }
+
+ */
+
+
 }
