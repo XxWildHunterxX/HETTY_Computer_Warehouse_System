@@ -34,7 +34,6 @@ import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.activity_login_page.*
 import kotlinx.android.synthetic.main.fragment_add_item.view.*
-import kotlinx.android.synthetic.main.fragment_add_staff.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -155,7 +154,7 @@ class LoginPage : AppCompatActivity() {
 
     private fun loginUser() {
 
-        val staffID = tfStaffID.text.toString().trim()
+        val staffID = tfLoginStaffID.text.toString().trim()
         val password = tfPassword.text.toString().trim()
 
         if (staffID.isNotEmpty() && password.isNotEmpty()) {
@@ -175,7 +174,7 @@ class LoginPage : AppCompatActivity() {
                                 val staffID = it.child("id").getValue(String::class.java)
                                 val staffName = it.child("name").getValue(String::class.java)
 
-                                if (staffID == tfStaffID.text.toString().trim()) {
+                                if (staffID == tfLoginStaffID.text.toString().trim()) {
 
                                     val getWarehouse =
                                         it.child("warehouse").getValue(String::class.java)
@@ -228,7 +227,7 @@ class LoginPage : AppCompatActivity() {
                 staffID.isEmpty() && password.isEmpty() -> {
                     Toast.makeText(applicationContext, "Staff ID Required", Toast.LENGTH_LONG)
                         .show()
-                    tfStaffID.requestFocus()
+                    tfLoginStaffID.requestFocus()
                     Toast.makeText(applicationContext, "Password Required", Toast.LENGTH_LONG)
                         .show()
                     tfPassword.requestFocus()
@@ -241,7 +240,7 @@ class LoginPage : AppCompatActivity() {
                 else -> {
                     Toast.makeText(applicationContext, "Staff ID Required", Toast.LENGTH_LONG)
                         .show()
-                    tfStaffID.requestFocus()
+                    tfLoginStaffID.requestFocus()
                 }
             }
 

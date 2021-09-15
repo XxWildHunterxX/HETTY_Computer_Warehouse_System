@@ -13,6 +13,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.EditText
 import android.widget.TextView
 import android.widget.Toast
 import com.google.android.gms.tasks.OnCompleteListener
@@ -34,9 +35,9 @@ import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.android.synthetic.main.fragment_add_item.view.*
 import kotlinx.android.synthetic.main.fragment_add_staff.*
-import kotlinx.android.synthetic.main.fragment_add_staff.tvStaffID
 import kotlinx.android.synthetic.main.fragment_add_staff.view.*
 import kotlinx.android.synthetic.main.fragment_user_profile.*
+import kotlinx.android.synthetic.main.fragment_user_profile.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
@@ -78,7 +79,7 @@ class Fragment_addStaff : Fragment() {
                     oldStaffID = childSnapshot.key!!.drop(1)
                     oldStaffID = (Integer.parseInt(oldStaffID) + 1).toString()
 
-                    view.tvStaffID.setText("S$oldStaffID")
+                    view.tfStaffID.setText("S$oldStaffID")
                     Toast.makeText(
                         activity,
                         oldStaffID,
@@ -96,9 +97,9 @@ class Fragment_addStaff : Fragment() {
         })
 
 
-if(view.tvStaffID.text.toString() == ""){
+if(view.tfStaffID.text.toString() == ""){
 
-    view.tvStaffID.setText("S1001")
+    view.tfStaffID.setText("S1001")
 
 }
 
@@ -116,7 +117,7 @@ if(view.tvStaffID.text.toString() == ""){
                 }
             }
 
-            val staffID = view.tvStaffID.text.toString().trim()
+            val staffID = view.tfStaffID.text.toString().trim()
             val staffName = view.tfStaffName.text.toString().trim()
             val staffGender = getGender()
             val staffDOB = view.tfStaffDOB.text.toString().trim()
@@ -244,7 +245,7 @@ if(view.tvStaffID.text.toString() == ""){
                                             view.tfStaffName.requestFocus()
                                             val getNewStaffID :String = (Integer.parseInt(staffID.drop(1)) + 1).toString()
 
-                                            view.tvStaffID.setText("S$getNewStaffID")
+                                            view.tfStaffID.setText("S$getNewStaffID")
 
                                         }
 
@@ -407,7 +408,7 @@ if(view.tvStaffID.text.toString() == ""){
 
         auth.currentUser?.let { user ->
 
-            val staffID = tvStaffID.text.toString()
+            val staffID = tfStaffID.text.toString()
 
             val profileUpdates =
                 UserProfileChangeRequest.Builder().setDisplayName(staffID).build()
