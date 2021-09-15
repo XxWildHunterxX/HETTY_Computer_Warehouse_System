@@ -75,7 +75,7 @@
                         </RelativeLayout>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/to_be_packed_cardview"
+                            android:id="@+id/to_be_pending_cardview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dimen_3dp"
@@ -158,7 +158,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/to_be_shipped_cardview"
+                            android:id="@+id/to_be_prepared_cardview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dimen_3dp"
@@ -219,7 +219,7 @@
                                         android:layout_height="wrap_content"
                                         android:layout_marginTop="@dimen/dimen_5dp"
                                         android:singleLine="true"
-                                        android:text="@string/to_be_packed"
+                                        android:text="@string/quantity_to_be_prepared"
                                         android:textColor="@color/common_value_color"
                                         android:textSize="@dimen/dimen_15sp" />
 
@@ -240,7 +240,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/to_be_delivered_cardview"
+                            android:id="@+id/to_be_shipped_cardview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dimen_3dp"
@@ -322,7 +322,7 @@
                         </androidx.cardview.widget.CardView>
 
                         <androidx.cardview.widget.CardView
-                            android:id="@+id/to_be_invoiced_cardview"
+                            android:id="@+id/to_be_delivered_cardview"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginBottom="@dimen/dimen_3dp"

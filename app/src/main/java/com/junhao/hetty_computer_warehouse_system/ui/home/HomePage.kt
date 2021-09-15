@@ -26,6 +26,7 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.getbase.floatingactionbutton.FloatingActionButton
@@ -104,6 +105,7 @@ class HomePage : AppCompatActivity() {
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
         navView.setupWithNavController(navController)
+
 
     }
 

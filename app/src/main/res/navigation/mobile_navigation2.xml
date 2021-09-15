@@ -21,7 +21,11 @@
         android:id="@+id/nav_warehouseTracking"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.tracking.TrackingPage"
         android:label="@string/menu_warehousetracking"
-        tools:layout="@layout/activity_tracking_page" />
+        tools:layout="@layout/activity_tracking_page">
+        <action
+            android:id="@+id/action_nav_warehouseTracking_to_trackingDetailsFragment"
+            app:destination="@id/trackingDetailsFragment" />
+    </fragment>
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
@@ -76,4 +80,9 @@
         android:id="@+id/fragment_addStaff"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff"
         android:label="Add Staff" />
+    <fragment
+        android:id="@+id/trackingDetailsFragment"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.tracking.TrackingDetailsFragment"
+        android:label="Tracking Details"
+        tools:layout="@layout/fragment_tracking_details" />
 </navigation>

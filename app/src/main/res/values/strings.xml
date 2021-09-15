@@ -86,4 +86,5 @@
     <string name="choose_d_o_b">Choose D.O.B</string>
     <string name="choose_joined_date">Choose Joined Date</string>
     <string name="myFragmentShowProduct">myFragmentShowProduct</string>
+    <string name="quantity_to_be_prepared">Quantity to be prepared</string>
 </resources>
