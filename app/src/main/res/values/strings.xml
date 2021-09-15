@@ -22,7 +22,7 @@
     <string name="default_price">00.00</string>
     <string name="note">Note :</string>
     <string name="sales_price">Sales Price</string>
-    <string name="sales_type">Sales Type</string>
+    <string name="sales_type">Sales Payment Type</string>
     <string name="imageDescription" />
     <string name="quantity_invoiced">Invoiced</string>
     <string name="packed">Packed</string>

@@ -3,7 +3,9 @@ package com.junhao.hetty_computer_warehouse_system.ui.item
 import android.annotation.SuppressLint
 import android.app.Activity.RESULT_OK
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import java.text.SimpleDateFormat;
 import android.net.Uri
 import android.os.Bundle
@@ -13,7 +15,6 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
-import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.data.Product
@@ -24,24 +25,22 @@ import android.view.MotionEvent
 
 import android.view.View.OnTouchListener
 import com.google.zxing.integration.android.IntentIntegrator
-import com.google.firebase.database.DatabaseError
-
-import com.google.firebase.database.DataSnapshot
-
-import com.google.firebase.database.ValueEventListener
 
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.app_bar_home_page2.view.*
 import com.google.firebase.storage.UploadTask
 
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.auth.FirebaseAuth
+import com.google.firebase.database.*
 
 
 class Fragment_Add_Item : Fragment() {
 
     private var imageURI: Uri = Uri.EMPTY
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
+
+    private lateinit var myRef :DatabaseReference
     private var found: Boolean = false
 
     @SuppressLint("ClickableViewAccessibility")
@@ -49,6 +48,14 @@ class Fragment_Add_Item : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+
+        val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
+            Context.MODE_PRIVATE)
+        val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+
+        Toast.makeText(activity, savedWarehouse.toString(), Toast.LENGTH_LONG).show()
+
+        myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("product")
 
         val patternBarcode = Regex("^123456\\d{4}\$")
         val patternRack = Regex("^[ABC]-\\d{2}\$")

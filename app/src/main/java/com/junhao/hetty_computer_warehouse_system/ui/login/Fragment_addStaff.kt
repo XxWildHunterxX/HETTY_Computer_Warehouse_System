@@ -127,7 +127,6 @@ if(view.tvStaffID.text.toString() == ""){
             val staffJoinedDate = view.tfStaffJoinedDate.text.toString().trim()
 
 
-
             if (staffName.isEmpty()) {
                 view.tfStaffName.error = "Staff Name Required!"
                 return@setOnClickListener
@@ -243,6 +242,9 @@ if(view.tvStaffID.text.toString() == ""){
                                             view.tfStaffPosition.text.clear()
                                             view.tfStaffJoinedDate.text.clear()
                                             view.tfStaffName.requestFocus()
+                                            val getNewStaffID :String = (Integer.parseInt(staffID.drop(1)) + 1).toString()
+
+                                            view.tvStaffID.setText("S$getNewStaffID")
 
                                         }
 
@@ -400,18 +402,15 @@ if(view.tvStaffID.text.toString() == ""){
 
     }
 
-
 /*
     private fun updateProfile() {
 
         auth.currentUser?.let { user ->
 
             val staffID = tvStaffID.text.toString()
-            val photoUri = imageURI
 
             val profileUpdates =
-                UserProfileChangeRequest.Builder().setDisplayName(staffID).setPhotoUri(photoUri)
-                    .build()
+                UserProfileChangeRequest.Builder().setDisplayName(staffID).build()
 
             CoroutineScope(Dispatchers.IO).launch {
                 try {
@@ -437,8 +436,7 @@ if(view.tvStaffID.text.toString() == ""){
 
 
     }
-
- */
+*/
 
 
 }

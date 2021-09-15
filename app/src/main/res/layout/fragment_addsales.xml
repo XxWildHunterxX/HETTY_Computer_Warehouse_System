@@ -18,8 +18,66 @@
             android:paddingBottom="@dimen/_60sdp"
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
+            <TextView
+                android:id="@+id/tvSalesID"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="Sales Order ID"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
             <AutoCompleteTextView
-                android:id="@+id/autotv_productname_salesentry"
+                android:id="@+id/etSalesOrderID"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_done"
+                android:hint="Sales Order ID"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvSalesID" />
+
+
+            <TextView
+                android:id="@+id/tvBarcode"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/product_barcode"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSalesOrderID"/>
+
+            <AutoCompleteTextView
+                android:id="@+id/etSalesProductBarcode"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_barcode"
+                android:drawableEnd="@drawable/ic_barcode_scanner"
+                android:hint="Product Barcode"
+                app:layout_constraintHorizontal_bias="1"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvBarcode" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etSalesProductName"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -27,7 +85,6 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:drawableStart="@drawable/ic_item_name"
-                android:drawableEnd="@drawable/ic_barcode_scanner"
                 android:hint="@string/product_name"
                 app:layout_constraintHorizontal_bias="1"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -35,7 +92,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_1.2" />
 
             <AutoCompleteTextView
-                android:id="@+id/autotv_customername_salesentry"
+                android:id="@+id/etSalesCustomerName"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -43,14 +100,42 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:drawableStart="@drawable/ic_user_name"
-                android:drawableEnd="@drawable/ic_plus"
                 android:hint="@string/customer_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
+
+            <TextView
+                android:id="@+id/tvPhone"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="Customer Phone Number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/etSalesCustomerName" />
+
+            <AutoCompleteTextView
+                android:id="@+id/etSalesCustomerPhone"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_contact"
+                android:hint="Customer Phone Number"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tvPhone" />
+
+
             <EditText
-                android:id="@+id/tf_purchaseQuantity"
+                android:id="@+id/etSalesQuantity"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -66,7 +151,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/textView4" />
 
             <EditText
-                android:id="@+id/tf_supplierName"
+                android:id="@+id/etSalesDate"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -86,7 +171,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
 
             <EditText
-                android:id="@+id/tf_requestDate"
+                android:id="@+id/etSalesPrice"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -112,7 +197,7 @@
                 android:text="@string/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toBottomOf="@+id/etSalesProductBarcode"/>
 
             <TextView
                 android:id="@+id/textView3"
@@ -125,7 +210,7 @@
                 android:text="@string/customer_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/autotv_productname_salesentry" />
+                app:layout_constraintTop_toBottomOf="@+id/etSalesProductName" />
 
             <TextView
                 android:id="@+id/textView4"
@@ -138,10 +223,10 @@
                 android:text="@string/sales_quantity"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/autotv_customername_salesentry" />
+                app:layout_constraintTop_toBottomOf="@+id/etSalesCustomerPhone" />
 
             <TextView
-                android:id="@+id/tv_availquant_salesentry"
+                android:id="@+id/tvNote"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -152,7 +237,7 @@
                 android:textSize="12sp"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/etSalesQuantity" />
 
             <TextView
                 android:id="@+id/tv_SupplierName"
@@ -165,7 +250,7 @@
                 android:text="@string/sales_date"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_availquant_salesentry" />
+                app:layout_constraintTop_toBottomOf="@+id/tvNote" />
 
             <TextView
                 android:id="@+id/tv_RequestDate"
@@ -178,7 +263,7 @@
                 android:text="@string/sales_price"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName" />
+                app:layout_constraintTop_toBottomOf="@+id/etSalesDate" />
 
             <TextView
                 android:id="@+id/textView11"
@@ -191,10 +276,10 @@
                 android:text="@string/sales_type"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_requestDate" />
+                app:layout_constraintTop_toBottomOf="@+id/etSalesPrice" />
 
             <Spinner
-                android:id="@+id/spin_salestype_salesentry"
+                android:id="@+id/spinnerSalesType"
                 android:layout_width="0dp"
                 android:layout_height="40dp"
                 android:layout_marginStart="16dp"
@@ -216,11 +301,11 @@
                 android:layout_marginEnd="16dp"
                 android:background="@drawable/spinner_background_right"
                 android:contentDescription="@string/imageDescription"
-                app:layout_constraintBottom_toBottomOf="@+id/spin_salestype_salesentry"
+                app:layout_constraintBottom_toBottomOf="@+id/spinnerSalesType"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toEndOf="@+id/spin_salestype_salesentry"
+                app:layout_constraintStart_toEndOf="@+id/spinnerSalesType"
                 app:layout_constraintTop_toBottomOf="@+id/textView11"
-                app:layout_constraintTop_toTopOf="@+id/spin_salestype_salesentry"
+                app:layout_constraintTop_toTopOf="@+id/spinnerSalesType"
                 app:srcCompat="@drawable/ic_spinner_dropdown" />
 
             <Button
@@ -232,8 +317,8 @@
                 android:background="@drawable/rounded_corners"
                 app:layout_constraintEnd_toEndOf="@+id/iv_dropdownimage"
                 app:layout_constraintHorizontal_bias="0.466"
-                app:layout_constraintStart_toStartOf="@+id/spin_salestype_salesentry"
-                app:layout_constraintTop_toBottomOf="@+id/spin_salestype_salesentry" />
+                app:layout_constraintStart_toStartOf="@+id/spinnerSalesType"
+                app:layout_constraintTop_toBottomOf="@+id/spinnerSalesType" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </LinearLayout>
