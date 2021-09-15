@@ -36,7 +36,7 @@ import java.util.*
 
 class Fragment_addStaff : Fragment() {
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Warehouse").child("warehouse3").child("Staff")
+    private val myRef = database.getReference("Staff")
     private var imageURI: Uri = Uri.EMPTY
     private var found: Boolean = false
     private lateinit var findDateDOB: TextView
@@ -154,7 +154,7 @@ class Fragment_addStaff : Fragment() {
                                             Log.d("TAG", task.result.toString())
 
                                             val staff = Staff(
-                                                "S1003",
+                                                "S1001",
                                                 staffName,
                                                 staffGender,
                                                 staffDOB,

@@ -164,7 +164,8 @@
                             android:layout_height="wrap_content"
                             android:enabled="false"
                             android:hint="Position"
-                            android:imeOptions="actionNext" />
+                            android:imeOptions="actionNext"
+                            android:textColor="#0B0B0B" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 
@@ -216,13 +217,16 @@
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="2dp" />
 
-                <TextView
+                <EditText
                     android:id="@+id/tvStaffName"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="160dp"
+                    android:background="@null"
+                    android:enabled="false"
                     android:text="Name"
+                    android:textColor="#000000"
                     android:textSize="30sp" />
 
             </RelativeLayout>

@@ -61,7 +61,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <EditText
-                android:id="@+id/tvStaffID"
+                android:id="@+id/tfStaffID"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -89,7 +89,7 @@
                 android:text="@string/staff_name"
                 app:layout_constraintEnd_toStartOf="@+id/btnStaffImage"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tvStaffID" />
+                app:layout_constraintTop_toBottomOf="@+id/tfStaffID" />
 
 
 
