@@ -54,6 +54,7 @@ class ShowProduct : Fragment() {
                 Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
             }
 
+
             override fun onDataChange(snapshot: DataSnapshot) {
                ProductItemList!!.clear()
                 tempArrayList!!.clear()

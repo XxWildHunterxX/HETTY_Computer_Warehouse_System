@@ -10,6 +10,11 @@
         android:roundIcon="@mipmap/ic_hetty_round"
         android:supportsRtl="true"
         android:theme="@style/Theme.HETTY_Computer_Warehouse_System.NoActionBar">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyBCRxPA8q_a1Z7ebk_LcvmH9rTEo6gY7aI" />
+
         <activity
             android:name=".ui.login.ResetPassword"
             android:exported="true" />

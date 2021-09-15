@@ -3,6 +3,7 @@ plugins {
     id 'kotlin-android'
     id 'com.google.gms.google-services'
     id 'kotlin-android-extensions'
+    id 'com.google.android.libraries.mapsplatform.secrets-gradle-plugin'
 }
 
 android {
@@ -71,6 +72,9 @@ dependencies {
 
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
     implementation 'com.google.zxing:core:3.4.0'
+
+    //google map
+    implementation 'com.google.android.gms:play-services-maps:17.0.1'
 
     def room_version = "2.3.0"
     implementation "androidx.room:room-runtime:$room_version"
