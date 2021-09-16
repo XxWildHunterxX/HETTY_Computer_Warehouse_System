@@ -44,7 +44,11 @@
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_userProfile"
-        android:label="@string/menu_profile" />
+        android:label="@string/menu_profile" >
+        <action
+            android:id="@+id/action_nav_profile_self"
+            app:destination="@id/nav_profile" />
+    </fragment>
 
     <fragment
         android:id="@+id/nav_items"

@@ -16,4 +16,8 @@
         <item>Rejected</item>
         <item>Received</item>
     </array>
+    <array name="gender_type">
+        <item>Male</item>
+        <item>Female</item>
+    </array>
 </resources>

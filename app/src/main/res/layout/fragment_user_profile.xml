@@ -66,14 +66,12 @@
                         android:textColorHint="#808080"
                         app:boxBackgroundColor="#FFFFFF">
 
-                        <EditText
-                            android:id="@+id/tvStaffGender"
+                        <Spinner
+                            android:id="@+id/spinnerGender"
                             android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:enabled="false"
-                            android:hint="Gender"
-                            android:imeOptions="actionNext"
-                            android:textColor="#0B0B0B" />
+                            android:layout_height="50dp"
+                            android:clickable="false"
+                            android:entries="@array/gender_type" />
 
                     </com.google.android.material.textfield.TextInputLayout>
 

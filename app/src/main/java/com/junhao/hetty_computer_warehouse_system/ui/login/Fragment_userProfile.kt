@@ -1,5 +1,6 @@
 package com.junhao.hetty_computer_warehouse_system.ui.login
 
+import android.app.Activity
 import android.app.ProgressDialog
 import android.content.Intent
 import android.net.Uri
@@ -9,7 +10,10 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ArrayAdapter
 import android.widget.Toast
+import androidx.navigation.Navigation
+import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
@@ -37,6 +41,8 @@ class Fragment_userProfile : Fragment() {
         val view = inflater.inflate(R.layout.fragment_user_profile, container, false)
         val formatPhone = Regex("^((01)[0-46-9]-)*[0-9]{7,8}\$")
         val formatEmail = Regex("^[A-Za-z]+[A-Za-z0-9.]+@[A-Za-z0-9.-]+.[A-Za-z]{2,4}\$")
+        val formatDate =
+            Regex("^(?:(?:31(\\/|-|\\.)(?:0?[13578]|1[02]))\\1|(?:(?:29|30)(\\/|-|\\.)(?:0?[13-9]|1[0-2])\\2))(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$|^(?:29(\\/|-|\\.)0?2\\3(?:(?:(?:1[6-9]|[2-9]\\d)?(?:0[48]|[2468][048]|[13579][26])|(?:(?:16|[2468][048]|[3579][26])00))))\$|^(?:0?[1-9]|1\\d|2[0-8])(\\/|-|\\.)(?:(?:0?[1-9])|(?:1[0-2]))\\4(?:(?:1[6-9]|[2-9]\\d)?\\d{2})\$")
 
         (activity as HomePage?)?.hideFloatingActionButton()
 
@@ -44,7 +50,12 @@ class Fragment_userProfile : Fragment() {
         myRef.child("S1001").get().addOnSuccessListener {
             view.tvStaffName.setText(it.child("name").value.toString())
             view.tvStaffID.setText(it.child("id").value.toString())
-            view.tvStaffGender.setText(it.child("gender").value.toString())
+            if (it.child("gender").value.toString() == "Male") {
+                view.spinnerGender.setSelection(0)
+            } else {
+                view.spinnerGender.setSelection(1)
+            }
+
             view.tvStaffDOB.setText(it.child("dateOfBirth").value.toString())
             view.tvStaffAddress.setText(it.child("address").value.toString())
             view.tvStaffPhoneNo.setText(it.child("phoneNum").value.toString())
@@ -63,7 +74,6 @@ class Fragment_userProfile : Fragment() {
         view.btnEditProfile.setOnClickListener() {
             if (view.btnEditProfile.text == "Edit Profile") {
                 view.tvStaffName.isEnabled = true
-                view.tvStaffGender.isEnabled = true
                 view.tvStaffDOB.isEnabled = true
                 view.tvStaffAddress.isEnabled = true
                 view.tvStaffPhoneNo.isEnabled = true
@@ -77,7 +87,7 @@ class Fragment_userProfile : Fragment() {
 
             } else {
                 val staffName = view.tvStaffName.text.toString().trim()
-                val staffGender = view.tvStaffGender.text.toString().trim()
+                val staffGender = view.spinnerGender.selectedItem.toString().trim()
                 val staffDOB = view.tvStaffDOB.text.toString().trim()
                 val staffAddress = view.tvStaffAddress.text.toString().trim()
                 val staffPhoneNum = view.tvStaffPhoneNo.text.toString().trim()
@@ -88,11 +98,12 @@ class Fragment_userProfile : Fragment() {
                 if (staffName.isEmpty()) {
                     view.tvStaffName.error = "Staff Name Required!"
                     return@setOnClickListener
-                } else if (staffGender.isEmpty() || staffGender != "Male" || staffGender != "Female") {
-                    view.tvStaffGender.error = "Please enter gender! Example: 'Male' or 'Female'"
-                    return@setOnClickListener
                 } else if (staffDOB.isEmpty()) {
                     view.tvStaffDOB.error = "Staff Date Of Birth Required!"
+                    return@setOnClickListener
+                } else if (!formatDate.containsMatchIn(staffDOB)) {
+                    view.tvStaffDOB.error =
+                        "Staff Date of Birth Wrong Format! Example: DD/MM/YYYY"
                     return@setOnClickListener
                 } else if (staffAddress.isEmpty()) {
                     view.tvStaffAddress.error = "Staff Address Required!"
@@ -117,6 +128,9 @@ class Fragment_userProfile : Fragment() {
                 } else if (staffJoinedDate.isEmpty()) {
                     view.tvStaffJoinedDate.error = "Staff Joined Date Required!"
                     return@setOnClickListener
+                } else if (!formatDate.containsMatchIn(staffJoinedDate)) {
+                    view.tvStaffJoinedDate.error =
+                        "Staff Joined Date Wrong Format! Example: DD/MM/YYYY"
                 } else {
                     val progressDialog = ProgressDialog(activity)
                     progressDialog.setMessage("Uploading File ...")
@@ -134,7 +148,6 @@ class Fragment_userProfile : Fragment() {
                         .addOnSuccessListener(OnSuccessListener<UploadTask.TaskSnapshot> { taskSnapshot ->
 
                             imageview_account_profile.setImageURI(null)
-                            Toast.makeText(activity, "Staff Added Successfully", Toast.LENGTH_LONG).show()
                             imageURI = Uri.EMPTY
                             if (progressDialog.isShowing) progressDialog.dismiss()
 
@@ -156,18 +169,48 @@ class Fragment_userProfile : Fragment() {
                                 )
 
                                 myRef.child("S1001").updateChildren(staff).addOnSuccessListener {
-                                    Toast.makeText(activity, "I'm here", Toast.LENGTH_LONG).show()
+                                    Navigation.findNavController(view)
+                                        .navigate(R.id.action_nav_profile_self)
                                 }
 
-
+                                Toast.makeText(
+                                    activity,
+                                    "Update with image change",
+                                    Toast.LENGTH_LONG
+                                ).show()
 
                             }
 
 
                         }).addOnFailureListener {
-                        if (progressDialog.isShowing) progressDialog.dismiss()
-                        Toast.makeText(activity, "Please add staff image", Toast.LENGTH_LONG).show()
-                    }
+                            if (progressDialog.isShowing) progressDialog.dismiss()
+
+                            val staff = mapOf<String, String>(
+                                "id" to "S1001",
+                                "name" to staffName,
+                                "gender" to staffGender,
+                                "dateOfBirth" to staffDOB,
+                                "address" to staffAddress,
+                                "phoneNum" to staffPhoneNum,
+                                "email" to staffEmail,
+                                "position" to staffPosition,
+                                "joinDate" to staffJoinedDate
+                            )
+
+                            myRef.child("S1001").updateChildren(staff).addOnSuccessListener {
+                                Navigation.findNavController(view)
+                                    .navigate(R.id.action_nav_profile_self)
+                            }
+
+
+
+
+                            Toast.makeText(
+                                activity,
+                                "Update without image change",
+                                Toast.LENGTH_LONG
+                            ).show()
+                        }
                 }
             }
         }
@@ -187,6 +230,16 @@ class Fragment_userProfile : Fragment() {
         intent.action = Intent.ACTION_GET_CONTENT
 
         startActivityForResult(intent, 100)
+    }
+
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (requestCode == 100 && resultCode == Activity.RESULT_OK) {
+            imageURI = data?.data!!
+            imageview_account_profile.setImageURI(imageURI)
+
+        }
     }
 
 }
