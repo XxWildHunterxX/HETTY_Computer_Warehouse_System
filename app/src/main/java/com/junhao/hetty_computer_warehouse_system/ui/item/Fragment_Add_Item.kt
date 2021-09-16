@@ -118,15 +118,22 @@ class Fragment_Add_Item : Fragment() {
                                 for (ds in dataSnapshot.children) {
                                     val barCode =
                                         ds.child("productBarcode").getValue(String::class.java)
+                                    val rackNumber =
+                                        ds.child("productRack").getValue(String::class.java)
                                     Log.d("TAG", barCode!!)
                                     if (barCode == prodBarCode) {
                                         Log.d("TAG", "existed Barcode")
                                         found = true
                                         view.tfProductBarcode.error = "Product Barcode Existed!"
                                         break
+                                    }else if(rackNumber == prodRack){
+                                        view.tfProductRack.error = "Rack Already Used!"
+                                        found = true
+                                        break
                                     } else {
                                         found = false
                                     }
+
                                 }
                                 if (!found) {
 

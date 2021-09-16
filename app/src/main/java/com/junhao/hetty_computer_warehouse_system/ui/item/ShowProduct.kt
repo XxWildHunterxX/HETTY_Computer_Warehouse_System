@@ -160,6 +160,17 @@ class ShowProduct : Fragment() {
                                     "This is Location Button $productName,$productRack",
                                     Toast.LENGTH_SHORT
                                 ).show()
+
+                                val bundle = bundleOf(
+                                    Pair("rackProductName", productName),
+                                    Pair("productRack", productRack)
+                                )
+                                findNavController(view).navigate(
+                                    R.id.nav_rackLocation,
+                                    bundle
+                                )
+
+
                             }
 
 

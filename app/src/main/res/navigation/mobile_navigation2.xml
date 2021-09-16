@@ -93,4 +93,9 @@
         android:id="@+id/fragment_addsales"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.Fragment_addsales"
         android:label="Add Sales" />
+    <fragment
+        android:id="@+id/nav_rackLocation"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.rackLocation"
+        android:label="Rack Location"
+        tools:layout="@layout/fragment_rack_location" />
 </navigation>
