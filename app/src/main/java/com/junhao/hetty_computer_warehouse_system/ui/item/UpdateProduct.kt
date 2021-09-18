@@ -3,7 +3,9 @@ package com.junhao.hetty_computer_warehouse_system.ui.item
 import android.annotation.SuppressLint
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -29,11 +31,12 @@ import kotlinx.android.synthetic.main.fragment_update_product.view.*
 import java.text.SimpleDateFormat
 import java.util.*
 import androidx.navigation.Navigation.findNavController
+import com.google.firebase.database.DatabaseReference
 
 class UpdateProduct : Fragment() {
 
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Warehouse").child("warehouse1").child("product")
+    private lateinit var myRef : DatabaseReference
     private var imageURI: Uri = Uri.EMPTY
 
     @SuppressLint("ClickableViewAccessibility")
@@ -48,6 +51,14 @@ class UpdateProduct : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_update_product, container, false)
         (activity as HomePage?)?.hideFloatingActionButton()
+
+        val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
+            Context.MODE_PRIVATE)
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+
+        myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("product")
+
         val productName = arguments?.getString("productName")
         val productPrice = arguments?.getString("productPrice")
         val productType = arguments?.getString("productType")

@@ -173,6 +173,9 @@ class LoginPage : AppCompatActivity() {
 
                                 val staffID = it.child("id").getValue(String::class.java)
                                 val staffName = it.child("name").getValue(String::class.java)
+                                val staffEmail = it.child("email").getValue(String::class.java)
+                                val staffImg = it.child("staffImg").getValue(String::class.java)
+
 
                                 if (staffID == tfLoginStaffID.text.toString().trim()) {
 
@@ -187,7 +190,11 @@ class LoginPage : AppCompatActivity() {
                                     editor.apply {
                                         putString("getWarehouse", getWarehouse.toString())
                                         putString("getStaffName",staffName.toString())
+                                        putString("getStaffID",staffID.toString())
+                                        putString("getStaffEmail",staffEmail.toString())
+                                        putString("getStaffImg",staffImg.toString())
                                     }.apply()
+
 
                                     checkLoggedInState()
 

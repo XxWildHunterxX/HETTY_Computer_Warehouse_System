@@ -7,7 +7,7 @@
 
     <fragment
         android:id="@+id/nav_settings"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SlideshowFragment"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.SettingsFragment"
         android:label="@string/menu_salesorder" />
     <fragment
         android:id="@+id/nav_purchaseOrders"
@@ -64,7 +64,7 @@
     </fragment>
     <fragment
         android:id="@+id/nav_tracking_all"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SlideshowFragment"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.SlideshowFragment"
         android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_add_item"
@@ -98,4 +98,22 @@
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.rackLocation"
         android:label="Rack Location"
         tools:layout="@layout/fragment_rack_location" />
+    <fragment
+        android:id="@+id/nav_sentWarehouseProduct"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SentWarehouseProduct"
+        android:label="Sent Warehouse Product"
+        tools:layout="@layout/fragment_sent_warehouse_product" >
+        <action
+            android:id="@+id/action_nav_sentWarehouseProduct_to_nav_searchWarehouseProduct"
+            app:destination="@id/nav_searchWarehouseProduct" />
+    </fragment>
+    <fragment
+        android:id="@+id/nav_searchWarehouseProduct"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.SearchWarehouseProduct"
+        android:label="Search Warehouse Product"
+        tools:layout="@layout/fragment_search_warehouse_product" >
+        <action
+            android:id="@+id/action_nav_searchWarehouseProduct_to_nav_sentWarehouseProduct"
+            app:destination="@id/nav_sentWarehouseProduct" />
+    </fragment>
 </navigation>

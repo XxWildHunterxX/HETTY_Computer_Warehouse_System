@@ -66,6 +66,14 @@
                         android:textColorHint="#808080"
                         app:boxBackgroundColor="#FFFFFF">
 
+                        <TextView
+                            android:id="@+id/textView24"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginLeft="@dimen/dimen_15dp"
+                            android:layout_weight="1"
+                            android:text="Gender" />
+
                         <Spinner
                             android:id="@+id/spinnerGender"
                             android:layout_width="match_parent"

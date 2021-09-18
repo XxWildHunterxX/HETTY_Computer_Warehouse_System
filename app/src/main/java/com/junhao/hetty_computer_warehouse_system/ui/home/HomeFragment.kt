@@ -1,6 +1,7 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
 import android.content.ActivityNotFoundException
+import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
@@ -19,6 +20,8 @@ import kotlinx.android.synthetic.main.activity_home_page2.view.*
 import android.content.SharedPreferences
 import androidx.navigation.Navigation
 import com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff
+import kotlinx.android.synthetic.main.nav_header_home_page2.*
+import kotlinx.android.synthetic.main.nav_header_home_page2.view.*
 
 
 class HomeFragment : Fragment() {
@@ -43,7 +46,7 @@ class HomeFragment : Fragment() {
         })
 
 
-        return view
+            return view
     }
 
     override fun onStart() {

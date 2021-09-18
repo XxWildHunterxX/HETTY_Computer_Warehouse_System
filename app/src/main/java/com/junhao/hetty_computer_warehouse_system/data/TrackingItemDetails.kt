@@ -5,6 +5,7 @@ data class TrackingItemDetails(
     var trackDesc:String? = null,
     var trackTime:String? = null,
     var trackLatitude:Double? = null,
-    var trackLongitude:Double? = null
+    var trackLongitude:Double? = null,
+    var trackNoOrder:String?=null
 
 )

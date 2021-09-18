@@ -2,26 +2,22 @@ package com.junhao.hetty_computer_warehouse_system.ui.item
 
 import android.app.AlertDialog
 import android.content.ContentValues.TAG
-import android.content.DialogInterface
-import android.graphics.Path
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.*
 import android.widget.*
 import androidx.fragment.app.Fragment
 import androidx.core.os.bundleOf
-import androidx.navigation.NavController
 import androidx.recyclerview.widget.RecyclerView
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.ProductItemAdapter
 import com.junhao.hetty_computer_warehouse_system.data.Product
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import androidx.navigation.Navigation.findNavController
-import androidx.navigation.findNavController
 import com.google.firebase.database.*
-import kotlinx.android.synthetic.main.fragment_add_item.view.*
 import kotlinx.android.synthetic.main.fragment_show_product.*
-import java.lang.Exception
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -29,7 +25,7 @@ import kotlin.collections.ArrayList
 class ShowProduct : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Warehouse").child("warehouse1")
+    private lateinit var myRef :DatabaseReference
     var ProductItemList: ArrayList<Product>? = null
     var tempArrayList: ArrayList<Product>? = null
     private lateinit var eventListener : ValueEventListener
@@ -42,6 +38,13 @@ class ShowProduct : Fragment() {
         // Inflate the layout for this fragment
 
         val view = inflater.inflate(R.layout.fragment_show_product, container, false)
+
+        val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
+            Context.MODE_PRIVATE)
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+
+        myRef = database.getReference("Warehouse").child(savedWarehouse!!)
 
         ProductItemList = arrayListOf<Product>()
         tempArrayList = arrayListOf<Product>()

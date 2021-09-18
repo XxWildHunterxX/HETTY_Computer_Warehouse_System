@@ -26,12 +26,22 @@ import androidx.appcompat.app.ActionBarDrawerToggle
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
+import android.widget.ImageView
+import android.widget.TextView
 import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.getbase.floatingactionbutton.FloatingActionButton
 import com.google.android.gms.tasks.OnCompleteListener
 import com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff
+import com.squareup.picasso.Picasso
+import kotlinx.android.synthetic.main.fragment_user_profile.*
+import kotlinx.android.synthetic.main.nav_header_home_page2.view.*
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+import kotlinx.coroutines.withContext
+import java.lang.Exception
 
 
 class HomePage : AppCompatActivity() {
@@ -50,7 +60,6 @@ class HomePage : AppCompatActivity() {
         binding = ActivityHomePage2Binding.inflate(layoutInflater)
         setContentView(binding.root)
 
-
         setSupportActionBar(binding.appBarHomePage2.toolbar)
         registerForContextMenu(binding.appBarHomePage2.fab)
 /*
@@ -59,6 +68,26 @@ class HomePage : AppCompatActivity() {
         }
 
  */
+        val navigationView = binding.navView
+        val header = navigationView.getHeaderView(0)
+        val staffName = header.findViewById<TextView>(R.id.tvNavProfile)
+        val staffEmail = header.findViewById<TextView>(R.id.tvNavEmail)
+        val staffImg = header.findViewById<ImageView>(R.id.imgNavProfile)
+
+        val sharedPreferences : SharedPreferences = this.getSharedPreferences("sharedPrefs",
+            Context.MODE_PRIVATE)
+
+        val savedStaffEmail = sharedPreferences.getString("getStaffEmail",null)
+        val savedStaffName = sharedPreferences.getString("getStaffName",null)
+        val savedStaffImg = sharedPreferences.getString("getStaffImg",null)
+
+        staffName.text= savedStaffName.toString()
+        staffEmail.text = savedStaffEmail.toString()
+
+        var imageUri: String? = null
+        imageUri = savedStaffImg.toString()
+        Picasso.get().load(imageUri).into(staffImg);
+
         val navControl = findNavController(R.id.nav_host_fragment_content_home_page2)
         val fabSales : FloatingActionButton = findViewById(R.id.fab_sales)
         val fabItem : FloatingActionButton = findViewById(R.id.fab_item)
@@ -93,6 +122,8 @@ class HomePage : AppCompatActivity() {
         }
         fabWarehouse.setOnClickListener {
             //Add warehouse Fragment here
+            navControl.navigateUp()
+            navControl.navigate(R.id.nav_searchWarehouseProduct)
             Toast.makeText(this, "Sent Warehouse", Toast.LENGTH_LONG).show()
         }
 
@@ -103,7 +134,7 @@ class HomePage : AppCompatActivity() {
         // menu should be considered as top level destinations.
         appBarConfiguration = AppBarConfiguration(
             setOf(
-                R.id.nav_home, R.id.nav_profile, R.id.nav_items,R.id.nav_warehouseTracking,R.id.nav_salesOrder,R.id.nav_purchaseOrders,R.id.nav_settings
+                R.id.nav_home, R.id.nav_profile, R.id.nav_items,R.id.nav_warehouseTracking,R.id.nav_salesOrder,R.id.nav_purchaseOrders,R.id.nav_settings,R.id.nav_searchWarehouseProduct
             ), drawerLayout
         )
         setupActionBarWithNavController(navController, appBarConfiguration)
@@ -178,6 +209,10 @@ override fun onStop() {
         Log.i("Lifecycle", "onDestroy")
         super.onDestroy()
 
+    }
+
+    override fun onStart() {
+        super.onStart()
     }
 
 }

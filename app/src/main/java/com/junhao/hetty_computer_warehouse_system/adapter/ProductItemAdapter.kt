@@ -32,7 +32,7 @@ class ProductItemAdapter(val context: Context, private val ProductItemList: List
 
     }
 
-    fun setOnItemClickListener(listener: onItemClickListener) {
+    fun setOnItemClickListener(listener: ProductItemAdapter.onItemClickListener) {
 
         mListener = listener
 

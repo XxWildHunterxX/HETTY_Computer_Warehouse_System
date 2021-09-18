@@ -14,6 +14,7 @@ import android.view.MotionEvent
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
+import androidx.navigation.Navigation
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -24,6 +25,7 @@ import com.junhao.hetty_computer_warehouse_system.data.SalesOrder
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.android.synthetic.main.fragment_add_item.view.*
+import kotlinx.android.synthetic.main.fragment_add_staff.view.*
 import kotlinx.android.synthetic.main.fragment_addsales.*
 import kotlinx.android.synthetic.main.fragment_addsales.view.*
 
@@ -40,6 +42,14 @@ class Fragment_addsales : Fragment() {
     ): View? {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_addsales, container, false)
+
+        if(view.etSalesOrderID.text.toString() == ""){
+
+            view.etSalesOrderID.setText("SO1001")
+
+        }
+
+
 
         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
             "sharedPrefs",
@@ -111,7 +121,7 @@ class Fragment_addsales : Fragment() {
                                     etSalesPrice,
                                     spinnerSalesType
                                 )
-                                //myRef.child(product.productName!!).setValue(salesOrder)
+                                myRef.child(etSalesOrderID).setValue(salesOrder)
 
                             } else {
                                 view.etSalesProductBarcode.error = "Product Barcode Not Existed!"
@@ -133,7 +143,14 @@ class Fragment_addsales : Fragment() {
             }
 
         }
+        view.etSalesProductBarcode.setOnClickListener {
 
+            Navigation.findNavController(view).navigate(
+                R.id.nav_items
+            )
+
+            Toast.makeText(activity, "Clicked Sales Order Barcode", Toast.LENGTH_LONG).show()
+        }
         view.etSalesProductBarcode.setOnTouchListener(View.OnTouchListener { v, event ->
 
             val DRAWABLE_LEFT = 0

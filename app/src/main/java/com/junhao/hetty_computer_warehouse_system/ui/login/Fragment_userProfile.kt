@@ -2,7 +2,9 @@ package com.junhao.hetty_computer_warehouse_system.ui.login
 
 import android.app.Activity
 import android.app.ProgressDialog
+import android.content.Context
 import android.content.Intent
+import android.content.SharedPreferences
 import android.net.Uri
 import android.os.Bundle
 import android.util.Log
@@ -15,6 +17,7 @@ import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
@@ -31,7 +34,7 @@ import java.util.*
 
 class Fragment_userProfile : Fragment() {
     private val database = FirebaseDatabase.getInstance()
-    private val myRef = database.getReference("Staff")
+    private lateinit var myRef : DatabaseReference
     private var imageURI: Uri = Uri.EMPTY
 
     override fun onCreateView(
@@ -46,8 +49,16 @@ class Fragment_userProfile : Fragment() {
 
         (activity as HomePage?)?.hideFloatingActionButton()
 
+        val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
+            Context.MODE_PRIVATE)
 
-        myRef.child("S1001").get().addOnSuccessListener {
+        val savedStaffID = sharedPreferences.getString("getStaffID",null)
+
+        myRef = database.getReference("Staff")
+
+        view.spinnerGender.isEnabled = false
+
+        myRef.child(savedStaffID.toString()).get().addOnSuccessListener {
             view.tvStaffName.setText(it.child("name").value.toString())
             view.tvStaffID.setText(it.child("id").value.toString())
             if (it.child("gender").value.toString() == "Male") {
@@ -80,6 +91,7 @@ class Fragment_userProfile : Fragment() {
                 view.tvStaffEmail.isEnabled = true
                 view.tvStaffPosition.isEnabled = true
                 view.tvStaffJoinedDate.isEnabled = true
+                view.spinnerGender.isEnabled = true
                 imageview_account_profile.setOnClickListener {
                     selectImage()
                 }
@@ -156,7 +168,7 @@ class Fragment_userProfile : Fragment() {
                                 Log.d("TAG", task.result.toString())
 
                                 val staff = mapOf<String, String>(
-                                    "id" to "S1001",
+                                    "id" to savedStaffID.toString(),
                                     "name" to staffName,
                                     "gender" to staffGender,
                                     "dateOfBirth" to staffDOB,
@@ -168,7 +180,7 @@ class Fragment_userProfile : Fragment() {
                                     "staffImg" to getImgValue
                                 )
 
-                                myRef.child("S1001").updateChildren(staff).addOnSuccessListener {
+                                myRef.child(savedStaffID.toString()).updateChildren(staff).addOnSuccessListener {
                                     Navigation.findNavController(view)
                                         .navigate(R.id.action_nav_profile_self)
                                 }
@@ -186,7 +198,7 @@ class Fragment_userProfile : Fragment() {
                             if (progressDialog.isShowing) progressDialog.dismiss()
 
                             val staff = mapOf<String, String>(
-                                "id" to "S1001",
+                                "id" to savedStaffID.toString(),
                                 "name" to staffName,
                                 "gender" to staffGender,
                                 "dateOfBirth" to staffDOB,
@@ -197,7 +209,7 @@ class Fragment_userProfile : Fragment() {
                                 "joinDate" to staffJoinedDate
                             )
 
-                            myRef.child("S1001").updateChildren(staff).addOnSuccessListener {
+                            myRef.child(savedStaffID.toString()).updateChildren(staff).addOnSuccessListener {
                                 Navigation.findNavController(view)
                                     .navigate(R.id.action_nav_profile_self)
                             }

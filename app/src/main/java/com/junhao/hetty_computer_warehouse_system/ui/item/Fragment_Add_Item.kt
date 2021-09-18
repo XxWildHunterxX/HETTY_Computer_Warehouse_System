@@ -31,7 +31,6 @@ import kotlinx.android.synthetic.main.app_bar_home_page2.view.*
 import com.google.firebase.storage.UploadTask
 
 import com.google.android.gms.tasks.OnSuccessListener
-import com.google.firebase.auth.FirebaseAuth
 import com.google.firebase.database.*
 
 
