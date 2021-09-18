@@ -27,6 +27,7 @@ import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.app_bar_home_page2.*
 import android.content.SharedPreferences
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.getbase.floatingactionbutton.FloatingActionButton
@@ -111,6 +112,7 @@ class HomePage : AppCompatActivity() {
 
 
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 

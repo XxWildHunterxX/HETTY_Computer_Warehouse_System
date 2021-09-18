@@ -41,7 +41,7 @@
     <string name="to_be_shipped">Packages to be shipped</string>
     <string name="to_be_delivered">Packages to be delivered</string>
     <string name="to_be_invoiced">Quantity to be invoiced</string>
-    <string name="inventory_summary">Inventory Summary (In Quantity)</string>
+    <string name="inventory_summary">Inventory Summary</string>
     <string name="in_hand">In hand</string>
     <string name="to_be_received">To be received</string>
     <string name="search_criteria">Search Criteria</string>
@@ -88,4 +88,6 @@
     <string name="myFragmentShowProduct">myFragmentShowProduct</string>
     <string name="quantity_to_be_prepared">Quantity to be prepared</string>
     <string name="staff_id">Staff ID</string>
+    <string name="total_quantity">Total Quantity</string>
+    <string name="product">Product</string>
 </resources>

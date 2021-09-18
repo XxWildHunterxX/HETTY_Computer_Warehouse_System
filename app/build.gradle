@@ -98,4 +98,20 @@ dependencies {
     //barcode
     implementation 'com.journeyapps:zxing-android-embedded:3.6.0'
 
+    // For Map fragment
+
+    implementation 'com.google.android.libraries.places:places:2.4.0'
+
+    // To make a call to for getting Coordinates response from a Web URL
+
+    implementation 'com.squareup.okhttp3:okhttp:4.9.0'
+
+
+    implementation 'org.jetbrains.anko:anko-sdk15:0.8.2'
+    implementation 'com.beust:klaxon:0.30'
+
+
+
+
+
 }
