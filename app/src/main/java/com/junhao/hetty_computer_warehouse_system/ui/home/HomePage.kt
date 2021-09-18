@@ -29,6 +29,7 @@ import android.content.SharedPreferences
 import android.widget.ImageView
 import android.widget.TextView
 import androidx.cardview.widget.CardView
+import androidx.core.os.bundleOf
 import androidx.fragment.app.Fragment
 import androidx.navigation.Navigation
 import com.getbase.floatingactionbutton.FloatingActionButton
@@ -142,6 +143,7 @@ class HomePage : AppCompatActivity() {
 
 
     }
+
 
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 

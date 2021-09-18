@@ -27,7 +27,9 @@ class TrackingPage : Fragment() {
         trackingtab = view.findViewById(R.id.tabs)
         trackingviewpager = view.findViewById(R.id.view_pager)
 
+
         val adapter = TrackingAdapter(childFragmentManager)
+
         adapter.addFragment(TrackingAllFragment(),"All")
         adapter.addFragment(TrackingPendingFragment(),"Pending")
         adapter.addFragment(TrackingPreparedFragment(),"Prepared")
@@ -37,6 +39,34 @@ class TrackingPage : Fragment() {
 
         trackingviewpager!!.adapter = adapter
         trackingtab!!.setupWithViewPager(trackingviewpager)
+
+
+        // WHEN HOME PAGE TRACKING CARD VIEW IS CLICKED, IDENTIFY SELECTED TAB
+        val homeSelectedTab = arguments?.getString("trackingTab")
+
+        if(homeSelectedTab=="Pending"){
+
+            trackingtab?.setScrollPosition(1,0f,true)
+            trackingviewpager?.currentItem = 1
+
+        }else if(homeSelectedTab=="Prepared"){
+
+            trackingtab?.setScrollPosition(2,0f,true)
+            trackingviewpager?.currentItem = 2
+
+        }else if(homeSelectedTab=="In Transit"){
+
+            trackingtab?.setScrollPosition(3,0f,true)
+            trackingviewpager?.currentItem = 3
+        }else if(homeSelectedTab=="Delivered"){
+
+            trackingtab?.setScrollPosition(4,0f,true)
+            trackingviewpager?.currentItem = 4
+        }
+
+
+
+
 
         // Inflate the layout for this fragment
         return view
