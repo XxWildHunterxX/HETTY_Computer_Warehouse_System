@@ -1,5 +1,7 @@
 package com.junhao.hetty_computer_warehouse_system.ui.tracking
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import androidx.fragment.app.Fragment
@@ -23,7 +25,11 @@ import kotlinx.android.synthetic.main.product_item.*
 class TrackingAllFragment : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    private val refWarehouse = database.getReference("Warehouse").child("warehouse3")
+
+
+
+    private val refWarehouse = database.getReference("Warehouse")
+
     var trackingItemList : ArrayList<TrackingItem> ? = null
     private lateinit var eventListener : ValueEventListener
 
@@ -39,12 +45,17 @@ class TrackingAllFragment : Fragment() {
         /* HIDE HOMEPAGE FLOATING ACTION BUTTON */
         (activity as HomePage?)?.hideFloatingActionButton()
 
-
-
         /* DISPLAY ALL TRACKING WAREHOUSE ITEM BEGIN*/
         trackingItemList = arrayListOf<TrackingItem>()
 
-        eventListener = refWarehouse?.child("product").addValueEventListener(object : ValueEventListener {
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+        eventListener = refWarehouse?.child(savedWarehouse!!).child("product").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented")
             }
@@ -56,7 +67,7 @@ class TrackingAllFragment : Fragment() {
                     for (c in snapshot.children){
                         val barCode = c.child("productBarcode").getValue(String::class.java)
 
-                        refWarehouse.child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
+                        refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot2: DataSnapshot) {
                                 if(snapshot2!!.exists()) {
 
