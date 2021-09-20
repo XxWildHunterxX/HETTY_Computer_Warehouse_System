@@ -93,7 +93,6 @@ class Fragment_userProfile : Fragment() {
                 view.tvStaffDOB.isEnabled = true
                 view.tvStaffAddress.isEnabled = true
                 view.tvStaffPhoneNo.isEnabled = true
-                view.tvStaffEmail.isEnabled = true
                 view.tvStaffPosition.isEnabled = true
                 view.tvStaffJoinedDate.isEnabled = true
                 view.spinnerGender.isEnabled = true
