@@ -77,39 +77,49 @@ class Fragment_Add_Item : Fragment() {
 
             if (prodName.isEmpty()) {
                 view.tfProductName.error = "Product Name Required"
+                view.tfProductName.requestFocus()
                 return@setOnClickListener
             } else if (prodBarCode.isEmpty()) {
                 view.tfProductBarcode.error = "Product Barcode Required!"
+                view.tfProductBarcode.requestFocus()
                 return@setOnClickListener
             } else if (prodRack.isEmpty()) {
                 view.tfProductRack.error = "Product Rack Required!"
+                view.tfProductRack.requestFocus()
                 return@setOnClickListener
             } else if (prodType.isEmpty()) {
                 view.tfProductType.error = "Product Type Required!"
+                view.tfProductType.requestFocus()
                 return@setOnClickListener
             } else if (prodPrice.isEmpty() || prodPrice == "0" || prodPrice == "0.0") {
                 view.tfProductPrice.error = "Product Price Required!"
+                view.tfProductPrice.requestFocus()
                 return@setOnClickListener
             } else if (prodQTY.isEmpty() || prodQTY == "0") {
                 view.tfProductQuantity.error = "Product Quantity Required!"
+                view.tfProductQuantity.requestFocus()
                 return@setOnClickListener
             } else if (prodMinQty.isEmpty()) {
                 view.tfMinimumQTY.error = "Product Minimum Quantity Required!"
+                view.tfMinimumQTY.requestFocus()
                 return@setOnClickListener
             } else if (imageURI == Uri.EMPTY) {
                 Toast.makeText(activity, "Please Select One Image", Toast.LENGTH_LONG).show()
                 return@setOnClickListener
             } else if (!patternBarcode.containsMatchIn(prodBarCode)) {
                 view.tfProductBarcode.error = "Format Wrong! Example: 123456XXXX"
+                view.tfProductBarcode.requestFocus()
                 return@setOnClickListener
             } else if (!patternRack.containsMatchIn(prodRack)) {
                 view.tfProductRack.error = "Format Wrong! Example: A-01"
+                view.tfProductRack.requestFocus()
                 return@setOnClickListener
             } else {
 
                 myRef.child(prodName).get().addOnSuccessListener {
                     if (it.exists()) {
                         view.tfProductName.error = "Product Name Existed!"
+                        view.tfProductName.requestFocus()
                         return@addOnSuccessListener
                     } else {
                         val eventListener: ValueEventListener = object : ValueEventListener {
@@ -124,9 +134,11 @@ class Fragment_Add_Item : Fragment() {
                                         Log.d("TAG", "existed Barcode")
                                         found = true
                                         view.tfProductBarcode.error = "Product Barcode Existed!"
+                                        view.tfProductBarcode.requestFocus()
                                         break
                                     }else if(rackNumber == prodRack){
                                         view.tfProductRack.error = "Rack Already Used!"
+                                        view.tfProductRack.requestFocus()
                                         found = true
                                         break
                                     } else {

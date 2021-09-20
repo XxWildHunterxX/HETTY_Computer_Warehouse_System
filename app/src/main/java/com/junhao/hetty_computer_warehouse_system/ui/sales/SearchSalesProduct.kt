@@ -1,6 +1,5 @@
 package com.junhao.hetty_computer_warehouse_system.ui.sales
 
-import android.app.AlertDialog
 import android.content.ContentValues
 import android.content.Context
 import android.content.SharedPreferences
@@ -12,16 +11,19 @@ import android.view.Menu
 import android.view.View
 import android.view.ViewGroup
 import android.widget.Button
+import android.widget.SearchView
 import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
 import com.junhao.hetty_computer_warehouse_system.R
-import com.junhao.hetty_computer_warehouse_system.adapter.ProductItemAdapter
+import com.junhao.hetty_computer_warehouse_system.adapter.SalesOrderProductAdapter
 import com.junhao.hetty_computer_warehouse_system.data.Product
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
-import kotlinx.android.synthetic.main.fragment_show_product.*
+import kotlinx.android.synthetic.main.fragment_search_sales_product.*
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class SearchSalesProduct : Fragment() {
@@ -31,7 +33,6 @@ class SearchSalesProduct : Fragment() {
     var ProductItemList: ArrayList<Product>? = null
     var tempArrayList: ArrayList<Product>? = null
     private lateinit var eventListener: ValueEventListener
-    private lateinit var optionsMenu: Menu
 
 
     override fun onCreateView(
@@ -65,7 +66,7 @@ class SearchSalesProduct : Fragment() {
                 ProductItemList!!.clear()
                 tempArrayList!!.clear()
 
-                recycleViewProduct.visibility = View.VISIBLE;
+                recycleViewSalesOrderProduct.visibility = View.VISIBLE;
 
                 for (c in snapshot.children) {
 
@@ -79,30 +80,26 @@ class SearchSalesProduct : Fragment() {
                 tempArrayList!!.addAll(ProductItemList!!)
 
 
-                val adapter = ProductItemAdapter(context!!, tempArrayList!!)
+                val adapter = SalesOrderProductAdapter(context!!, tempArrayList!!)
 
-                val recyclerView: RecyclerView = view.findViewById(R.id.recycleViewProduct)
+                val recycleViewSalesOrderProduct: RecyclerView = view.findViewById(R.id.recycleViewSalesOrderProduct)
 
-                recyclerView?.adapter = adapter
-                adapter.setOnItemClickListener(object : ProductItemAdapter.onItemClickListener {
+                recycleViewSalesOrderProduct?.adapter = adapter
+                adapter.setOnItemClickListener(object : SalesOrderProductAdapter.onItemClickListener {
 
                     override fun onItemClick(
                         productName: String,
                         productPrice: String,
-                        productType: String,
-                        productRack: String,
                         productQty: String
                     ) {
                         val bundle = bundleOf(
                             Pair("productName", productName),
                             Pair("productPrice", productPrice),
-                            Pair("productType", productType),
-                            Pair("productRack", productRack),
                             Pair("productQty", productQty)
                         )
 
                         Navigation.findNavController(view).navigate(
-                            R.id.action_nav_items_to_updateProduct,
+                            R.id.fragment_addsales,
                             bundle
                         )
 
@@ -114,79 +111,65 @@ class SearchSalesProduct : Fragment() {
 
                     }
 
-                    override fun onDeleteClick(productName: String) {
-
-                        val dialog: AlertDialog =
-                            AlertDialog.Builder(activity).setTitle("Delete")
-                                .setMessage("Are You Sure Want to Delete?")
-                                .setPositiveButton("Yes", null)
-                                .setNegativeButton("No", null).show()
-
-                        val positiveButton: Button =
-                            dialog.getButton(AlertDialog.BUTTON_POSITIVE)
-
-                        positiveButton.setOnClickListener(object : View.OnClickListener {
-                            override fun onClick(v: View?) {
-
-                                val queryRef: Query =
-                                    myRef.child("product").orderByChild("productName")
-                                        .equalTo(productName)
-
-                                queryRef.addListenerForSingleValueEvent(object :
-                                    ValueEventListener {
-                                    override fun onDataChange(snapshot: DataSnapshot) {
-                                        for (exist in snapshot.children) {
-                                            exist.ref.setValue(null)
-                                        }
-
-                                        Toast.makeText(
-                                            activity,
-                                            "Delete Successfully",
-                                            Toast.LENGTH_SHORT
-                                        ).show()
-                                    }
-
-                                    override fun onCancelled(error: DatabaseError) {
-                                        Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT)
-                                            .show()
-                                    }
-
-                                })
-                                dialog.dismiss()
-                            }
-                        })
-
-
-                    }
-
-                    override fun onLocationClick(productName: String, productRack: String) {
-                        Toast.makeText(
-                            activity,
-                            "This is Location Button $productName,$productRack",
-                            Toast.LENGTH_SHORT
-                        ).show()
-
-                        val bundle = bundleOf(
-                            Pair("rackProductName", productName),
-                            Pair("productRack", productRack)
-                        )
-                        Navigation.findNavController(view).navigate(
-                            R.id.nav_rackLocation,
-                            bundle
-                        )
-
-
-                    }
-
-
                 })
 
-                recyclerView.setHasFixedSize(true)
+                recycleViewSalesOrderProduct.setHasFixedSize(true)
 
             }
         })
 
         return view
+    }
+    override fun onStart() {
+        super.onStart()
+
+        searchView_SalesOrder.setOnQueryTextListener(object : SearchView.OnQueryTextListener {
+            override fun onQueryTextSubmit(query: String?): Boolean {
+                return false
+            }
+
+            override fun onQueryTextChange(newText: String?): Boolean {
+
+                tempArrayList?.clear()
+                val searchText = newText!!.lowercase(Locale.getDefault())
+                if (searchText.isNotEmpty()) {
+                    search(searchText)
+                } else {
+
+                    tempArrayList!!.clear()
+                    tempArrayList?.addAll(ProductItemList!!)
+                    recycleViewSalesOrderProduct.adapter!!.notifyDataSetChanged()
+                }
+
+                return true
+            }
+
+        })
+
+
+    }
+    fun search(str: String) {
+
+        ProductItemList!!.forEach {
+            if (it.productName!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productType!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productPrice!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productRack!!.lowercase(Locale.getDefault())
+                    .contains(str) || it.productQuantity!!.lowercase(Locale.getDefault())
+                    .contains(str)
+            ) {
+                tempArrayList?.add(it)
+
+            }
+        }
+        recycleViewSalesOrderProduct.adapter!!.notifyDataSetChanged()
+
+    }
+    override fun onStop() {
+        super.onStop()
+        Log.d("TAG","onStopShow")
+
+        myRef.child("product").removeEventListener(eventListener)
     }
 
 

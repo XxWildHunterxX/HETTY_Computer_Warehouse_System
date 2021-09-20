@@ -31,11 +31,11 @@ import kotlin.collections.ArrayList
 
 class SearchWarehouseProduct : Fragment() {
 
-    private lateinit var myRef : DatabaseReference
+    private lateinit var myRef: DatabaseReference
     val database = FirebaseDatabase.getInstance()
     var ProductItemList: ArrayList<Product>? = null
     var tempArrayList: ArrayList<Product>? = null
-    private lateinit var eventListener : ValueEventListener
+    private lateinit var eventListener: ValueEventListener
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -44,12 +44,20 @@ class SearchWarehouseProduct : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_search_warehouse_product, container, false)
         (activity as HomePage?)?.hideFloatingActionButton()
-        val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
-            Context.MODE_PRIVATE)
+        // val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs", Context.MODE_PRIVATE)
 
-        val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+        val sharedPreferencesWarehouse: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefsWarehouse",
+            Context.MODE_PRIVATE
+        )
 
-        myRef = database.getReference("Warehouse").child(savedWarehouse!!)
+        val getSelectedWarehouse =
+            sharedPreferencesWarehouse.getString("getSelectedWarehouse", null)
+
+        //val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+
+        myRef = database.getReference("Warehouse").child(getSelectedWarehouse!!)
+
 
         ProductItemList = arrayListOf<Product>()
         tempArrayList = arrayListOf<Product>()
@@ -64,54 +72,55 @@ class SearchWarehouseProduct : Fragment() {
                 ProductItemList!!.clear()
                 tempArrayList!!.clear()
 
-                    for (c in snapshot.children) {
+                for (c in snapshot.children) {
 
-                        if (c.exists()) {
-                            Log.d(ContentValues.TAG, "Value is: ${c.value}")
-                            val productItem = c.getValue(Product::class.java)
-                            ProductItemList?.add(productItem!!)
-                        }
+                    if (c.exists()) {
+                        Log.d(ContentValues.TAG, "Value is: ${c.value}")
+                        val productItem = c.getValue(Product::class.java)
+                        ProductItemList?.add(productItem!!)
+                    }
+
+                }
+                tempArrayList!!.addAll(ProductItemList!!)
+
+
+                val adapter = WarehouseAdapter(context!!, tempArrayList!!)
+
+                val recyclerView: RecyclerView = view.findViewById(R.id.recycleViewWarehouseProduct)
+
+                recyclerView?.adapter = adapter
+                adapter.setOnItemClickListener(object : WarehouseAdapter.onItemClickListener {
+
+                    override fun onItemClick(
+                        productName: String,
+                        productType: String,
+                        productBarcode: String,
+                        productQty: String
+                    ) {
+                        val bundle = bundleOf(
+                            Pair("productWarehouseName", productName),
+                            Pair("productWarehouseType", productType),
+                            Pair("productWarehouseBarcode", productBarcode),
+                            Pair("productWarehouseQty", productQty),
+                            Pair("getSelectWarehouse", getSelectedWarehouse)
+                        )
+
+                        Navigation.findNavController(view).navigate(
+                            R.id.action_nav_searchWarehouseProduct_to_nav_sentWarehouseProduct,
+                            bundle
+                        )
+
+                        Toast.makeText(
+                            activity,
+                            "You Clicked on item no, $productName",
+                            Toast.LENGTH_SHORT
+                        ).show()
 
                     }
-                    tempArrayList!!.addAll(ProductItemList!!)
 
+                })
 
-                    val adapter = WarehouseAdapter(context!!, tempArrayList!!)
-
-                    val recyclerView: RecyclerView = view.findViewById(R.id.recycleViewWarehouseProduct)
-
-                    recyclerView?.adapter = adapter
-                    adapter.setOnItemClickListener(object : WarehouseAdapter.onItemClickListener {
-
-                        override fun onItemClick(
-                            productName: String,
-                            productType: String,
-                            productBarcode: String,
-                            productQty: String
-                        ) {
-                            val bundle = bundleOf(
-                                Pair("productWarehouseName", productName),
-                                Pair("productWarehouseType", productType),
-                                Pair("productWarehouseBarcode", productBarcode),
-                                Pair("productWarehouseQty", productQty)
-                            )
-
-                            Navigation.findNavController(view).navigate(
-                                R.id.action_nav_searchWarehouseProduct_to_nav_sentWarehouseProduct,
-                                bundle
-                            )
-
-                            Toast.makeText(
-                                activity,
-                                "You Clicked on item no, $productName",
-                                Toast.LENGTH_SHORT
-                            ).show()
-
-                        }
-
-                    })
-
-                    recyclerView.setHasFixedSize(true)
+                recyclerView.setHasFixedSize(true)
 
 
             }
@@ -127,6 +136,7 @@ class SearchWarehouseProduct : Fragment() {
 
         return view
     }
+
     override fun onStart() {
         super.onStart()
 
@@ -158,7 +168,7 @@ class SearchWarehouseProduct : Fragment() {
 
     override fun onStop() {
         super.onStop()
-        Log.d("TAG","onStopShow")
+        Log.d("TAG", "onStopShow")
 
         myRef.child("product").removeEventListener(eventListener)
     }
@@ -179,6 +189,7 @@ class SearchWarehouseProduct : Fragment() {
         recycleViewWarehouseProduct.adapter!!.notifyDataSetChanged()
 
     }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
 

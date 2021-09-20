@@ -99,7 +99,7 @@ class HomePage : AppCompatActivity() {
         fabSales.setOnClickListener {
 
             navControl.navigateUp()
-            navControl.navigate(R.id.fragment_addsales)
+            navControl.navigate(R.id.nav_searchSalesProduct)
             //Add Sales Order Fragment here
             Toast.makeText(this, "Add Sales Order", Toast.LENGTH_LONG).show()
         }
@@ -124,7 +124,7 @@ class HomePage : AppCompatActivity() {
         fabWarehouse.setOnClickListener {
             //Add warehouse Fragment here
             navControl.navigateUp()
-            navControl.navigate(R.id.nav_searchWarehouseProduct)
+            navControl.navigate(R.id.nav_selectWarehouse)
             Toast.makeText(this, "Sent Warehouse", Toast.LENGTH_LONG).show()
         }
 

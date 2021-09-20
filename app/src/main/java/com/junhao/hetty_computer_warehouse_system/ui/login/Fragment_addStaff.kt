@@ -403,41 +403,5 @@ if(view.tfStaffID.text.toString() == ""){
 
     }
 
-/*
-    private fun updateProfile() {
-
-        auth.currentUser?.let { user ->
-
-            val staffID = tfStaffID.text.toString()
-
-            val profileUpdates =
-                UserProfileChangeRequest.Builder().setDisplayName(staffID).build()
-
-            CoroutineScope(Dispatchers.IO).launch {
-                try {
-                    user.updateProfile(profileUpdates).await()
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(
-                            activity,
-                            "Successfully updated user profile",
-                            Toast.LENGTH_LONG
-                        ).show()
-                    }
-
-                } catch (e: Exception) {
-                    withContext(Dispatchers.Main) {
-                        Toast.makeText(activity, e.message, Toast.LENGTH_LONG).show()
-                    }
-
-                }
-
-            }
-
-        }
-
-
-    }
-*/
-
 
 }

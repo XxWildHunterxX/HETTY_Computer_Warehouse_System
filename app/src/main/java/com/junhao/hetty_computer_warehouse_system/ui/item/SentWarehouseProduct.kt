@@ -55,30 +55,31 @@ class SentWarehouseProduct : Fragment() {
             Context.MODE_PRIVATE
         )
         pd = ProgressDialog(activity)
-        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
-        warehouseRef = database.getReference("Warehouse")
-        myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("product")
-
-        getRef = database.getReference("Warehouse").child(savedWarehouse!!)
 
         val productWarehouseName = arguments?.getString("productWarehouseName")
         val productWarehouseBarcode = arguments?.getString("productWarehouseBarcode")
         val productWarehouseQty = arguments?.getString("productWarehouseQty")
+        val getSelectWarehouse = arguments?.getString("getSelectWarehouse")
 
-        if (savedWarehouse == "warehouse1") {
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+        warehouseRef = database.getReference("Warehouse")
+        myRef = database.getReference("Warehouse").child(getSelectWarehouse!!).child("product")
+
+        getRef = database.getReference("Warehouse").child(getSelectWarehouse!!)
+
+
+
+        if (getSelectWarehouse == "warehouse1") {
             warehouse = listOf(
-                "Warehouse 2",
-                "Warehouse 3"
+                "Warehouse 1"
             )
-        } else if (savedWarehouse == "warehouse2") {
+        } else if (getSelectWarehouse == "warehouse2") {
             warehouse = listOf(
-                "Warehouse 1",
-                "Warehouse 3"
+                "Warehouse 2"
             )
         } else {
             warehouse = listOf(
-                "Warehouse 1",
-                "Warehouse 2"
+                "Warehouse 3"
             )
         }
 
@@ -121,10 +122,12 @@ class SentWarehouseProduct : Fragment() {
             if (warehouseQty.isEmpty() || warehouseQty.toInt() < 1) {
                 view.tfWarehouseProductQuantity.error = "Quantity Product Sent Required"
                 view.tfWarehouseProductQuantity.requestFocus()
+                pd.dismiss()
                 return@setOnClickListener
             } else if (warehouseQty.toInt() > productWarehouseQty!!.toInt()) {
                 view.tfWarehouseProductQuantity.error = "Cannot More Than $productWarehouseQty"
                 view.tfWarehouseProductQuantity.requestFocus()
+                pd.dismiss()
                 return@setOnClickListener
             } else {
 
