@@ -213,7 +213,7 @@ class LoginPage : AppCompatActivity() {
 
                         } catch (e: Exception) {
                             withContext(Dispatchers.Main) {
-                                Toast.makeText(applicationContext, e.message, Toast.LENGTH_LONG)
+                                Toast.makeText(applicationContext, "Invalid Staff ID or Password", Toast.LENGTH_LONG)
                                     .show()
                                 progressbar.visibility = View.GONE
                             }
