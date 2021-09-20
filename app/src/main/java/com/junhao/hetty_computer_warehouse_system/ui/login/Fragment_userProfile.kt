@@ -13,16 +13,20 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ArrayAdapter
+import android.widget.ImageView
+import android.widget.TextView
 import android.widget.Toast
 import androidx.navigation.Navigation
 import androidx.navigation.fragment.findNavController
 import com.google.android.gms.tasks.OnSuccessListener
+import com.google.android.material.navigation.NavigationView
 import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.storage.FirebaseStorage
 import com.google.firebase.storage.UploadTask
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.data.Staff
+import com.junhao.hetty_computer_warehouse_system.databinding.ActivityHomePage2Binding
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_add_staff.view.*
 import kotlinx.android.synthetic.main.fragment_user_profile.*
@@ -53,6 +57,7 @@ class Fragment_userProfile : Fragment() {
             Context.MODE_PRIVATE)
 
         val savedStaffID = sharedPreferences.getString("getStaffID",null)
+
 
         myRef = database.getReference("Staff")
 
@@ -180,6 +185,17 @@ class Fragment_userProfile : Fragment() {
                                     "staffImg" to getImgValue
                                 )
 
+                                val navigationView = requireActivity().findViewById<NavigationView>(R.id.nav_view)
+                                val header = navigationView.getHeaderView(0)
+                                val staffNavImg = header.findViewById<ImageView>(R.id.imgNavProfile)
+                                val staffNavName = header.findViewById<TextView>(R.id.tvNavProfile)
+
+                                var imageUri: String? = null
+                                imageUri = getImgValue.toString()
+                                Picasso.get().load(imageUri).into(staffNavImg);
+
+                                staffNavName.text = staffName
+
                                 myRef.child(savedStaffID.toString()).updateChildren(staff).addOnSuccessListener {
                                     Navigation.findNavController(view)
                                         .navigate(R.id.action_nav_profile_self)
@@ -208,6 +224,12 @@ class Fragment_userProfile : Fragment() {
                                 "position" to staffPosition,
                                 "joinDate" to staffJoinedDate
                             )
+
+                            val navigationView = requireActivity().findViewById<NavigationView>(R.id.nav_view)
+                            val header = navigationView.getHeaderView(0)
+                            val staffNavName = header.findViewById<TextView>(R.id.tvNavProfile)
+
+                            staffNavName.text = staffName
 
                             myRef.child(savedStaffID.toString()).updateChildren(staff).addOnSuccessListener {
                                 Navigation.findNavController(view)

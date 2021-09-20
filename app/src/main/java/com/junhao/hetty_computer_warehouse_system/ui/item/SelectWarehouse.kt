@@ -50,13 +50,17 @@ class SelectWarehouse : Fragment() {
                 getSelectedWarehouse = "warehouse2"
             }
 
-            val bundle = bundleOf(
-                Pair("getSelectedWarehouse", getSelectedWarehouse),
-            )
+            val sharedPreferencesWarehouse =
+                requireActivity().getSharedPreferences("sharedPrefsWarehouse", Context.MODE_PRIVATE)
+
+            val editor = sharedPreferencesWarehouse.edit()
+
+            editor.apply {
+                putString("getSelectedWarehouse", getSelectedWarehouse)
+            }.apply()
 
             Navigation.findNavController(view).navigate(
-                R.id.nav_searchWarehouseProduct,
-                bundle
+                R.id.nav_searchWarehouseProduct
             )
 
         }

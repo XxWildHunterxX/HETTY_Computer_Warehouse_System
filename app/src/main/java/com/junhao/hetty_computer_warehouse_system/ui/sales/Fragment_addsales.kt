@@ -48,6 +48,7 @@ class Fragment_addsales : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_addsales, container, false)
 
+        val formatName = Regex("^[a-zA-Z]+\$")
         val formatPhone = Regex("^((01)[0-46-9]-)*[0-9]{7,8}\$")
         val productName = arguments?.getString("productName")
         val productPrice = arguments?.getString("productPrice")
@@ -85,18 +86,22 @@ view.etSalesQuantity.setText("1")
 
         view.btnSaveSales.setOnClickListener {
 
-            val etSalesOrderID = view.etSalesOrderID.toString().trim()
-            val etProductBarcode = view.etSalesProductBarcode.toString().trim()
-            val etProductName = view.etSalesProductName.toString().trim()
-            val etCustomerName = view.etSalesCustomerName.toString().trim()
-            val etCustomerPhone = view.etSalesCustomerPhone.toString().trim()
-            val etSalesQty = view.etSalesQuantity.toString().trim()
-            val etSalesDate = view.etSalesDate.toString().trim()
-            val etSalesPrice = view.etSalesPrice.toString().trim()
+            val etSalesOrderID = view.etSalesOrderID.text.toString().trim()
+            val etProductBarcode = view.etSalesProductBarcode.text.toString().trim()
+            val etProductName = view.etSalesProductName.text.toString().trim()
+            val etCustomerName = view.etSalesCustomerName.text.toString().trim()
+            val etCustomerPhone = view.etSalesCustomerPhone.text.toString().trim()
+            val etSalesQty = view.etSalesQuantity.text.toString().trim()
+            val etSalesDate = view.etSalesDate.text.toString().trim()
+            val etSalesPrice = view.etSalesPrice.text.toString().trim()
             val spinnerSalesType = view.spinnerSalesType.selectedItem.toString().trim()
 
             if (etCustomerName.isEmpty()) {
                 view.etSalesCustomerName.error = "Customer Name Required"
+                view.etSalesCustomerName.requestFocus()
+                return@setOnClickListener
+            }else if(!formatName.containsMatchIn(etCustomerName)){
+                view.etSalesCustomerName.error = "Customer Name only can Alphabet"
                 view.etSalesCustomerName.requestFocus()
                 return@setOnClickListener
             }else if(!formatPhone.containsMatchIn(etCustomerPhone)){
@@ -109,6 +114,10 @@ view.etSalesQuantity.setText("1")
                 return@setOnClickListener
             } else if (etSalesQty.isEmpty() || etSalesQty.toInt() < 1) {
                 view.etSalesQuantity.error = "Sales Quantity Required"
+                view.etSalesQuantity.requestFocus()
+                return@setOnClickListener
+            }else if (etSalesQty.toInt() > productQty!!.toInt()) {
+                view.etSalesQuantity.error = "Cannot More Than $productQty"
                 view.etSalesQuantity.requestFocus()
                 return@setOnClickListener
             } else if (etSalesDate.isEmpty()) {
