@@ -23,7 +23,7 @@ import kotlinx.android.synthetic.main.product_item.*
 class TrackingAllFragment : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    private val refWarehouse = database.getReference("Warehouse").child("warehouse1")
+    private val refWarehouse = database.getReference("Warehouse").child("warehouse3")
     var trackingItemList : ArrayList<TrackingItem> ? = null
     private lateinit var eventListener : ValueEventListener
 

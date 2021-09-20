@@ -1,14 +1,15 @@
 package com.junhao.hetty_computer_warehouse_system.ui.tracking
 
 import android.annotation.SuppressLint
+import android.app.Notification
 import android.content.Context
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
-import android.graphics.Bitmap
-import android.graphics.Canvas
-import android.graphics.Color
+import android.graphics.*
+import android.graphics.BitmapFactory.decodeResource
 import android.os.AsyncTask
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -38,8 +39,8 @@ import java.net.URL
 class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     val database = FirebaseDatabase.getInstance()
-    private val refWarehouse = database.getReference("Warehouse").child("warehouse1")
-    private lateinit var eventListener1 : ValueEventListener
+    private val refWarehouse = database.getReference("Warehouse")
+    private lateinit var eventListener : ValueEventListener
     var trackingItemDetailsList : ArrayList<TrackingItemDetails> ? = null
 
     private var originLatitude: Double = 0.0
@@ -47,8 +48,8 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
     private var originLocation = LatLng(0.0, 0.0)
 
 
-    private var destinationLatitude: Double = 3.0567
-    private var destinationLongitude: Double = 101.5851
+    private var destinationLatitude: Double = 0.0
+    private var destinationLongitude: Double = 0.0
     private var destinationLocation = LatLng(destinationLatitude, destinationLongitude)
 
     //google map
@@ -87,7 +88,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
         /* RETRIEVE TRACKING DETAILS FROM FIREBASE BEGIN*/
         trackingItemDetailsList = arrayListOf<TrackingItemDetails>()
 
-        eventListener1 = refWarehouse?.child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
+        eventListener = refWarehouse?.child("warehouse3").child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot1: DataSnapshot) {
 
                 if(snapshot1!!.exists()){
@@ -105,8 +106,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                             tvTrackingItemDestination?.text= c.child("warehouseInvReq").value.toString()
                             tvTrackingItemQuantity?.text= c.child("warehouseInvQty").value.toString()
 
-
-                            /* RETRIEVE NESTED VALUE OF WAREHOUSE TRACKING DETAILS*/
+                            /* RETRIEVE NESTED VALUE OF WAREHOUSE TRACKING DETAILS */
                             val contentTrackDetails: DataSnapshot? = c?.child("warehouseTrackDetail")
                             val trackDetailsValue = contentTrackDetails?.children
 
@@ -139,29 +139,51 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                 }
                             }
 
-                            if(originLatitude != 0.0 && originLongitude != 0.0){
+                            /* RETRIEVE DESTINATION WAREHOUSE FOR GOOGLE MAP BEGIN */
+                            val trackingItemDestination = c.child("warehouseInvReq").value.toString()
+
+                            refWarehouse?.addValueEventListener(object : ValueEventListener{
+                                override fun onDataChange(snapshot2: DataSnapshot) {
+                                    if(snapshot2!!.exists()){
+                                        for (w in snapshot2.children){
+
+                                            if(trackingItemDestination == w.key.toString()){
+
+                                                destinationLatitude = w.child("latitude").value as Double
+                                                destinationLongitude = w.child("longitude").value as Double
 
 
-                                //mapFragment = (activity?.supportFragmentManager?.findFragmentById(R.id.map) as SupportMapFragment?)!!
+                                            }
 
-                                //mapFragment = (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)!!
+                                        }
 
-                                mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                                        // IF ORIGIN AND DESTINATION OBTAINED, RUN GOOGLE MAP
+                                        if(originLatitude != 0.0 && originLongitude != 0.0 && destinationLatitude != 0.0 && destinationLongitude != 0.0){
 
-                                mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
+                                            mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+
+                                            mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
+
+                                        }else{
+
+                                            mapFragment = (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)!!
+                                            mapFragment!!.requireView().visibility = View.INVISIBLE
+
+                                            val mapLayout = view.findViewById(R.id.mapLayout) as FrameLayout
+
+                                            mapLayout.setBackgroundResource(R.drawable.ic_empty_image)
+                                        }
+
+                                    }
+                                }
+
+                                override fun onCancelled(error: DatabaseError) {
+                                    TODO("Not yet implemented")
+                                }
 
 
-                            }else{
 
-                                mapFragment = (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)!!
-                                mapFragment!!.requireView().visibility = View.INVISIBLE
-
-                                val mapLayout = view.findViewById(R.id.mapLayout) as FrameLayout
-
-                                mapLayout.setBackgroundResource(R.drawable.ic_empty_image)
-
-                            }
-
+                            })
 
 
 
@@ -211,16 +233,22 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
             //ORIGIN LOCATION
             originLocation = LatLng(originLatitude, originLongitude)
 
+
+            //icon(
+            //     BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
+
             googleMap.addMarker(MarkerOptions().position(originLocation).icon(
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE)).icon(
-                bitmapDescriptorFromVector(requireActivity(), R.drawable.ic_car)
+                bitmapDescriptorFromVector(requireContext(),R.drawable.ic_truck_red_top_view)
+
             ))
+
 
 
             //DESTINATION LOCATION
             destinationLocation = LatLng(destinationLatitude, destinationLongitude)
             googleMap.addMarker(MarkerOptions().position(destinationLocation).icon(
-                BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_RED)
+                bitmapDescriptorFromVector(requireContext(),R.drawable.ic_custom_red_marker)
+
             ))
 
            //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation,15f))
@@ -327,6 +355,8 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
         return poly
     }
 
+
+
     private fun bitmapDescriptorFromVector(context: Context, vectorResId: Int): BitmapDescriptor? {
         return ContextCompat.getDrawable(context, vectorResId)?.run {
             setBounds(0, 0, intrinsicWidth, intrinsicHeight)
@@ -334,6 +364,14 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
             draw(Canvas(bitmap))
             BitmapDescriptorFactory.fromBitmap(bitmap)
         }
+    }
+
+    override fun onStop() {
+        super.onStop()
+        Log.d("TAG","onStopShow")
+
+        refWarehouse.removeEventListener(eventListener)
+
     }
 
 

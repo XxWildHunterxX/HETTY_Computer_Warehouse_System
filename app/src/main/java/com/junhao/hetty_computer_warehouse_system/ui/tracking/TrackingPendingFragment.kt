@@ -21,7 +21,7 @@ import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 class TrackingPendingFragment : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    private val refWarehouse = database.getReference("Warehouse").child("warehouse1")
+    private val refWarehouse = database.getReference("Warehouse").child("warehouse3")
     var trackingItemList : ArrayList<TrackingItem> ? = null
     private lateinit var eventListener : ValueEventListener
 
