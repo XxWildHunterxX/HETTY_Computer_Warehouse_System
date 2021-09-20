@@ -3,6 +3,7 @@ package com.junhao.hetty_computer_warehouse_system.ui.tracking
 import android.annotation.SuppressLint
 import android.app.Notification
 import android.content.Context
+import android.content.SharedPreferences
 import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.*
@@ -39,7 +40,8 @@ import java.net.URL
 class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     val database = FirebaseDatabase.getInstance()
-    private val refWarehouse = database.getReference("Warehouse")
+
+        private val refWarehouse = database.getReference("Warehouse")
     private lateinit var eventListener : ValueEventListener
     var trackingItemDetailsList : ArrayList<TrackingItemDetails> ? = null
 
@@ -88,7 +90,14 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
         /* RETRIEVE TRACKING DETAILS FROM FIREBASE BEGIN*/
         trackingItemDetailsList = arrayListOf<TrackingItemDetails>()
 
-        eventListener = refWarehouse?.child("warehouse3").child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+        eventListener = refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot1: DataSnapshot) {
 
                 if(snapshot1!!.exists()){

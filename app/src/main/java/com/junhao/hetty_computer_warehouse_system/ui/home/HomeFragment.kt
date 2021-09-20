@@ -1,5 +1,7 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
@@ -23,7 +25,8 @@ import kotlinx.android.synthetic.main.fragment_home.*
 class HomeFragment : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
-    private val refWarehouse = database.getReference("Warehouse").child("warehouse1")
+
+    private val refWarehouse = database.getReference("Warehouse")
     private lateinit var eventListener : ValueEventListener
 
     private lateinit var homeViewModel: HomeViewModel
@@ -121,7 +124,14 @@ class HomeFragment : Fragment() {
         var countTotalQty = 0
         var countUnitQty = 0
 
-        eventListener = refWarehouse?.child("product").addValueEventListener(object : ValueEventListener {
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+        eventListener = refWarehouse?.child(savedWarehouse!!).child("product").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented")
             }
@@ -136,7 +146,7 @@ class HomeFragment : Fragment() {
                         tv_no_of_product_qty?.text = countUnitQty.toString()
 
                         val barCode = c.child("productBarcode").getValue(String::class.java)
-                        refWarehouse.child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
+                        refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot2: DataSnapshot) {
                                 if(snapshot2!!.exists()) {
                                     for (w in snapshot2.children){
