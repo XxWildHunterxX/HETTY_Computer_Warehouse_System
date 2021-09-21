@@ -20,7 +20,7 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
             <EditText
-                android:id="@+id/tf_purchaseQuantity"
+                android:id="@+id/update_tf_purchaseQuantity"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -28,41 +28,14 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
+                android:inputType="numberDecimal"
                 app:drawableStartCompat="@drawable/ic_quantity"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_productQuantity" />
 
-            <EditText
-                android:id="@+id/tf_status"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                app:drawableStartCompat="@drawable/ic_status"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_status" />
-
-            <EditText
-                android:id="@+id/tf_productID"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                app:drawableStartCompat="@drawable/ic_item_name"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productID" />
-
-            <EditText
-                android:id="@+id/tf_purchaseID"
+            <TextView
+                android:id="@+id/update_tf_purchaseID"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -74,10 +47,10 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_purchaseID" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_purchaseID" />
 
             <EditText
-                android:id="@+id/tf_productName"
+                android:id="@+id/update_tf_productName"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -88,10 +61,10 @@
                 app:drawableStartCompat="@drawable/ic_item_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_productName" />
 
             <EditText
-                android:id="@+id/tf_supplierName"
+                android:id="@+id/update_tf_supplierName"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -100,15 +73,13 @@
                 android:layout_marginRight="16dp"
                 android:clickable="true"
                 android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
                 app:drawableStartCompat="@drawable/ic_supplier"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_SupplierName" />
 
             <EditText
-                android:id="@+id/tf_supplierAddress"
+                android:id="@+id/update_tf_supplierAddress"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -117,15 +88,13 @@
                 android:layout_marginRight="16dp"
                 android:clickable="true"
                 android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
                 app:drawableStartCompat="@drawable/ic_address"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_supplierAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_supplierAddress" />
 
             <EditText
-                android:id="@+id/tf_supplierContact"
+                android:id="@+id/update_tf_supplierContact"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -134,15 +103,13 @@
                 android:layout_marginRight="16dp"
                 android:clickable="true"
                 android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
                 app:drawableStartCompat="@drawable/ic_contact"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_supplierContact" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_supplierContact" />
 
             <TextView
-                android:id="@+id/tf_requestDate"
+                android:id="@+id/update_tf_requestDate"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -153,24 +120,10 @@
                 app:drawableStartCompat="@drawable/ic_calendar"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_RequestDate" />
-
-            <EditText
-                android:id="@+id/tv_productID"
-                style="@style/CustomTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/product_id"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseID" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_RequestDate" />
 
             <TextView
-                android:id="@+id/tv_purchaseID"
+                android:id="@+id/update_tv_purchaseID"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -184,20 +137,20 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView3" />
 
             <TextView
-                android:id="@+id/tv_productName"
+                android:id="@+id/update_tv_productName"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productID" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_purchaseID" />
 
-            <EditText
-                android:id="@+id/tv_productQuantity"
+            <TextView
+                android:id="@+id/update_tv_productQuantity"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -208,10 +161,10 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_status" />
+                app:layout_constraintTop_toBottomOf="@+id/update_spin_status" />
 
             <TextView
-                android:id="@+id/tv_status"
+                android:id="@+id/update_tv_status"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -222,10 +175,10 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productName" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_productName" />
 
-            <EditText
-                android:id="@+id/tv_SupplierName"
+            <TextView
+                android:id="@+id/update_tv_SupplierName"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -235,10 +188,10 @@
                 android:text="@string/supplier_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_purchaseQuantity" />
 
             <TextView
-                android:id="@+id/tv_RequestDate"
+                android:id="@+id/update_tv_RequestDate"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -249,10 +202,10 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierContact" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_supplierContact" />
 
             <TextView
-                android:id="@+id/tv_supplierAddress"
+                android:id="@+id/update_tv_supplierAddress"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -263,10 +216,10 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_supplierName" />
 
             <TextView
-                android:id="@+id/tv_supplierContact"
+                android:id="@+id/update_tv_supplierContact"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -277,7 +230,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_supplierAddress" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -302,10 +255,10 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_receivedDate" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_receivedDate" />
 
             <TextView
-                android:id="@+id/tv_receivedDate"
+                android:id="@+id/update_tv_receivedDate"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -315,10 +268,10 @@
                 android:text="@string/received_date"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_requestDate" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_requestDate" />
 
             <EditText
-                android:id="@+id/tf_receivedDate"
+                android:id="@+id/update_tf_receivedDate"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -330,7 +283,19 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_receivedDate" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_receivedDate" />
+
+            <Spinner
+                android:id="@+id/update_spin_status"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="16dp"
+                android:layout_marginEnd="16dp"
+                android:entries="@array/purchase_status"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_tv_status" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

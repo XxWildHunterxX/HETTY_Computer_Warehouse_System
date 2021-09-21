@@ -85,4 +85,7 @@
     <string name="received_date">Received Date</string>
     <string name="choose_d_o_b">Choose D.O.B</string>
     <string name="choose_joined_date">Choose Joined Date</string>
+    <string name="purchase_price">Purchase Price</string>
+    <string name="delete_confirmation">Are you sure you want to delete?</string>
+    <string name="yes">Yes</string>
 </resources>

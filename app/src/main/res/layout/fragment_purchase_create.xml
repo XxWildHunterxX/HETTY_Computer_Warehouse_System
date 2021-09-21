@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.purchase.Fragment_purchase_create" >
+    tools:context="ui.purchase.Fragment_purchase_create" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -33,23 +33,37 @@
                 android:inputType="numberDecimal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_purchaseQuantity" />
 
             <EditText
-                android:id="@+id/tf_productID"
+                android:id="@+id/tf_supplierName"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_supplier"
+                android:ems="10"
+                android:hint="@string/supplier_name"
+                android:inputType="text"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
+
+            <TextView
+                android:id="@+id/tf_purchasePrice"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:drawableStart="@drawable/ic_item_name"
+                android:drawableStart="@drawable/ic_price"
                 android:ems="10"
-                android:hint="@string/product_id"
-                android:inputType="text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productID" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_purchasePrice" />
 
             <EditText
                 android:id="@+id/tf_productName"
@@ -68,26 +82,6 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
 
             <EditText
-                android:id="@+id/tf_supplierName"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:cursorVisible="false"
-                android:drawableStart="@drawable/ic_supplier"
-                android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                android:hint="@string/supplier_name"
-                android:inputType="text"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
-
-            <EditText
                 android:id="@+id/tf_supplierAddress"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
@@ -95,12 +89,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:cursorVisible="false"
                 android:drawableStart="@drawable/ic_address"
                 android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
                 android:hint="@string/supplier_address"
                 android:inputType="text"
                 app:layout_constraintLeft_toLeftOf="parent"
@@ -115,45 +105,15 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:clickable="true"
                 android:cursorVisible="false"
                 android:drawableStart="@drawable/ic_contact"
                 android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
                 android:hint="07-123456"
                 android:inputType="text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_supplierContact" />
 
-            <EditText
-                android:id="@+id/tf_requestDate"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:drawableStart="@drawable/ic_calendar"
-                android:ems="10"
-                android:inputType="date"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_RequestDate" />
-
-            <TextView
-                android:id="@+id/tv_productID"
-                style="@style/CustomTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/product_id"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
                 android:id="@+id/tv_productName"
@@ -161,15 +121,15 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productID" />
+                app:layout_constraintTop_toTopOf="parent" />
 
             <TextView
-                android:id="@+id/tv_productQuantity"
+                android:id="@+id/tv_purchaseQuantity"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -182,31 +142,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/tf_productName" />
 
             <TextView
-                android:id="@+id/tv_SupplierName"
+                android:id="@+id/tv_purchasePrice"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/supplier_name"
+                android:text="@string/purchase_price"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
 
             <TextView
-                android:id="@+id/tv_RequestDate"
+                android:id="@+id/tv_SupplierName"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="96dp"
+                android:layout_marginTop="6dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/request_date"
+                android:text="@string/supplier_name"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchasePrice" />
 
             <TextView
                 android:id="@+id/tv_supplierAddress"
@@ -214,7 +174,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="16dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/supplier_address"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -244,7 +204,7 @@
                 android:text="@string/submit"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_requestDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierContact" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

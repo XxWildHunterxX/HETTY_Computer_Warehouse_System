@@ -33,11 +33,8 @@ class ProductItemAdapter(val context: Context, private val ProductItemList: List
     }
 
     fun setOnItemClickListener(listener: onItemClickListener) {
-
         mListener = listener
-
     }
-
 
     class myViewHolder(itemView: View, listener: onItemClickListener) :
         RecyclerView.ViewHolder(itemView) {
@@ -108,18 +105,10 @@ class ProductItemAdapter(val context: Context, private val ProductItemList: List
                         if (position != RecyclerView.NO_POSITION) {
                             listener.onLocationClick(productName.text.toString(),productRack.text.toString())
                         }
-
                     }
-
-
                 }
-
             })
-
-
         }
-
-
     }
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): myViewHolder {

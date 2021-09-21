@@ -20,7 +20,7 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
             <TextView
-                android:id="@+id/tf_purchaseQuantity"
+                android:id="@+id/tf_purchaseQuantity_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -34,7 +34,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity" />
 
             <TextView
-                android:id="@+id/tf_status"
+                android:id="@+id/tf_status_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -48,7 +48,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
             <TextView
-                android:id="@+id/tf_productID"
+                android:id="@+id/tv_status_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -56,13 +56,13 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
-                app:drawableStartCompat="@drawable/ic_item_name"
+                app:drawableStartCompat="@drawable/ic_status"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productID" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_status" />
 
             <TextView
-                android:id="@+id/tf_purchaseID"
+                android:id="@+id/tf_purchaseID_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -77,7 +77,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_purchaseID" />
 
             <TextView
-                android:id="@+id/tf_productName"
+                android:id="@+id/tf_productName_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -91,7 +91,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
 
             <TextView
-                android:id="@+id/tf_supplierName"
+                android:id="@+id/tf_supplierName_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
 
             <TextView
-                android:id="@+id/tf_supplierAddress"
+                android:id="@+id/tf_supplierAddress_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -125,7 +125,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_supplierAddress" />
 
             <TextView
-                android:id="@+id/tf_supplierContact"
+                android:id="@+id/tf_supplierContact_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -142,7 +142,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_supplierContact" />
 
             <TextView
-                android:id="@+id/tf_requestDate"
+                android:id="@+id/tf_requestDate_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -156,7 +156,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/tv_RequestDate" />
 
             <TextView
-                android:id="@+id/tf_receivedDate"
+                android:id="@+id/tf_receivedDate_details"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -169,20 +169,6 @@
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_receivedDate" />
-
-            <TextView
-                android:id="@+id/tv_productID"
-                style="@style/CustomTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/product_id"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseID" />
 
             <TextView
                 android:id="@+id/tv_purchaseID"
@@ -204,12 +190,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productID" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseID_details" />
 
             <TextView
                 android:id="@+id/tv_productQuantity"
@@ -223,7 +209,21 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_status" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_status_details" />
+
+            <TextView
+                android:id="@+id/tv_purchasePrice_details"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/purchase_price"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity_details" />
 
             <TextView
                 android:id="@+id/tv_status"
@@ -237,7 +237,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productName" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_productName_details" />
 
             <TextView
                 android:id="@+id/tv_SupplierName"
@@ -248,9 +248,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/supplier_name"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchasePrice_details" />
 
             <TextView
                 android:id="@+id/tv_RequestDate"
@@ -264,7 +265,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierContact" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierContact_details" />
 
             <TextView
                 android:id="@+id/tv_receivedDate"
@@ -277,7 +278,7 @@
                 android:text="@string/received_date"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_requestDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_requestDate_details" />
 
             <TextView
                 android:id="@+id/tv_supplierAddress"
@@ -291,7 +292,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName_details" />
 
             <TextView
                 android:id="@+id/tv_supplierContact"
@@ -305,7 +306,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress_details" />
 
             <Button
                 android:id="@+id/btn_edit"
@@ -313,11 +314,21 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="8dp"
+                android:text="@string/edit"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_receivedDate_details" />
+
+            <Button
+                android:id="@+id/btn_edit2"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="16dp"
                 android:text="@string/edit"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_receivedDate" />
+                app:layout_constraintStart_toEndOf="@+id/btn_edit"
+                app:layout_constraintTop_toBottomOf="@+id/tf_receivedDate_details" />
 
             <ImageView
                 android:id="@+id/imageView3"
@@ -326,10 +337,24 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                app:srcCompat="@drawable/ic_purchase_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_purchase_details" />
+
+            <TextView
+                android:id="@+id/tf_purchasePrice_details"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="16dp"
+                android:drawableStart="@drawable/ic_price"
+                android:ems="10"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_purchasePrice_details" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

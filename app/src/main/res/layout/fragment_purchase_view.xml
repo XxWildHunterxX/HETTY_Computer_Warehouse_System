@@ -5,76 +5,26 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.purchase.Fragment_purchase_view" >
+    tools:context=".ui.purchase.Fragment_purchase_view">
 
-    <ScrollView
+    <SearchView
+        android:id="@+id/tf_search"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content"
+        android:layout_marginHorizontal="@dimen/dimen_10dp"
+        android:layout_marginTop="10dp"
+        android:layout_marginBottom="@dimen/dimen_10dp"
+        android:background="@drawable/searchview_background"
+        android:iconifiedByDefault="false"
+        android:queryBackground="@android:color/transparent"
+        android:queryHint="Search" />
 
-        <androidx.constraintlayout.widget.ConstraintLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:isScrollContainer="true"
-            android:orientation="vertical"
-            android:paddingBottom="@dimen/_60sdp"
-            android:scrollbarAlwaysDrawHorizontalTrack="false">
-
-            <EditText
-                android:id="@+id/tf_searchPurchase"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:drawableStart="@drawable/ic_search"
-                android:ems="10"
-                android:hint="@string/search"
-                android:inputType="text"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <ImageView
-                android:id="@+id/img_result"
-                android:layout_width="285dp"
-                android:layout_height="216dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginEnd="16dp"
-                android:src="@drawable/ic_no_record"
-                app:layout_constraintBottom_toTopOf="@+id/tv_result"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/purchase_list" />
-
-            <TextView
-                android:id="@+id/tv_result"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="800dp"
-                android:layout_marginEnd="16dp"
-                android:gravity="center"
-                android:text="NO RESULT FOUND"
-                app:layout_constraintBottom_toBottomOf="parent"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
-
-            <androidx.recyclerview.widget.RecyclerView
-                android:id="@+id/purchase_list"
-                android:layout_width="409dp"
-                android:layout_height="521dp"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_searchPurchase"
-                app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
-                />
-
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
-
-</LinearLayout>
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/purchaseRecycleList"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_marginStart="@dimen/dimen_10dp"
+        android:layout_marginEnd="@dimen/dimen_10dp"
+        app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager"
+        tools:listitem="@layout/purchase_item" />
+    </LinearLayout>

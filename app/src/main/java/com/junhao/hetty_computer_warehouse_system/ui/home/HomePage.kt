@@ -75,6 +75,7 @@ class HomePage : AppCompatActivity() {
         }
         fabPurchase.setOnClickListener {
             //Add Sales Order Fragment here
+            navControl.navigate(R.id.nav_purchase_create)
             Toast.makeText(this, "Add Purchase Order", Toast.LENGTH_LONG).show()
         }
         fabStaff.setOnClickListener {

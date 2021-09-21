@@ -14,6 +14,7 @@ data class Warehouse(
     @ColumnInfo(name = "warehouse_email") val warehouseEmail: String?
 )
 
+
 @Entity(tableName = "user_table",foreignKeys = [ForeignKey(entity = Warehouse::class,
     parentColumns = arrayOf("warehouseID"), childColumns = arrayOf("warehouse_UserID"))])
 data class User(
@@ -54,11 +55,18 @@ data class WarehouseInventory(
     ForeignKey(entity= User::class,parentColumns = arrayOf("userID"),childColumns = arrayOf("purchase_userID"))])
 data class Purchase(
     @PrimaryKey(autoGenerate = true) val purchaseID: Int = 1001,
-    @ColumnInfo(name = "purchase_qty") val purchaseQTY: Int,
-    @ColumnInfo(name = "purchase_supplierCompany") val supplierCompany: String,
-    @ColumnInfo(name = "purchase_phoneNum") val supplierPhoneNum: String,
     @ColumnInfo(name = "purchase_warehouseInvID") val purchase_warehouseInvID: Int,
-    @ColumnInfo(name = "purchase_userID") val purchase_userID:Int
+    @ColumnInfo(name = "purchase_userID") val purchase_userID:Int,
+    @ColumnInfo(name="pur_ProductID")val purProductID:String?="",
+    @ColumnInfo(name="pur_ProductName")val purProductName: String?="",
+    @ColumnInfo(name="pur_Qty")val purQty : Int,
+    @ColumnInfo(name="pur_Price")val purPrice :Double,
+    @ColumnInfo(name="pur_supplierName")val supplierName:String?="",
+    @ColumnInfo(name="pur_supplierAddress")val supplierAddress:String?="",
+    @ColumnInfo(name="pur_supplierContact")val supplierContact:String?="",
+    @ColumnInfo(name="pur_requestDate")val requestDate:String?="",
+    @ColumnInfo(name="pur_receivedDate")val receivedDate:String?="",
+    @ColumnInfo(name="pur_status")val status:String?=""
 )
 
 @Entity(tableName = "tracking_table",foreignKeys = [ForeignKey(entity = WarehouseInventory::class, parentColumns = arrayOf("warehouseInvID"), childColumns = arrayOf("track_warehouseInvID")),
