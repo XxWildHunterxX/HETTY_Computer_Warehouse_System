@@ -51,6 +51,13 @@ class Fragment_display_salesorder : Fragment() {
 
         myRef = database.getReference("Warehouse").child(savedWarehouse!!)
 
+        val sharedPreferencesSalesOrder: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefsSalesOrder",
+            Context.MODE_PRIVATE
+        )
+
+        sharedPreferencesSalesOrder.edit().putString("getSOStatus","Add").apply()
+
         salesOrderItemList = arrayListOf<SalesOrder>()
         tempArrayList = arrayListOf<SalesOrder>()
 

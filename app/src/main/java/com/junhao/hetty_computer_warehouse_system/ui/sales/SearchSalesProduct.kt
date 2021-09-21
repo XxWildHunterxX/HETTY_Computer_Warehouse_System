@@ -34,7 +34,7 @@ class SearchSalesProduct : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
     private lateinit var myRef: DatabaseReference
-    private lateinit var getRef: DatabaseReference
+    private var getSOStatus : String? = null
     var ProductItemList: ArrayList<Product>? = null
     var tempArrayList: ArrayList<Product>? = null
     private lateinit var eventListener: ValueEventListener
@@ -60,7 +60,7 @@ class SearchSalesProduct : Fragment() {
             "sharedPrefsSalesOrder",
             Context.MODE_PRIVATE
         )
-        val getSOStatus = sharedPreferencesSalesOrder.getString("getSOStatus", null)
+        getSOStatus = sharedPreferencesSalesOrder.getString("getSOStatus", null)
 
         val getSOID = sharedPreferencesSalesOrder.getString("getSOID", null)
         val getSOBarcode = sharedPreferencesSalesOrder.getString("getSOBarcode", null)
@@ -75,7 +75,7 @@ class SearchSalesProduct : Fragment() {
         sharedPreferencesSalesOrder.edit().remove("getSOStatus").apply()
 
         myRef = database.getReference("Warehouse").child(savedWarehouse!!)
-        getRef = database.getReference("Warehouse").child(savedWarehouse!!)
+
         ProductItemList = arrayListOf<Product>()
         tempArrayList = arrayListOf<Product>()
 
@@ -118,32 +118,23 @@ class SearchSalesProduct : Fragment() {
 
                         if(getSOStatus == "Update"){
 
-                            getRef.child(productName).get().addOnSuccessListener {
+                                val bundle = bundleOf(
+                                    Pair("productName", productName),
+                                    Pair("salesOrderPrice", productPrice),
+                                    Pair("productQty", productQty),
+                                    Pair("salesOrderDate", getSODate),
+                                    Pair("salesOrderQty", getSOQuantity),
+                                    Pair("salesOrderPaymentType", getSOPaymentType),
+                                    Pair("getSOCustomerName", getSOCustomerName),
+                                    Pair("getSOCustomerPhone", getSOCustomerPhone),
+                                    Pair("salesOrderID", getSOID)
+                                )
+                                sharedPreferencesSalesOrder.edit().putString("getSOStatus","Update").apply()
 
-                                sharedPreferencesSalesOrder.edit().putString("getSOBarcode",it.child("productBarcode").value.toString()).apply()
-                                sharedPreferencesSalesOrder.edit().putString("getSOProductName",it.child("productName").value.toString()).apply()
-                                sharedPreferencesSalesOrder.edit().putString("getSOPrice",it.child("productPrice").value.toString()).apply()
-
-                            }
-
-                            val bundle = bundleOf(
-                                Pair("productName", productName),
-                                Pair("salesOrderPrice", productPrice),
-                                Pair("productQty", productQty),
-                                Pair("salesOrderDate", getSODate),
-                                Pair("salesOrderQty", getSOQuantity),
-                                Pair("salesOrderPaymentType", getSOPaymentType),
-                                Pair("getSOCustomerName", getSOCustomerName),
-                                Pair("getSOCustomerPhone", getSOCustomerPhone),
-                                Pair("salesOrderID", getSOID)
-                            )
-                            sharedPreferencesSalesOrder.edit().putString("getSOStatus","Update").apply()
-
-                            Navigation.findNavController(view).navigate(
-                                R.id.nav_updateSalesOrder,
-                                bundle
-                            )
-
+                                Navigation.findNavController(view).navigate(
+                                    R.id.nav_updateSalesOrder,
+                                    bundle
+                                )
 
                         }else{
                             val bundle = bundleOf(
@@ -253,19 +244,55 @@ class SearchSalesProduct : Fragment() {
                                     val barcode =
                                         c.child("productBarcode").getValue(String::class.java)
                                     if (barcode == result.contents) {
-                                        val bundle = bundleOf(
-                                            Pair("productName", c.child("productName").getValue(String::class.java)),
-                                            Pair("productPrice", c.child("productPrice").getValue(String::class.java)),
-                                            Pair("productQty", c.child("productQuantity").getValue(String::class.java))
-                                        )
 
-                                        found = true
+                                        if(getSOStatus == "Update"){
 
-                                        Navigation.findNavController(view!!).navigate(
-                                            R.id.fragment_addsales,
-                                            bundle
-                                        )
+                                            val sharedPreferencesSalesOrder: SharedPreferences = requireActivity().getSharedPreferences(
+                                                "sharedPrefsSalesOrder",
+                                                Context.MODE_PRIVATE
+                                            )
+                                            val getSOID = sharedPreferencesSalesOrder.getString("getSOID", null)
+                                            val getSOCustomerName = sharedPreferencesSalesOrder.getString("getSOCustomerName", null)
+                                            val getSOCustomerPhone = sharedPreferencesSalesOrder.getString("getSOCustomerPhone", null)
+                                            val getSOQuantity = sharedPreferencesSalesOrder.getString("getSOQuantity", null)
+                                            val getSODate = sharedPreferencesSalesOrder.getString("getSODate", null)
+                                            val getSOPaymentType = sharedPreferencesSalesOrder.getString("getSOPaymentType", null)
 
+                                            val bundle = bundleOf(
+                                                Pair("productName", c.child("productName").getValue(String::class.java)),
+                                                Pair("salesOrderPrice", c.child("productPrice").getValue(String::class.java)),
+                                                Pair("productQty", c.child("productQuantity").getValue(String::class.java)),
+                                                Pair("salesOrderDate", getSODate),
+                                                Pair("salesOrderQty", getSOQuantity),
+                                                Pair("salesOrderPaymentType", getSOPaymentType),
+                                                Pair("getSOCustomerName", getSOCustomerName),
+                                                Pair("getSOCustomerPhone", getSOCustomerPhone),
+                                                Pair("salesOrderID", getSOID)
+                                            )
+                                            sharedPreferencesSalesOrder.edit().putString("getSOStatus","Update").apply()
+
+                                            found = true
+
+                                            Navigation.findNavController(view!!).navigate(
+                                                R.id.nav_updateSalesOrder,
+                                                bundle
+                                            )
+
+
+                                        }else{
+                                            val bundle = bundleOf(
+                                                Pair("productName", c.child("productName").getValue(String::class.java)),
+                                                Pair("productPrice", c.child("productPrice").getValue(String::class.java)),
+                                                Pair("productQty", c.child("productQuantity").getValue(String::class.java))
+                                            )
+
+                                            found = true
+
+                                            Navigation.findNavController(view!!).navigate(
+                                                R.id.fragment_addsales,
+                                                bundle
+                                            )
+                                        }
                                         break
                                     } else {
                                         found = false
