@@ -10,10 +10,11 @@
         <item>Delivering</item>
         <item>Received</item>
     </array>
-    <array name="filter_purchase">
-        <item>All</item>
+    <array name="purchase_status">
         <item>Pending</item>
+        <item>Accepted</item>
         <item>Rejected</item>
+        <item>Delivering</item>
         <item>Received</item>
     </array>
     <array name="gender_type">

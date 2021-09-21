@@ -12,7 +12,8 @@
     <fragment
         android:id="@+id/nav_purchaseOrders"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view"
-        android:label="@string/menu_salesorder" />
+        android:label="Purchase Orders"
+        tools:layout="@layout/fragment_purchase_view" />
     <fragment
         android:id="@+id/nav_salesOrder"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.Fragment_display_salesorder"
@@ -29,7 +30,7 @@
     <fragment
         android:id="@+id/nav_home"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.home.HomeFragment"
-        android:label="@string/app_name" >
+        android:label="@string/app_name">
         <action
             android:id="@+id/action_nav_home_to_fragment_addStaff"
             app:destination="@id/fragment_addStaff" />
@@ -44,6 +45,8 @@
     <fragment
         android:id="@+id/nav_profile"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_userProfile"
+        android:label="@string/menu_profile"
+        tools:layout="@layout/fragment_user_profile" />
         android:label="@string/menu_profile" >
         <action
             android:id="@+id/action_nav_profile_self"
@@ -67,18 +70,27 @@
         android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_add_item"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view_details"
         android:label="@string/menu_items"
-        tools:layout="@layout/fragment_add_item" />
+        tools:layout="@layout/fragment_purchase_view_details" />
     <fragment
         android:id="@+id/updateProduct"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.UpdateProduct"
         android:label="Product Details"
-        tools:layout="@layout/fragment_update_product" >
+        tools:layout="@layout/fragment_update_product">
         <action
             android:id="@+id/action_updateProduct_to_nav_items"
             app:destination="@id/nav_items" />
     </fragment>
+    <fragment
+        android:id="@+id/nav_purchase_create_success"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_create_success"
+        android:label="Purchase Created Sucessfully" />
+    <fragment
+        android:id="@+id/nav_purchase_update"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_update"
+        android:label="Update Purchase Details"
+        tools:layout="@layout/fragment_purchase_update" />
     <fragment
         android:id="@+id/fragment_addStaff"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_addStaff"
@@ -130,4 +142,13 @@
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.UpdateSalesOrder"
         android:label="Sales Order Details"
         tools:layout="@layout/fragment_update_sales_order" />
+    <fragment
+        android:id="@+id/nav_purchase_view_details"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view_details"
+        android:label="Purchase Details"
+        tools:layout="@layout/fragment_purchase_view_details" />
+    <fragment
+        android:id="@+id/nav_purchase_create"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_create"
+        android:label="Create Purchase" />
 </navigation>

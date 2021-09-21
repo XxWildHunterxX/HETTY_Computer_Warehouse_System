@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.purchase.Fragment_purchase_create_success" >
+    tools:context="ui.purchase.Fragment_purchase_create_success" >
 
     <ScrollView
         android:layout_width="match_parent"
@@ -20,7 +20,7 @@
             android:scrollbarAlwaysDrawHorizontalTrack="false">
 
             <TextView
-                android:id="@+id/etSalesQuantity"
+                android:id="@+id/tf_purchaseID_success"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -28,117 +28,145 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
+                app:drawableStartCompat="@drawable/ic_purchase_id"
+                app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity"
-                app:drawableStartCompat="@drawable/ic_quantity" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_purchaseID" />
 
             <TextView
-                android:id="@+id/tf_productID"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productID"
-                app:drawableStartCompat="@drawable/ic_item_name" />
-
-            <TextView
-                android:id="@+id/tf_productName"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_productName"
-                app:drawableStartCompat="@drawable/ic_item_name" />
-
-            <TextView
-                android:id="@+id/etSalesDate"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName"
-                app:drawableStartCompat="@drawable/ic_supplier" />
-
-            <TextView
-                android:id="@+id/tf_supplierAddress"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_supplierAddress"
-                app:drawableStartCompat="@drawable/ic_address" />
-
-            <TextView
-                android:id="@+id/tf_supplierContact"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:clickable="true"
-                android:ems="10"
-                android:focusable="true"
-                android:focusableInTouchMode="false"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_supplierContact"
-                app:drawableStartCompat="@drawable/ic_contact" />
-
-            <TextView
-                android:id="@+id/etSalesPrice"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_RequestDate"
-                app:drawableStartCompat="@drawable/ic_calendar" />
-
-            <TextView
-                android:id="@+id/tv_productID"
+                android:id="@+id/tv_purchaseID"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/product_id"
+                android:text="@string/purchase_id"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
+
+            <TextView
+                android:id="@+id/tv_purchasePrice"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="Purchase Price"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity_success" />
+
+            <TextView
+                android:id="@+id/tf_purchasePrice_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_price"
+                android:ems="10"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_purchasePrice" />
+
+            <TextView
+                android:id="@+id/tf_purchaseQuantity_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                app:drawableStartCompat="@drawable/ic_quantity"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_productQuantity" />
+
+            <TextView
+                android:id="@+id/tf_productName_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                app:drawableStartCompat="@drawable/ic_item_name"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_productName" />
+
+            <TextView
+                android:id="@+id/tf_supplierName_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                app:drawableStartCompat="@drawable/ic_supplier"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
+
+            <TextView
+                android:id="@+id/tf_supplierAddress_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                app:drawableStartCompat="@drawable/ic_address"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_supplierAddress" />
+
+            <TextView
+                android:id="@+id/tf_supplierContact_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:clickable="true"
+                android:ems="10"
+                android:focusable="true"
+                android:focusableInTouchMode="false"
+                app:drawableStartCompat="@drawable/ic_contact"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_supplierContact" />
+
+            <TextView
+                android:id="@+id/tf_requestDate_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                app:drawableStartCompat="@drawable/ic_calendar"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_RequestDate" />
 
             <TextView
                 android:id="@+id/tv_productName"
@@ -146,12 +174,12 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="3dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/product_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productID" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchaseID_success" />
 
             <TextView
                 android:id="@+id/tv_productQuantity"
@@ -164,7 +192,7 @@
                 android:text="@string/purchase_quantity"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_productName" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_productName_success" />
 
             <TextView
                 android:id="@+id/tv_SupplierName"
@@ -177,7 +205,7 @@
                 android:text="@string/supplier_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etSalesQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_purchasePrice_success" />
 
             <TextView
                 android:id="@+id/tv_RequestDate"
@@ -191,7 +219,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierContact" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierContact_success" />
 
             <TextView
                 android:id="@+id/tv_supplierAddress"
@@ -205,7 +233,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etSalesDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierName_success" />
 
             <TextView
                 android:id="@+id/tv_supplierContact"
@@ -219,7 +247,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_supplierAddress_success" />
 
             <Button
                 android:id="@+id/btn_Done"
@@ -229,7 +257,7 @@
                 android:text="@string/done"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/etSalesPrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_requestDate_success" />
 
             <ImageView
                 android:id="@+id/imageView2"
