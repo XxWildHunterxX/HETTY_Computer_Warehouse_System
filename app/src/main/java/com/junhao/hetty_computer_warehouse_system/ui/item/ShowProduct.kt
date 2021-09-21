@@ -193,8 +193,6 @@ class ShowProduct : Fragment() {
         })
        // myRef?.child("warehouse1").child("product").addListenerForSingleValueEvent(eventListener)
 
- 
-
 
         return view
     }

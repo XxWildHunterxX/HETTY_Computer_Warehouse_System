@@ -1,7 +1,9 @@
 package com.junhao.hetty_computer_warehouse_system.ui.sales
 
+import android.app.Activity
 import android.content.ContentValues
 import android.content.Context
+import android.content.Intent
 import android.content.SharedPreferences
 import android.os.Bundle
 import android.util.Log
@@ -17,11 +19,13 @@ import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import com.google.zxing.integration.android.IntentIntegrator
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.SalesOrderProductAdapter
 import com.junhao.hetty_computer_warehouse_system.data.Product
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_search_sales_product.*
+import kotlinx.android.synthetic.main.fragment_search_sales_product.view.*
 import java.util.*
 import kotlin.collections.ArrayList
 
@@ -30,10 +34,11 @@ class SearchSalesProduct : Fragment() {
 
     val database = FirebaseDatabase.getInstance()
     private lateinit var myRef: DatabaseReference
+    private lateinit var getRef: DatabaseReference
     var ProductItemList: ArrayList<Product>? = null
     var tempArrayList: ArrayList<Product>? = null
     private lateinit var eventListener: ValueEventListener
-
+    private var found: Boolean = false
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -51,8 +56,26 @@ class SearchSalesProduct : Fragment() {
 
         val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
 
-        myRef = database.getReference("Warehouse").child(savedWarehouse!!)
+        val sharedPreferencesSalesOrder: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefsSalesOrder",
+            Context.MODE_PRIVATE
+        )
+        val getSOStatus = sharedPreferencesSalesOrder.getString("getSOStatus", null)
 
+        val getSOID = sharedPreferencesSalesOrder.getString("getSOID", null)
+        val getSOBarcode = sharedPreferencesSalesOrder.getString("getSOBarcode", null)
+        val getSOProductName = sharedPreferencesSalesOrder.getString("getSOProductName", null)
+        val getSOCustomerName = sharedPreferencesSalesOrder.getString("getSOCustomerName", null)
+        val getSOCustomerPhone = sharedPreferencesSalesOrder.getString("getSOCustomerPhone", null)
+        val getSOQuantity = sharedPreferencesSalesOrder.getString("getSOQuantity", null)
+        val getSODate = sharedPreferencesSalesOrder.getString("getSODate", null)
+        val getSOPrice = sharedPreferencesSalesOrder.getString("getSOPrice", null)
+        val getSOPaymentType = sharedPreferencesSalesOrder.getString("getSOPaymentType", null)
+
+        sharedPreferencesSalesOrder.edit().remove("getSOStatus").apply()
+
+        myRef = database.getReference("Warehouse").child(savedWarehouse!!)
+        getRef = database.getReference("Warehouse").child(savedWarehouse!!)
         ProductItemList = arrayListOf<Product>()
         tempArrayList = arrayListOf<Product>()
 
@@ -92,22 +115,50 @@ class SearchSalesProduct : Fragment() {
                         productPrice: String,
                         productQty: String
                     ) {
-                        val bundle = bundleOf(
-                            Pair("productName", productName),
-                            Pair("productPrice", productPrice),
-                            Pair("productQty", productQty)
-                        )
 
-                        Navigation.findNavController(view).navigate(
-                            R.id.fragment_addsales,
-                            bundle
-                        )
+                        if(getSOStatus == "Update"){
 
-                        Toast.makeText(
-                            activity,
-                            "You Clicked on item no, $productName",
-                            Toast.LENGTH_SHORT
-                        ).show()
+                            getRef.child(productName).get().addOnSuccessListener {
+
+                                sharedPreferencesSalesOrder.edit().putString("getSOBarcode",it.child("productBarcode").value.toString()).apply()
+                                sharedPreferencesSalesOrder.edit().putString("getSOProductName",it.child("productName").value.toString()).apply()
+                                sharedPreferencesSalesOrder.edit().putString("getSOPrice",it.child("productPrice").value.toString()).apply()
+
+                            }
+
+                            val bundle = bundleOf(
+                                Pair("productName", productName),
+                                Pair("salesOrderPrice", productPrice),
+                                Pair("productQty", productQty),
+                                Pair("salesOrderDate", getSODate),
+                                Pair("salesOrderQty", getSOQuantity),
+                                Pair("salesOrderPaymentType", getSOPaymentType),
+                                Pair("getSOCustomerName", getSOCustomerName),
+                                Pair("getSOCustomerPhone", getSOCustomerPhone),
+                                Pair("salesOrderID", getSOID)
+                            )
+                            sharedPreferencesSalesOrder.edit().putString("getSOStatus","Update").apply()
+
+                            Navigation.findNavController(view).navigate(
+                                R.id.nav_updateSalesOrder,
+                                bundle
+                            )
+
+
+                        }else{
+                            val bundle = bundleOf(
+                                Pair("productName", productName),
+                                Pair("productPrice", productPrice),
+                                Pair("productQty", productQty)
+                            )
+                            sharedPreferencesSalesOrder.edit().putString("getSOStatus","Add").apply()
+
+                            Navigation.findNavController(view).navigate(
+                                R.id.fragment_addsales,
+                                bundle
+                            )
+                        }
+
 
                     }
 
@@ -117,6 +168,13 @@ class SearchSalesProduct : Fragment() {
 
             }
         })
+
+        view.imgSalesOrderScanner.setOnClickListener {
+            val scanner = IntentIntegrator.forSupportFragment(this)
+            scanner.setBeepEnabled(false)
+            scanner.initiateScan()
+
+        }
 
         return view
     }
@@ -170,6 +228,67 @@ class SearchSalesProduct : Fragment() {
         Log.d("TAG","onStopShow")
 
         myRef.child("product").removeEventListener(eventListener)
+    }
+    override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
+        super.onActivityResult(requestCode, resultCode, data)
+
+        if (resultCode == Activity.RESULT_OK) {
+
+            val result = IntentIntegrator.parseActivityResult(requestCode, resultCode, data)
+
+            if (result != null) {
+                if (result.contents == null) {
+                    Toast.makeText(activity, "Cancelled", Toast.LENGTH_LONG).show()
+                } else {
+                    //tfProductBarcode.setText(result.contents)
+                    eventListener =
+                        myRef?.child("product").addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+
+                                for (c in snapshot.children) {
+                                    val barcode =
+                                        c.child("productBarcode").getValue(String::class.java)
+                                    if (barcode == result.contents) {
+                                        val bundle = bundleOf(
+                                            Pair("productName", c.child("productName").getValue(String::class.java)),
+                                            Pair("productPrice", c.child("productPrice").getValue(String::class.java)),
+                                            Pair("productQty", c.child("productQuantity").getValue(String::class.java))
+                                        )
+
+                                        found = true
+
+                                        Navigation.findNavController(view!!).navigate(
+                                            R.id.fragment_addsales,
+                                            bundle
+                                        )
+
+                                        break
+                                    } else {
+                                        found = false
+                                    }
+
+                                }
+                                if(!found){
+                                    Toast.makeText(activity, "Product Not Existed!", Toast.LENGTH_LONG)
+                                        .show()
+                                }
+
+
+                            }
+                        })
+
+
+                }
+            } else {
+                super.onActivityResult(requestCode, resultCode, data)
+            }
+
+        }
+
     }
 
 

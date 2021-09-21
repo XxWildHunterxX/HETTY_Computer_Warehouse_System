@@ -64,7 +64,6 @@
     </fragment>
     <fragment
         android:id="@+id/nav_tracking_all"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.login.SlideshowFragment"
         android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_add_item"
@@ -126,4 +125,9 @@
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.SearchSalesProduct"
         android:label="Search Sales Product"
         tools:layout="@layout/fragment_search_sales_product" />
+    <fragment
+        android:id="@+id/nav_updateSalesOrder"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.UpdateSalesOrder"
+        android:label="Sales Order Details"
+        tools:layout="@layout/fragment_update_sales_order" />
 </navigation>

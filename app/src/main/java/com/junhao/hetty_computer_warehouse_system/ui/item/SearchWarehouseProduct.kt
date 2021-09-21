@@ -36,7 +36,7 @@ class SearchWarehouseProduct : Fragment() {
     var ProductItemList: ArrayList<Product>? = null
     var tempArrayList: ArrayList<Product>? = null
     private lateinit var eventListener: ValueEventListener
-
+    private var found: Boolean = false
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -119,8 +119,8 @@ class SearchWarehouseProduct : Fragment() {
                     }
 
                 })
-
                 recyclerView.setHasFixedSize(true)
+
 
 
             }
@@ -202,8 +202,54 @@ class SearchWarehouseProduct : Fragment() {
                     Toast.makeText(activity, "Cancelled", Toast.LENGTH_LONG).show()
                 } else {
                     //tfProductBarcode.setText(result.contents)
-                    Toast.makeText(activity, "Scanned: " + result.contents, Toast.LENGTH_LONG)
-                        .show()
+                    eventListener =
+                        myRef?.child("product").addValueEventListener(object : ValueEventListener {
+                            override fun onCancelled(p0: DatabaseError) {
+                                Toast.makeText(activity, "Failed", Toast.LENGTH_SHORT).show()
+                            }
+
+                            override fun onDataChange(snapshot: DataSnapshot) {
+                                val sharedPreferencesWarehouse: SharedPreferences = requireActivity().getSharedPreferences(
+                                    "sharedPrefsWarehouse",
+                                    Context.MODE_PRIVATE
+                                )
+                                val getSelectedWarehouse =
+                                    sharedPreferencesWarehouse.getString("getSelectedWarehouse", null)
+                                for (c in snapshot.children) {
+                                    val barcode =
+                                        c.child("productBarcode").getValue(String::class.java)
+                                    if (barcode == result.contents) {
+                                        val bundle = bundleOf(
+                                            Pair("productWarehouseName", c.child("productName").getValue(String::class.java)),
+                                            Pair("productWarehouseType", c.child("productType").getValue(String::class.java)),
+                                            Pair("productWarehouseBarcode", c.child("productBarcode").getValue(String::class.java)),
+                                            Pair("productWarehouseQty", c.child("productQuantity").getValue(String::class.java)),
+                                            Pair("getSelectWarehouse", getSelectedWarehouse)
+                                        )
+
+                                        found = true
+
+                                        Navigation.findNavController(view!!).navigate(
+                                            R.id.action_nav_searchWarehouseProduct_to_nav_sentWarehouseProduct,
+                                            bundle
+                                        )
+
+                                        break
+                                    } else {
+                                        found = false
+                                    }
+
+                                }
+                                if(!found){
+                                    Toast.makeText(activity, "Product Not Existed!", Toast.LENGTH_LONG)
+                                        .show()
+                                }
+
+
+                            }
+                        })
+
+
                 }
             } else {
                 super.onActivityResult(requestCode, resultCode, data)
