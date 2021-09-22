@@ -33,6 +33,12 @@ android {
     kotlinOptions {
         jvmTarget = '1.8'
     }
+    packagingOptions {
+        pickFirst 'androidsupportmultidexversion.txt'
+        exclude 'com/itextpdf/io/font/cmap_info.txt'
+        exclude 'com/itextpdf/io/font/cmap/*'
+
+    }
     buildFeatures {
         viewBinding true
         dataBinding true
@@ -115,10 +121,10 @@ dependencies {
 
 implementation 'com.github.barteksc:android-pdf-viewer:2.8.2'
 
-  androidTestImplementation 'com.android.support.test.espresso:espresso-core:3.0.2'
-    androidTestImplementation 'com.android.support.test.espresso:espresso-contrib:3.0.2'
-    androidTestImplementation 'com.android.support.test.runner:1.0.2'
-    androidTestImplementation 'com.android.support.test.rules:1.0.2'
+    implementation 'com.intuit.ssp:ssp-android:1.0.6'
+    implementation 'com.intuit.sdp:sdp-android:1.0.6'
+    implementation 'androidx.recyclerview:recyclerview:1.1.0'
 
+    implementation 'com.itextpdf:itext7-core:7.1.3'
 
 }

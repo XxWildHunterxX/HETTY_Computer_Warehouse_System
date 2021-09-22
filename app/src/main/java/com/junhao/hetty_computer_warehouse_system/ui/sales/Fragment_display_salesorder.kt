@@ -115,9 +115,7 @@ class Fragment_display_salesorder : Fragment() {
                                 bundle
                             )
 
-
                         }
-
 
                         override fun onDeleteClick(salesOrderID: String) {
 

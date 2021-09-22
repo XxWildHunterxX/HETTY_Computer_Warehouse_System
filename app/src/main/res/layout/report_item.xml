@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+<TableLayout
+    android:id="@+id/table_heading_layout"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:stretchColumns="1,2,3,4,5,6,7">
+
+    <TableRow android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <TextView
+            android:id="@+id/tvSalesOrderID"
+            style="@style/table_row_item"
+            android:layout_width="80dp"
+            android:layout_height="50dp"
+            android:layout_column="1"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="SO1001"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSalesCustomerName"
+            style="@style/table_row_item"
+            android:layout_width="115dp"
+            android:layout_height="50dp"
+            android:layout_column="2"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="1234567890987654321"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSalesDate"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_column="3"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="18/09/2021"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSalesPayment"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_column="4"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="Cash"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSalesName"
+            android:layout_width="120dp"
+            android:layout_height="50dp"
+            android:layout_column="5"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="Cooler master mm720"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+
+        <TextView
+            android:id="@+id/tvSalesQty"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_column="6"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="123"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/tvSalesPrice"
+            android:layout_width="110dp"
+            android:layout_height="50dp"
+            android:layout_column="7"
+            android:layout_margin="1dp"
+            android:background="@color/white"
+            android:text="RM 9999.99"
+            android:textAlignment="center"
+            android:textSize="16dp"
+            android:textStyle="bold" />
+    </TableRow>
+
+
+</TableLayout>
+</LinearLayout>

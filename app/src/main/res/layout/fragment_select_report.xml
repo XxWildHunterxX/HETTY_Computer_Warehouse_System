@@ -1,62 +1,200 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    tools:context=".ui.sales.SelectReport">
 
-    <TextView
-        android:id="@+id/textView30"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Product Name :"
-        android:textSize="20sp"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.058"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintVertical_bias="0.022" />
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/constraintLayout"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".ui.sales.SelectReport"
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools">
 
-    <Spinner
-        android:id="@+id/spinnerReportSalesProduct"
-        android:layout_width="0dp"
-        android:layout_height="40dp"
-        android:layout_marginStart="16dp"
-        android:layout_marginBottom="32dp"
-        android:background="@drawable/spinner_background_left"
-        android:entries="@array/many_product"
-        app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintEnd_toStartOf="@+id/iv_dropdownimage"
-        app:layout_constraintLeft_toLeftOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/textView30"
-        app:layout_constraintVertical_bias="0.029" />
 
-    <ImageView
-        android:id="@+id/iv_dropdownimage"
-        android:layout_width="40dp"
-        android:layout_height="40dp"
-        android:layout_marginEnd="16dp"
-        android:background="@drawable/spinner_background_right"
-        android:contentDescription="@string/imageDescription"
-        app:layout_constraintBottom_toBottomOf="@+id/spinnerReportSalesProduct"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/spinnerReportSalesProduct"
-        app:layout_constraintTop_toTopOf="@+id/spinnerReportSalesProduct"
-        app:srcCompat="@drawable/ic_spinner_dropdown" />
+        <TextView
+            android:id="@+id/addProduct_title2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Product Name :"
+            android:textSize="18sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:layout_constraintVertical_bias="0.022" />
+
+        <Spinner
+            android:id="@+id/spinnerReportSalesProduct"
+            android:layout_width="0dp"
+            android:layout_height="40dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginBottom="32dp"
+            android:background="@drawable/spinner_background_left"
+            android:entries="@array/many_product"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toStartOf="@+id/iv_dropdownimage"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/addProduct_title2"
+            app:layout_constraintVertical_bias="0.029" />
+
+        <ImageView
+            android:id="@+id/iv_dropdownimage"
+            android:layout_width="40dp"
+            android:layout_height="40dp"
+            android:layout_marginEnd="16dp"
+            android:background="@drawable/spinner_background_right"
+            android:contentDescription="@string/imageDescription"
+            app:layout_constraintBottom_toBottomOf="@+id/spinnerReportSalesProduct"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toEndOf="@+id/spinnerReportSalesProduct"
+            app:layout_constraintTop_toTopOf="@+id/spinnerReportSalesProduct"
+            app:srcCompat="@drawable/ic_spinner_dropdown" />
+
 
     <Button
-        android:id="@+id/btnReportSavePrint"
+        android:id="@+id/btnSearch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Save and Print"
-        app:layout_constraintBottom_toBottomOf="parent"
+        android:text="Search"
+        app:layout_constraintBottom_toBottomOf="@+id/btnDownload"
         app:layout_constraintEnd_toEndOf="@+id/iv_dropdownimage"
-        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintHorizontal_bias="0.335"
         app:layout_constraintStart_toStartOf="@+id/spinnerReportSalesProduct"
         app:layout_constraintTop_toBottomOf="@+id/spinnerReportSalesProduct"
-        app:layout_constraintVertical_bias="0.091" />
+        app:layout_constraintVertical_bias="1.0" />
 
+    <Button
+        android:id="@+id/btnDownload"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Save And Print"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="@+id/iv_dropdownimage"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/spinnerReportSalesProduct"
+        app:layout_constraintTop_toBottomOf="@+id/spinnerReportSalesProduct"
+        app:layout_constraintVertical_bias="0.0" />
+
+    <HorizontalScrollView
+        android:id="@+id/svHorizon"
+        android:layout_width="0dp"
+        android:layout_height="0dp"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btnSearch">
+
+        <TableLayout
+            android:id="@+id/table_heading_layout"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintLeft_toLeftOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            android:stretchColumns="1,2,3,4,5,6,7">
+
+            <TableRow>
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="50dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="1"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="0"
+                    android:gravity="center"
+                    android:text="Sales Order ID"
+                    />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="2"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="Name"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="3"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="Date"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="4"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="Payment"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="5"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="Product Name"
+                    android:textAlignment="center" />
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="6"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="Quantity"
+                    android:textAlignment="center" />
+
+                <TextView
+                    style="@style/table_header"
+                    android:layout_width="0dp"
+                    android:layout_height="@dimen/_30sdp"
+                    android:layout_column="7"
+                    android:layout_gravity="center_horizontal"
+                    android:layout_weight="1"
+                    android:gravity="center"
+                    android:paddingEnd="@dimen/_5sdp"
+                    android:text="Price"
+                    android:textAlignment="center" />
+            </TableRow>
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/table_recycler_view"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="@dimen/_5sdp"
+                android:layout_marginEnd="@dimen/_5sdp"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/table_heading_layout">
+
+            </androidx.recyclerview.widget.RecyclerView>
+        </TableLayout>
+    </HorizontalScrollView>
 </androidx.constraintlayout.widget.ConstraintLayout>
