@@ -82,6 +82,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
     lateinit var mFusedLocationClient: FusedLocationProviderClient
     private val pERMISSION_ID = 42
 
+
     companion object {
         var mapFragment : SupportMapFragment?=null
         val TAG: String = MapFragment::class.java.simpleName
@@ -103,6 +104,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
 
         btnLatestLocation.setOnClickListener{
+
 
             getLastLocation()
 
@@ -223,6 +225,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
 
 
+
                                         }else{
 
                                             mapFragment = (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)!!
@@ -296,11 +299,19 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                         googleMap.clear()
                         markerOrigin?.remove()
                         markerDestination?.remove()
-                        originLocation = LatLng(location.latitude, location.longitude)
+                        googleMap!!.addPolyline(options).remove()
+                        originLatitude = location.latitude
+                        originLongitude = location.longitude
+                        originLocation = LatLng(originLatitude, originLongitude)
 
 
                         UpdateCurrentLocationToTrackDetails(originLocation)
 
+                        for( no in 0..2){
+
+                            mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                            mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
+                        }
                     }
                 }
             } else {
@@ -506,11 +517,22 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                 googleMap.clear()
                                 markerOrigin?.remove()
                                 markerDestination?.remove()
-                                originLocation = LatLng(trackingWarehouseReqLatitude.toDouble(), trackingWarehouseReqLongitude!!.toDouble())
 
+                                originLatitude = trackingWarehouseReqLatitude.toDouble()
+                                originLongitude = trackingWarehouseReqLongitude!!.toDouble()
+                                originLocation = LatLng(originLatitude, originLongitude )
+                                googleMap!!.addPolyline(options).remove()
 
                                 addPolyLine(originLocation, destinationLocation)
 
+
+
+
+                                for( no in 0..2){
+
+                                    mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                                    mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
+                                }
 
 
 
@@ -547,18 +569,21 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onMapReady(p0: GoogleMap?) {
 
+
         if (p0 != null) {
             googleMap = p0
         }
         googleMap.clear()
 
-            //ORIGIN LOCATION
-            originLocation = LatLng(originLatitude, originLongitude)
+        //ORIGIN LOCATION
+        originLocation = LatLng(originLatitude, originLongitude)
 
-            //DESTINATION LOCATION
-            destinationLocation = LatLng(destinationLatitude, destinationLongitude)
+        //DESTINATION LOCATION
+        destinationLocation = LatLng(destinationLatitude, destinationLongitude)
 
-            placeMarkerOnMap(originLocation, destinationLocation)
+
+
+        placeMarkerOnMap(originLocation, destinationLocation)
 
 
 
@@ -584,6 +609,8 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
         val url = getURL(originLocation, destinationLocation)
 
 
+        googleMap!!.addPolyline(options).remove()
+
         async {
             // Connect to URL, download content and convert into string asynchronously
             val result = URL(url).readText()
@@ -597,6 +624,8 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                 val points = routes!!["legs"]["steps"][0] as JsonArray<JsonObject>
                 val polypts = points.flatMap { decodePoly(it.obj("polyline")?.string("points")!!)
                 }
+
+                googleMap!!.addPolyline(options).remove()
 
                 LatLongB = LatLngBounds.Builder()
 
