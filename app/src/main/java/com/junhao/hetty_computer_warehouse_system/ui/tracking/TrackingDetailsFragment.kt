@@ -49,9 +49,8 @@ import kotlin.collections.ArrayList
 import com.google.android.gms.maps.model.MarkerOptions
 
 import com.google.android.gms.maps.model.Marker
-
-
-
+import com.junhao.hetty_computer_warehouse_system.data.Product
+import com.junhao.hetty_computer_warehouse_system.data.WarehouseInventory
 
 
 class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
@@ -484,6 +483,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                 refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseInvStatus").setValue("Delivered")
 
                 val trackingWarehouseReq = snapshot5.getValue(TrackingItem::class.java)?.warehouseInvReq
+                val trackingWarehouseBarcode = snapshot5.getValue(WarehouseInventory::class.java)?.warehouseInvProdBarcode
 
                 refWarehouse.child(trackingWarehouseReq!!).addListenerForSingleValueEvent(object : ValueEventListener{
                     override fun onDataChange(snapshot111: DataSnapshot) {
@@ -528,7 +528,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                 originLocation = LatLng(originLatitude, originLongitude )
                                 googleMap!!.addPolyline(options).remove()
 
-                               // addPolyLine(originLocation, destinationLocation)
+
 
 
                                 for(i in 1..20){
@@ -539,6 +539,110 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                     mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
                                 }
 
+                                //INSERT PRODUCT TO THE DESTINATION WAREHOUSE
+
+                                refWarehouse?.child(savedWarehouse!!).child("product").addValueEventListener(object : ValueEventListener {
+                                    override fun onDataChange(snapshot1: DataSnapshot) {
+                                        for (c in snapshot1.children) {
+                                            val productBarCode =
+                                                c.child("productBarcode").value
+
+                                            if (productBarCode == trackingWarehouseBarcode) {
+
+                                                val productName = c.child("productName").value.toString()
+                                                var productRack : String? = null
+                                                val productType = c.child("productType").value.toString()
+                                                val productPrice = c.child("productPrice").value.toString()
+                                                val tvProductQuantity : TextView = requireView().findViewById(R.id.tvTrackingQty)
+                                                val productQuantity = tvProductQuantity.text.toString()
+                                                val productAlertQty = "0"
+                                                val productAlertChk = "false"
+                                                val productImg = c.child("productImg").value.toString()
+
+                                                var nextLetter = "A-"
+                                                var nextDigit = 0
+                                                var rackNumber : String? = null
+                                                var found = 0
+                                                loop@for(i in 1 until 100){
+                                                    nextDigit += 1
+                                                    if(nextDigit < 10){
+                                                        rackNumber = nextLetter + "0" + nextDigit
+                                                    }else{
+
+                                                        rackNumber = nextLetter + nextDigit
+                                                    }
+
+
+                                                    if(found == 1)break@loop
+
+
+                                                }
+
+
+                                                    refWarehouse.child(trackingWarehouseReq).child("product").addValueEventListener(object : ValueEventListener{
+                                                        override fun onDataChange(snapshot9: DataSnapshot) {
+                                                            if(snapshot9.exists()){
+                                                                loop2@for (z in snapshot9.children){
+
+                                                                    val existRack = z.child("productRack").getValue(String::class.java)
+
+
+
+                                                                    if(rackNumber != existRack){
+                                                                        productRack = rackNumber
+
+                                                                        val productList = Product(productName, trackingWarehouseBarcode, productRack,productType,productPrice,productQuantity,productAlertQty,productAlertChk,productImg)
+
+                                                                        refWarehouse.child(trackingWarehouseReq).addListenerForSingleValueEvent(object : ValueEventListener{
+                                                                            override fun onDataChange(snapshot: DataSnapshot) {
+
+                                                                                refWarehouse?.child(trackingWarehouseReq).child("product").child(productName).setValue(productList)
+                                                                            }
+
+                                                                            override fun onCancelled(error: DatabaseError) {
+                                                                                TODO("Not yet implemented")
+                                                                            }
+
+                                                                        })
+
+                                                                        found = 1
+                                                                        break@loop2
+                                                                    }
+
+
+                                                                }
+                                                            }
+                                                        }
+
+                                                        override fun onCancelled(error: DatabaseError) {
+                                                            TODO("Not yet implemented")
+                                                        }
+
+
+                                                    })
+
+
+
+
+
+
+
+
+
+
+                                            }
+                                        }
+
+                                    }
+
+                                    override fun onCancelled(error: DatabaseError) {
+                                        TODO("Not yet implemented")
+                                    }
+                                })
+
+
+
+
 
                             }
 
@@ -548,9 +652,6 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
                         })
 
-
-
-
                     }
 
                     override fun onCancelled(error: DatabaseError) {
@@ -558,7 +659,6 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                     }
 
                 })
-
 
             }
 
