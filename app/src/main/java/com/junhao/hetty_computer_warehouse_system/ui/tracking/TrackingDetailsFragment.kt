@@ -46,6 +46,12 @@ import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
 import java.text.SimpleDateFormat
 import java.util.*
 import kotlin.collections.ArrayList
+import com.google.android.gms.maps.model.MarkerOptions
+
+import com.google.android.gms.maps.model.Marker
+
+
+
 
 
 class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
@@ -67,10 +73,14 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     //google map
     lateinit var googleMap: GoogleMap
+    private var markerOrigin: Marker? = null
+    private var markerDestination: Marker? =null
+
+    private var LatLongB = LatLngBounds.Builder()
+    private var options = PolylineOptions()
+
     lateinit var mFusedLocationClient: FusedLocationProviderClient
     private val pERMISSION_ID = 42
-
-
 
     companion object {
         var mapFragment : SupportMapFragment?=null
@@ -206,6 +216,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                         // IF ORIGIN AND DESTINATION OBTAINED, RUN GOOGLE MAP
                                         if(originLatitude != 0.0 && originLongitude != 0.0 && destinationLatitude != 0.0 && destinationLongitude != 0.0){
 
+
                                             mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
 
                                             mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
@@ -281,8 +292,12 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                     if (location == null) {
                         requestNewLocationData()
                     } else {
+
+                        googleMap.clear()
+                        markerOrigin?.remove()
+                        markerDestination?.remove()
                         originLocation = LatLng(location.latitude, location.longitude)
-                        mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
+
 
                         UpdateCurrentLocationToTrackDetails(originLocation)
 
@@ -436,6 +451,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
     }
 
     private fun reachDestination(){
+
         val getTrackingNumber = requireActivity().findViewById<TextView>(R.id.tvTrackingNumber)
         val info: String = getTrackingNumber.text.toString()
 
@@ -486,8 +502,15 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                     trackDetailsID!!
                                 ).setValue(trackingItemDetailsList)
 
+
+                                googleMap.clear()
+                                markerOrigin?.remove()
+                                markerDestination?.remove()
                                 originLocation = LatLng(trackingWarehouseReqLatitude.toDouble(), trackingWarehouseReqLongitude!!.toDouble())
-                                mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
+
+
+                                addPolyLine(originLocation, destinationLocation)
+
 
 
 
@@ -527,81 +550,101 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
         if (p0 != null) {
             googleMap = p0
         }
-        var LatLongB = LatLngBounds.Builder()
+        googleMap.clear()
 
             //ORIGIN LOCATION
             originLocation = LatLng(originLatitude, originLongitude)
 
-
-            //icon(
-            //     BitmapDescriptorFactory.defaultMarker(BitmapDescriptorFactory.HUE_AZURE))
-
-            googleMap.addMarker(MarkerOptions().position(originLocation).icon(
-                bitmapDescriptorFromVector(requireContext(),R.drawable.ic_truck_red_top_view)
-
-            ))
-
-
-
             //DESTINATION LOCATION
             destinationLocation = LatLng(destinationLatitude, destinationLongitude)
-            googleMap.addMarker(MarkerOptions().position(destinationLocation).icon(
-                bitmapDescriptorFromVector(requireContext(),R.drawable.ic_custom_red_marker)
 
-            ))
-
-           //googleMap.animateCamera(CameraUpdateFactory.newLatLngZoom(originLocation,15f))
-
-            //val sydney = LatLng(-34.0, 151.0)
-            //val opera = LatLng(-33.9320447,151.1597271)
-            //googleMap!!.addMarker(MarkerOptions().position(sydney).title("Marker in Sydney"))
-            //googleMap!!.addMarker(MarkerOptions().position(opera).title("Opera House"))
+            placeMarkerOnMap(originLocation, destinationLocation)
 
 
-            // Declare polyline object and set up color and width
-            val options = PolylineOptions()
-            options.color(Color.rgb(252, 3, 57))
-            options.width(5f)
 
-            // build URL to call API
-            //val url = getURL(originLocation, destinationLocation)
-            val url = getURL(originLocation, destinationLocation)
+            addPolyLine(originLocation, destinationLocation)
 
 
-            async {
-                // Connect to URL, download content and convert into string asynchronously
-                val result = URL(url).readText()
-                uiThread {
-                    // When API call is done, create parser and convert into JsonObjec
-                    val parser: Parser = Parser()
-                    val stringBuilder: StringBuilder = StringBuilder(result)
-                    val json: JsonObject = parser!!.parse(stringBuilder) as JsonObject
-                    // get to the correct element in JsonObject
-                    val routes = json.array<JsonObject>("routes")
-                    val points = routes!!["legs"]["steps"][0] as JsonArray<JsonObject>
-                    val polypts = points.flatMap { decodePoly(it.obj("polyline")?.string("points")!!)
-                    }
+    }
+    private fun addPolyLine(originLocation: LatLng, destinationLocation: LatLng){
 
-                    // Add  points to polyline and bounds
+       // googleMap!!.clear()
 
-                    options.add(originLocation)
-                    LatLongB.include(originLocation)
-                    for (point in polypts)  {
-                        options.add(point)
-                        LatLongB.include(point)
-                    }
-                    options.add(destinationLocation)
-                    LatLongB.include(destinationLocation)
-                    // build bounds
-                    val bounds = LatLongB.build()
-                    // add polyline to the map
-                    googleMap!!.addPolyline(options)
+        //LatLongB = LatLngBounds.Builder()
+
+        // Declare polyline object and set up color and width
+        //options = PolylineOptions()
+       // options.color(Color.rgb(252, 3, 57))
+        //options.width(5f)
+
+       // polylineFinal?.remove()
+
+        // build URL to call API
+        //val url = getURL(originLocation, destinationLocation)
+        val url = getURL(originLocation, destinationLocation)
+
+
+        async {
+            // Connect to URL, download content and convert into string asynchronously
+            val result = URL(url).readText()
+            uiThread {
+                // When API call is done, create parser and convert into JsonObjec
+                val parser: Parser = Parser()
+                val stringBuilder: StringBuilder = StringBuilder(result)
+                val json: JsonObject = parser!!.parse(stringBuilder) as JsonObject
+                // get to the correct element in JsonObject
+                val routes = json.array<JsonObject>("routes")
+                val points = routes!!["legs"]["steps"][0] as JsonArray<JsonObject>
+                val polypts = points.flatMap { decodePoly(it.obj("polyline")?.string("points")!!)
+                }
+
+                LatLongB = LatLngBounds.Builder()
+
+                options = PolylineOptions()
+                options.color(Color.rgb(252, 3, 57))
+                options.width(5f)
+
+                // Add  points to polyline and bounds
+
+                options.add(originLocation)
+                LatLongB.include(originLocation)
+                for (point in polypts)  {
+                    options.add(point)
+                    LatLongB.include(point)
+                }
+                options.add(destinationLocation)
+                LatLongB.include(destinationLocation)
+                // build bounds
+                val bounds = LatLongB.build()
+                // add polyline to the map
+
+
+                googleMap!!.addPolyline(options)
                     // show map with route centered
                     googleMap!!.moveCamera(CameraUpdateFactory.newLatLngBounds(bounds, 100))
-                }
+
+
             }
+        }
+    }
+
+    private fun placeMarkerOnMap(originLocation: LatLng, destinationLocation: LatLng) {
 
 
+        markerOrigin?.remove()
+
+        markerDestination?.remove()
+
+        val markerOptionsOrigin = MarkerOptions().position(originLocation).icon(
+            bitmapDescriptorFromVector(requireContext(),R.drawable.ic_truck_red_top_view)
+        )
+        markerOrigin = googleMap.addMarker(markerOptionsOrigin)!!
+
+        val markerOptionsDestination = MarkerOptions().position(destinationLocation).icon(
+            bitmapDescriptorFromVector(requireContext(),R.drawable.ic_custom_red_marker)
+        )
+
+        markerDestination = googleMap.addMarker(markerOptionsDestination)!!
     }
 
     private fun getURL(from : LatLng, to : LatLng) : String {
