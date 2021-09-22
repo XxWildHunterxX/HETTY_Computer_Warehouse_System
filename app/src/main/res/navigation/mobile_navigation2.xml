@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.SettingsFragment"
-        android:label="@string/menu_salesorder" />
+        android:label="Settings" />
     <fragment
         android:id="@+id/nav_purchaseOrders"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view"
@@ -46,7 +46,7 @@
         android:id="@+id/nav_profile"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.Fragment_userProfile"
         android:label="@string/menu_profile"
-        tools:layout="@layout/fragment_user_profile" />
+        tools:layout="@layout/fragment_user_profile">
         android:label="@string/menu_profile" >
         <action
             android:id="@+id/action_nav_profile_self"
@@ -70,9 +70,9 @@
         android:label="@string/menu_items" />
     <fragment
         android:id="@+id/nav_add_item"
-        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view_details"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.item.Fragment_Add_Item"
         android:label="@string/menu_items"
-        tools:layout="@layout/fragment_purchase_view_details" />
+        tools:layout="@layout/fragment_add_item" />
     <fragment
         android:id="@+id/updateProduct"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.item.UpdateProduct"
@@ -151,4 +151,14 @@
         android:id="@+id/nav_purchase_create"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_create"
         android:label="Create Purchase" />
+    <fragment
+        android:id="@+id/nav_reports"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.SelectReport"
+        android:label="Select Report"
+        tools:layout="@layout/fragment_select_report" />
+    <fragment
+        android:id="@+id/nav_reportSalesOrder"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.ReportSalesOrder"
+        android:label="Report"
+        tools:layout="@layout/fragment_report_sales_order" />
 </navigation>

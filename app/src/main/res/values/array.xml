@@ -21,4 +21,26 @@
         <item>Male</item>
         <item>Female</item>
     </array>
+    <array name="many_product">
+        <item>Pending</item>
+        <item>Accepted</item>
+        <item>Rejected</item>
+        <item>Delivering</item>
+        <item>Received</item>
+        <item>Pending</item>
+        <item>Accepted</item>
+        <item>Rejected</item>
+        <item>Delivering</item>
+        <item>Received</item>
+        <item>Pending</item>
+        <item>Accepted</item>
+        <item>Rejected</item>
+        <item>Delivering</item>
+        <item>Received</item>
+        <item>Pending</item>
+        <item>Accepted</item>
+        <item>Rejected</item>
+        <item>Delivering</item>
+        <item>Received</item>
+    </array>
 </resources>

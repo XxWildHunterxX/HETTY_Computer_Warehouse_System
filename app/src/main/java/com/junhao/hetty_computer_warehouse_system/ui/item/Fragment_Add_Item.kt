@@ -22,14 +22,11 @@ import kotlinx.android.synthetic.main.fragment_add_item.*
 import kotlinx.android.synthetic.main.fragment_add_item.view.*
 import java.util.*
 import android.view.MotionEvent
-
 import android.view.View.OnTouchListener
 import com.google.zxing.integration.android.IntentIntegrator
-
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.app_bar_home_page2.view.*
 import com.google.firebase.storage.UploadTask
-
 import com.google.android.gms.tasks.OnSuccessListener
 import com.google.firebase.database.*
 
@@ -38,7 +35,6 @@ class Fragment_Add_Item : Fragment() {
 
     private var imageURI: Uri = Uri.EMPTY
     private val database = FirebaseDatabase.getInstance()
-
     private lateinit var myRef :DatabaseReference
     private var found: Boolean = false
 
@@ -47,6 +43,7 @@ class Fragment_Add_Item : Fragment() {
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
+        val view = inflater.inflate(R.layout.fragment_add_item, container, false)
 
         val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
             Context.MODE_PRIVATE)
@@ -58,8 +55,6 @@ class Fragment_Add_Item : Fragment() {
 
         val patternBarcode = Regex("^123456\\d{4}\$")
         val patternRack = Regex("^[ABC]-\\d{2}\$")
-        val view = inflater.inflate(R.layout.fragment_add_item, container, false)
-
 
         view.addImgProduct.setOnClickListener {
             selectImage()

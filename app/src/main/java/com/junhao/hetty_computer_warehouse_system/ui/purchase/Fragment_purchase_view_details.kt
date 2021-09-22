@@ -1,5 +1,7 @@
 package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
+import android.content.Context
+import android.content.SharedPreferences
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -7,19 +9,27 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import android.widget.Toast
+import com.google.firebase.database.DatabaseReference
 import com.google.firebase.database.FirebaseDatabase
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 
 class Fragment_purchase_view_details : Fragment() {
+    private val database = FirebaseDatabase.getInstance()
+    private lateinit var myRef : DatabaseReference
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
     ): View? {
         val view = inflater.inflate(R.layout.fragment_purchase_view_details, container, false)
         (activity as HomePage?)?.hideFloatingActionButton()
-        val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("Warehouse").child("warehouse1").child("Purchase")
+
+        val sharedPreferences : SharedPreferences = requireActivity().getSharedPreferences("sharedPrefs",
+            Context.MODE_PRIVATE)
+        val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
+
+        myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("Purchase")
         val purchaseID = arguments?.getString("purchaseID")
 
         val tvpurchaseID :TextView = view.findViewById(R.id.tf_purchaseID_details)
@@ -33,7 +43,7 @@ class Fragment_purchase_view_details : Fragment() {
         val tvreceivedDate:TextView = view.findViewById(R.id.tf_receivedDate_details)
         val tvstatus:TextView = view.findViewById(R.id.tf_status_details)
 
-        myRef.child(purchaseID!!).get().addOnSuccessListener {
+        myRef?.child(purchaseID!!).get().addOnSuccessListener {
             if (it.exists()) {
                 tvpurchaseID.text = it.child("purchaseID").value.toString()
                 tvpurProductName.text =it.child("purProductName").value.toString()
