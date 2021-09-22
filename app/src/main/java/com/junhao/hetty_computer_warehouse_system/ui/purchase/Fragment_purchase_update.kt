@@ -1,7 +1,9 @@
 package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -39,8 +41,15 @@ class Fragment_purchase_update : Fragment() {
         val view = inflater.inflate(R.layout.fragment_purchase_update, container, false)
         (activity as HomePage?)?.hideFloatingActionButton()
 
+         val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+             "sharedPrefs",
+             Context.MODE_PRIVATE
+         )
+
+         val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
          val database = FirebaseDatabase.getInstance()
-         val myRef = database.getReference("Warehouse").child("warehouse1").child("Purchase")
+         val myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("Purchase")
          val purchaseID = arguments?.getString("purchaseID")
         val tvpurchaseID : TextView = view.findViewById(R.id.update_tf_purchaseID)
          tvpurchaseID.text = purchaseID

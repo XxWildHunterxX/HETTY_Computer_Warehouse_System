@@ -161,4 +161,9 @@
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.SelectReport"
         android:label="Select Report"
         tools:layout="@layout/fragment_select_report" />
+    <fragment
+        android:id="@+id/nav_searchPurchaseProduct"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.searchPurchaseProduct"
+        android:label="Search Warehouse Product"
+        tools:layout="@layout/fragment_search_purchase_product" />
 </navigation>

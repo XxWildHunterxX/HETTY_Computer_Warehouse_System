@@ -1,7 +1,9 @@
 package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.graphics.Color
 import android.os.Bundle
 import android.renderscript.Sampler
@@ -13,10 +15,7 @@ import android.widget.Toast
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import androidx.recyclerview.widget.RecyclerView
-import com.google.firebase.database.DataSnapshot
-import com.google.firebase.database.DatabaseError
-import com.google.firebase.database.FirebaseDatabase
-import com.google.firebase.database.ValueEventListener
+import com.google.firebase.database.*
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.PurchaseAdapter
 import com.junhao.hetty_computer_warehouse_system.data.Purchase
@@ -28,7 +27,7 @@ import kotlin.collections.ArrayList
 
 class Fragment_purchase_view : Fragment() {
 var database = FirebaseDatabase.getInstance()
-    val myRef = database.getReference("Warehouse").child("warehouse1")
+    private lateinit var myRef : DatabaseReference
     var purchaseArrayList : ArrayList<Purchase> ?= null
     var tempArrayList : ArrayList<Purchase> ?= null
     private lateinit var eventListener:ValueEventListener
@@ -38,6 +37,15 @@ var database = FirebaseDatabase.getInstance()
     ): View? {
         val view = inflater.inflate(R.layout.fragment_purchase_view, container, false)
         (activity as HomePage?)?.hideFloatingActionButton()
+
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+        myRef = database.getReference("Warehouse").child(savedWarehouse!!)
 
         purchaseArrayList = arrayListOf<Purchase>()
         tempArrayList = arrayListOf<Purchase>()

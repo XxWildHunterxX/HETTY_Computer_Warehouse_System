@@ -559,7 +559,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                                 val productAlertChk = "false"
                                                 val productImg = c.child("productImg").value.toString()
 
-                                                var nextLetter = "A-"
+                                               // var nextLetter = "A-"
                                                 var nextDigit = 0
                                                 var rackNumber : String? = null
                                                 var found = 0
@@ -575,15 +575,15 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                                                     if(count ==0){
                                                                         nextDigit += 1
                                                                         if(nextDigit < 10){
-                                                                            rackNumber = nextLetter + "0" + nextDigit
-                                                                            if(rackNumber != existRack){
+
+                                                                            if("A-0$nextDigit" != existRack && "B-0$nextDigit" != existRack && "C-0$nextDigit" != existRack){
+                                                                                rackNumber = "A-0$nextDigit"
                                                                                 found = 1
                                                                                 break@loop2
                                                                             }
-
                                                                         }else{
-                                                                            rackNumber = nextLetter + nextDigit
-                                                                            if(rackNumber != existRack){
+                                                                            if("A-$nextDigit" != existRack && "B-$nextDigit" != existRack && "C-$nextDigit" != existRack){
+                                                                                rackNumber = "A-$nextDigit"
                                                                                 found = 1
                                                                                 break@loop2
                                                                             }

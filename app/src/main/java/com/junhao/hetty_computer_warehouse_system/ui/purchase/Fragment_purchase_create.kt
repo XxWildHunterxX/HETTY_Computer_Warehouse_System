@@ -2,7 +2,9 @@ package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
 
 import android.app.AlertDialog
+import android.content.Context
 import android.content.DialogInterface
+import android.content.SharedPreferences
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
@@ -36,10 +38,20 @@ class Fragment_purchase_create : Fragment() {
     ): View? {
         val view = inflater.inflate(R.layout.fragment_purchase_create, container, false)
         (activity as HomePage?)?.hideFloatingActionButton()
+
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+        val productName = arguments?.getString("productName")
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
         val database = FirebaseDatabase.getInstance()
-        val myRef = database.getReference("Warehouse").child("warehouse1").child("Purchase")
+        val myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("Purchase")
         val formatPhone = Regex("^((01)[0-46-9]-)*[0-9]{7,8}\$")
         val formatTel = Regex("^((0)[0-46-9]-)*[0-9]{7,8}\$")
+
+        view.tf_productName.setText(productName)
 
 
         view.tf_costPerUnit.addTextChangedListener(object:TextWatcher{
@@ -115,42 +127,41 @@ class Fragment_purchase_create : Fragment() {
                     it.setPositiveButton(getString(R.string.yes),
                         DialogInterface.OnClickListener{ dialog, id ->
                             var randomNum = ((1000..9000).random()).toString()
-                            var purchaseID = "P$randomNum"
+                            //var purchaseID = "P$randomNum"
+                            var purchaseID = "P2519"
                             myRef.child("$purchaseID").get().addOnSuccessListener {
                                 if (it.exists()) {
                                     randomNum = ((1000..9000).random()).toString()
                                     purchaseID = "P$randomNum"
                                     Toast.makeText(activity, "1st $purchaseID", Toast.LENGTH_SHORT).show()
                                 }
+                                val purchase = Purchase(
+                                    purchaseID,
+                                    purProductName,
+                                    purQty,
+                                    costPerUnit,
+                                    totalCost,
+                                    supplierName,
+                                    supplierAddress,
+                                    supplierContact,
+                                    requestDate,
+                                    "",
+                                    "",
+                                    "",
+                                    "",
+                                    "Pending"
+                                )
+                                myRef.child(purchase.purchaseID!!).setValue(purchase)
+                                Toast.makeText(activity, "Purchase Create Successfully", Toast.LENGTH_SHORT).show()
+                                val bundle = bundleOf(
+                                    Pair("purchaseID", purchaseID)
+                                )
+                                Navigation.findNavController(view).navigate(
+                                    R.id.nav_purchase_create_success,
+                                    bundle
+                                )
+
                             }
-
-                            val purchase = Purchase(
-                                purchaseID,
-                                purProductName,
-                                purQty,
-                                costPerUnit,
-                                totalCost,
-                                supplierName,
-                                supplierAddress,
-                                supplierContact,
-                                requestDate,
-                                "",
-                                "",
-                                "",
-                                "",
-                                "Pending"
-                            )
-                            myRef.child(purchase.purchaseID!!).setValue(purchase)
-                            Toast.makeText(activity, "Purchase Create Successfully", Toast.LENGTH_SHORT).show()
-
-                            val bundle = bundleOf(
-                                Pair("purchaseID", purchaseID)
-                            )
-
-                            Navigation.findNavController(view).navigate(
-                                R.id.nav_purchase_create_success,
-                                bundle
-                            )
 
                         })
                     it.setNegativeButton(getString(R.string.no), DialogInterface.OnClickListener{ dialog, id->

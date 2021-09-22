@@ -1,10 +1,12 @@
 package com.junhao.hetty_computer_warehouse_system.ui.login
 
 import android.annotation.SuppressLint
+import android.app.ProgressDialog
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
 import android.content.SharedPreferences
+import android.net.Uri
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.SystemClock.sleep
@@ -29,16 +31,21 @@ import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
 import com.google.firebase.database.ValueEventListener
+import com.google.firebase.storage.FirebaseStorage
+import com.google.firebase.storage.UploadTask
 import com.google.zxing.integration.android.IntentIntegrator
 import com.junhao.hetty_computer_warehouse_system.R
+import com.junhao.hetty_computer_warehouse_system.data.Product
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.activity_login_page.*
-import kotlinx.android.synthetic.main.fragment_add_item.view.*
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.tasks.await
 import kotlinx.coroutines.withContext
+import java.text.DateFormat
+import java.text.SimpleDateFormat
+import java.util.*
 
 class LoginPage : AppCompatActivity() {
 
@@ -52,7 +59,6 @@ class LoginPage : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        sleep(1000)
         setContentView(R.layout.activity_login_page)
 
         progressbar = findViewById(R.id.pbLogin)
@@ -132,9 +138,49 @@ class LoginPage : AppCompatActivity() {
                     val sharedPreferences : SharedPreferences = this.getSharedPreferences("sharedPrefs",
                         Context.MODE_PRIVATE)
                     val savedStaffName = sharedPreferences.getString("getStaffName",null)
+                    val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
 
                     Toast.makeText(
                         applicationContext, "Welcome ${savedStaffName.toString()}", Toast.LENGTH_LONG).show()
+
+                   val database = FirebaseDatabase.getInstance()
+                    val myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("Purchase")
+
+                    val eventListener: ValueEventListener = object : ValueEventListener {
+                        override fun onDataChange(dataSnapshot: DataSnapshot) {
+                            for (ds in dataSnapshot.children) {
+                                val status =
+                                    ds.child("status").getValue(String::class.java)
+                                val purchaseID =
+                                    ds.child("purchaseID").getValue(String::class.java)
+
+                                if (status == "Pending") {
+                                    val acceptDate = DateFormat.getDateTimeInstance().format(Date())
+
+                                    val updateStatus = mapOf<String,String>(
+                                        "acceptDate" to acceptDate,
+                                    "status" to "Accepted"
+                                    )
+                                    myRef.child(purchaseID.toString()).updateChildren(updateStatus)
+
+                                }else if(status == "Accepted"){
+                                    val deliverDate = DateFormat.getDateTimeInstance().format(Date())
+
+                                    val updateStatus = mapOf<String,String>(
+                                        "deliverDate" to deliverDate,
+                                        "status" to "Delivering"
+                                    )
+                                    myRef.child(purchaseID.toString()).updateChildren(updateStatus)
+
+                                }
+
+                            }
+
+                        }
+
+                        override fun onCancelled(databaseError: DatabaseError) {}
+                    }
+                    myRef.addListenerForSingleValueEvent(eventListener)
 
                     val shareIntent = Intent(this, HomePage::class.java)
                     startActivity(shareIntent)
