@@ -30,10 +30,11 @@
                 android:drawableStart="@drawable/ic_quantity"
                 android:ems="10"
                 android:hint="@string/purchase_quantity"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_purchaseQuantity" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_purchaseQuantity"
+                 />
 
             <EditText
                 android:id="@+id/tf_supplierName"
@@ -41,6 +42,7 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:drawableStart="@drawable/ic_supplier"
                 android:ems="10"
@@ -51,8 +53,8 @@
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tv_SupplierName" />
 
-            <TextView
-                android:id="@+id/tf_purchasePrice"
+            <EditText
+                android:id="@+id/tf_costPerUnit"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -61,9 +63,26 @@
                 android:layout_marginRight="16dp"
                 android:drawableStart="@drawable/ic_price"
                 android:ems="10"
+                android:hint="@string/default_costPerUnit"
+                android:inputType="number|numberDecimal"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_purchasePrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_costPerUnit" />
+
+            <TextView
+                android:id="@+id/tf_totalCost"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_price"
+                android:ems="10"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_totalCost" />
 
             <EditText
                 android:id="@+id/tf_productName"
@@ -108,7 +127,7 @@
                 android:cursorVisible="false"
                 android:drawableStart="@drawable/ic_contact"
                 android:ems="10"
-                android:hint="07-123456"
+                android:hint="@string/pur_telephone"
                 android:inputType="text"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -142,17 +161,31 @@
                 app:layout_constraintTop_toBottomOf="@+id/tf_productName" />
 
             <TextView
-                android:id="@+id/tv_purchasePrice"
+                android:id="@+id/tv_costPerUnit"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/purchase_price"
+                android:text="@string/cost_per_unit_rm"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity" />
+
+            <TextView
+                android:id="@+id/tv_totalCost"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/total_cost_rm"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_costPerUnit" />
 
             <TextView
                 android:id="@+id/tv_SupplierName"
@@ -160,13 +193,13 @@
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
-                android:layout_marginTop="6dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/supplier_name"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchasePrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_totalCost" />
 
             <TextView
                 android:id="@+id/tv_supplierAddress"

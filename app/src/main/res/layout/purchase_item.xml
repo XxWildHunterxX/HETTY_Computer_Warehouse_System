@@ -1,74 +1,112 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/purchase_item"
     android:layout_width="match_parent"
     android:layout_height="wrap_content">
 
-    <RelativeLayout
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_marginLeft="8dp"
-        android:layout_marginRight="8dp"
-        android:layout_marginBottom="8dp"
-        android:fadingEdge="horizontal|vertical">
+        android:layout_height="wrap_content"
+        android:layout_margin="5dp"
+        android:background="@drawable/layout_border"
+        android:paddingLeft="10dp"
+        android:paddingTop="5dp"
+        android:paddingRight="10dp"
+        android:paddingBottom="10dp">
 
-        <TextView
-            android:id="@+id/tf_PurchaseID"
-            android:layout_width="180dp"
+        <RelativeLayout
+            android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="purchaseid"
-            android:textColor="@color/abc_decor_view_status_guard"
-            android:textSize="20dp" />
+            android:fadingEdge="horizontal"
+            tools:layout_editor_absoluteX="8dp"
+            tools:layout_editor_absoluteY="10dp">
 
-        <TextView
-            android:id="@+id/tf_ProductName"
-            android:layout_width="180dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tf_PurchaseID"
-            android:text="productname"
-            android:textColor="@color/abc_decor_view_status_guard"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/tf_PurchaseID"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/purchase_id"
+                android:textColor="@color/abc_decor_view_status_guard"
+                android:textSize="20dp" />
 
-        <TextView
-            android:id="@+id/tf_Qty"
-            android:layout_width="90dp"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/tf_ProductName"
-            android:text="Qty"
-            android:textColor="@color/abc_decor_view_status_guard"
-            android:textSize="15dp" />
+            <TextView
+                android:id="@+id/tf_ProductName"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tf_PurchaseID"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="5dp"
+                android:text="@string/product_name"
+                android:textColor="@color/abc_decor_view_status_guard"
+                android:textSize="15dp" />
 
-        <TextView
-            android:id="@+id/tf_Status"
-            android:layout_width="150dp"
-            android:layout_height="wrap_content"
-            android:layout_alignBaseline="@id/tf_ProductName"
-            android:layout_alignParentRight="true"
-            android:layout_centerHorizontal="false"
-            android:text="Status"
-            android:textColor="@color/abc_decor_view_status_guard"
-            android:textSize="20dp" />
+            <TextView
+                android:id="@+id/tf_requestDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tf_ProductName"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@id/tv_requestDate"
+                android:text="@string/request_date"
+                android:textColor="@color/abc_decor_view_status_guard"
+                android:textSize="15dp" />
 
-        <ImageButton
-            android:id="@+id/imgbtn_delete"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentRight="true"
-            android:background="#FFFFFF"
-            app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
+            <TextView
+                android:id="@+id/tv_requestDate"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/tf_ProductName"
+                android:layout_marginStart="5dp"
+                android:layout_marginTop="15dp"
+                android:layout_marginEnd="5dp"
+                android:layout_marginBottom="10dp"
+                android:text="@string/request_date_recycler"
+                android:textColor="@color/abc_decor_view_status_guard"
+                android:textSize="15dp" />
 
-        <ImageButton
-            android:id="@+id/imgbtn_update"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_alignParentLeft="false"
-            android:layout_alignParentRight="false"
-            android:layout_marginRight="10dp"
-            android:layout_toLeftOf="@id/imgbtn_delete"
-            android:background="#FFFFFF"
-            app:srcCompat="@drawable/ic_baseline_mode_edit_24" />
+            <TextView
+                android:id="@+id/tf_Status"
+                android:layout_width="100dp"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_centerHorizontal="false"
+                android:layout_centerVertical="true"
+                android:text="@string/status"
+                android:textColor="@color/abc_decor_view_status_guard"
+                android:textSize="20dp" />
+
+            <ImageButton
+                android:id="@+id/imgbtn_delete"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentRight="true"
+                android:background="#FFFFFF"
+                app:srcCompat="@drawable/ic_baseline_delete_forever_24" />
+
+            <ImageButton
+                android:id="@+id/imgbtn_update"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_alignParentLeft="false"
+                android:layout_alignParentRight="false"
+                android:layout_marginRight="10dp"
+                android:layout_toLeftOf="@id/imgbtn_delete"
+                android:background="#FFFFFF"
+                app:srcCompat="@drawable/ic_baseline_mode_edit_24" />
 
 
-    </RelativeLayout>
+        </RelativeLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
 </androidx.cardview.widget.CardView>

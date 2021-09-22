@@ -28,7 +28,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
-                android:inputType="numberDecimal"
+                android:inputType="number"
                 app:drawableStartCompat="@drawable/ic_quantity"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -58,6 +58,7 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:ems="10"
+                android:inputType="text"
                 app:drawableStartCompat="@drawable/ic_item_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -71,8 +72,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:clickable="true"
                 android:ems="10"
+                android:inputType="text"
                 app:drawableStartCompat="@drawable/ic_supplier"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -86,8 +87,8 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:clickable="true"
                 android:ems="10"
+                android:inputType="text"
                 app:drawableStartCompat="@drawable/ic_address"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
@@ -101,26 +102,12 @@
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:clickable="true"
+                android:inputType="text"
                 android:ems="10"
                 app:drawableStartCompat="@drawable/ic_contact"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/update_tv_supplierContact" />
-
-            <TextView
-                android:id="@+id/update_tf_requestDate"
-                style="@style/CustomEdittextStyle"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:ems="10"
-                app:drawableStartCompat="@drawable/ic_calendar"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_tv_RequestDate" />
 
             <TextView
                 android:id="@+id/update_tv_purchaseID"
@@ -161,7 +148,7 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_spin_status" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_status" />
 
             <TextView
                 android:id="@+id/update_tv_status"
@@ -186,23 +173,10 @@
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
                 android:text="@string/supplier_name"
+                app:layout_constraintHorizontal_bias="1.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_tf_purchaseQuantity" />
-
-            <TextView
-                android:id="@+id/update_tv_RequestDate"
-                style="@style/CustomTextView"
-                android:layout_width="0dp"
-                android:layout_height="wrap_content"
-                android:layout_marginLeft="16dp"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="16dp"
-                android:text="@string/request_date"
-                app:layout_constraintHorizontal_bias="0.0"
-                app:layout_constraintLeft_toLeftOf="parent"
-                app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_tf_supplierContact" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_totalCost" />
 
             <TextView
                 android:id="@+id/update_tv_supplierAddress"
@@ -239,10 +213,10 @@
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="16dp"
                 android:layout_marginEnd="16dp"
-                app:srcCompat="@drawable/ic_purchase_details"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                app:srcCompat="@drawable/ic_purchase_details" />
 
             <Button
                 android:id="@+id/btn_save"
@@ -255,23 +229,83 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.498"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_tf_receivedDate" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_requestDate" />
+
+            <EditText
+                android:id="@+id/update_tf_costPerUnit"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_price"
+                android:ems="10"
+                android:hint="@string/default_costPerUnit"
+                android:inputType="number|numberDecimal"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_costPerUnit" />
 
             <TextView
-                android:id="@+id/update_tv_receivedDate"
+                android:id="@+id/tv_costPerUnit"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="@string/received_date"
+                android:text="@string/cost_per_unit_rm"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_tf_requestDate" />
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_purchaseQuantity" />
 
-            <EditText
-                android:id="@+id/update_tf_receivedDate"
+            <TextView
+                android:id="@+id/tv_totalCost"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/total_cost_rm"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_costPerUnit" />
+
+            <TextView
+                android:id="@+id/update_tf_totalCost"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_totalCost"
+                app:drawableStartCompat="@drawable/ic_price" />
+
+
+            <TextView
+                android:id="@+id/tv_requestDate"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/request_date"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/update_tf_supplierContact" />
+
+            <TextView
+                android:id="@+id/update_tf_requestDate"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -283,19 +317,22 @@
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/update_tv_receivedDate" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_requestDate" />
 
-            <Spinner
-                android:id="@+id/update_spin_status"
+            <TextView
+                android:id="@+id/update_tf_status"
+                style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="16dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
-                android:entries="@array/purchase_status"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:ems="10"
+                app:drawableStartCompat="@drawable/ic_status"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/update_tv_status" />
+
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

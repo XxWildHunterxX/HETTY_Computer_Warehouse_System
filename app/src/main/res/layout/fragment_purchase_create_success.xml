@@ -49,20 +49,19 @@
                 app:layout_constraintTop_toBottomOf="@+id/imageView2" />
 
             <TextView
-                android:id="@+id/tv_purchasePrice"
+                android:id="@+id/tv_costPerUnit"
                 style="@style/CustomTextView"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginLeft="16dp"
                 android:layout_marginTop="8dp"
                 android:layout_marginRight="16dp"
-                android:text="Purchase Price"
+                android:text="@string/cost_per_unit_rm"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/tf_purchaseQuantity_success" />
-
             <TextView
-                android:id="@+id/tf_purchasePrice_success"
+                android:id="@+id/tf_costPerUnit_success"
                 style="@style/CustomEdittextStyle"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -73,7 +72,36 @@
                 android:ems="10"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tv_purchasePrice" />
+                app:layout_constraintTop_toBottomOf="@+id/tv_costPerUnit" />
+
+            <TextView
+                android:id="@+id/tf_totalCost_success"
+                style="@style/CustomEdittextStyle"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:drawableStart="@drawable/ic_price"
+                android:ems="10"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tv_totalCost" />
+            <TextView
+                android:id="@+id/tv_totalCost"
+                style="@style/CustomTextView"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="16dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="16dp"
+                android:text="@string/total_cost_rm"
+                app:layout_constraintHorizontal_bias="0.0"
+                app:layout_constraintLeft_toLeftOf="parent"
+                app:layout_constraintRight_toRightOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/tf_costPerUnit_success" />
+
 
             <TextView
                 android:id="@+id/tf_purchaseQuantity_success"
@@ -205,7 +233,7 @@
                 android:text="@string/supplier_name"
                 app:layout_constraintLeft_toLeftOf="parent"
                 app:layout_constraintRight_toRightOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/tf_purchasePrice_success" />
+                app:layout_constraintTop_toBottomOf="@+id/tf_totalCost_success" />
 
             <TextView
                 android:id="@+id/tv_RequestDate"

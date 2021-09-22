@@ -2,7 +2,6 @@ package com.junhao.hetty_computer_warehouse_system.adapter
 
 import android.content.Context
 import android.graphics.Color
-import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,9 +15,9 @@ import com.junhao.hetty_computer_warehouse_system.data.Purchase
 class PurchaseAdapter(val context: Context, private val purchaseList :ArrayList<Purchase>): RecyclerView.Adapter<PurchaseAdapter.myViewHolder>() {
     private lateinit var mListener: onItemClickListener
     interface onItemClickListener{
-        fun onItemClick(position :Int)
-        fun onDeleteClick(position:Int)
-        fun onUpdateClick(position: Int)
+        fun onItemClick(purchaseID:String)
+        fun onDeleteClick(purchaseID:String)
+        fun onUpdateClick(purchaseID:String,status:String)
     }
 
 
@@ -29,25 +28,25 @@ class PurchaseAdapter(val context: Context, private val purchaseList :ArrayList<
     class myViewHolder(itemView:View,listener: onItemClickListener):RecyclerView.ViewHolder(itemView){
         val tvPurchaseID: TextView = itemView.findViewById(R.id.tf_PurchaseID)
         val tvProductName: TextView = itemView.findViewById(R.id.tf_ProductName)
-        val tvQty: TextView = itemView.findViewById(R.id.tf_Qty)
-        val tvStatus: TextView = itemView.findViewById(R.id.tf_Status)
+        val tvrequestDate: TextView = itemView.findViewById(R.id.tf_requestDate)
+        val tvStatus :TextView = itemView.findViewById(R.id.tf_Status)
         val imgDelete : ImageButton = itemView.findViewById(R.id.imgbtn_delete)
         val imgUpdate : ImageButton=itemView.findViewById(R.id.imgbtn_update)
         init{
             itemView.setOnClickListener {
                 val position:Int = adapterPosition
                 if(position!=RecyclerView.NO_POSITION){
-                listener.onItemClick(adapterPosition)}
+                listener.onItemClick(tvPurchaseID.text.toString())}
             }
             imgDelete.setOnClickListener{
                 val position:Int = adapterPosition
                 if(position!=RecyclerView.NO_POSITION){
-                    listener.onDeleteClick(adapterPosition)}
+                    listener.onDeleteClick(tvPurchaseID.text.toString())}
             }
             imgUpdate.setOnClickListener{
                 val position:Int = adapterPosition
                 if(position!=RecyclerView.NO_POSITION){
-                    listener.onUpdateClick(adapterPosition)
+                    listener.onUpdateClick(tvPurchaseID.text.toString(),tvStatus.text.toString())
                 }
             }
         }
@@ -62,14 +61,22 @@ class PurchaseAdapter(val context: Context, private val purchaseList :ArrayList<
         val currentPurchase = purchaseList[position]
         holder.tvPurchaseID.text = currentPurchase.purchaseID
         holder.tvProductName.text=currentPurchase.purProductName
-        holder.tvQty.text =currentPurchase.purQty
+        holder.tvrequestDate.text =currentPurchase.requestDate
         holder.tvStatus.text =currentPurchase.status
 
         if(currentPurchase.status =="Rejected"){
             holder.tvStatus.setTextColor(Color.parseColor("#FF0000"))
         }
         else if(currentPurchase.status =="Received"){
-            holder.tvStatus.setTextColor(Color.parseColor("228B22"))
+            holder.tvStatus.setTextColor(Color.parseColor("#228B22"))
+        }
+        else if(currentPurchase.status =="Accepted"){
+            holder.tvStatus.setTextColor(Color.parseColor("#0492C2"))
+        }
+        else if(currentPurchase.status =="Delivering"){
+            holder.tvStatus.setTextColor(Color.parseColor("#52307c"))
+        }else {
+            holder.tvStatus.setTextColor(Color.parseColor("#000000"))
         }
     }
 
