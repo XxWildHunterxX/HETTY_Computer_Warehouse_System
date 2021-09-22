@@ -87,7 +87,19 @@
     <string name="choose_joined_date">Choose Joined Date</string>
     <string name="purchase_price">Purchase Price</string>
     <string name="delete_confirmation">Are you sure you want to delete?</string>
+    <string name="update_confirmation">Are you sure you want to update?</string>
+    <string name="create_confirmation">Are you sure you want to create?</string>
     <string name="yes">Yes</string>
+    <string name="no">No</string>
+
+    <string name="total_cost_rm">Total Cost (RM)</string>
+    <string name="cost_per_unit_rm">Cost Per Unit (RM)</string>
+    <string name="accepted_date">Accepted Date</string>
+    <string name="delivered_date">Delivered Date</string>
+    <string name="received">received</string>
+    <string name="default_costPerUnit">0.00</string>
+    <string name="pur_telephone">07-123456</string>
+    <string name="request_date_recycler">Request Date :</string>
     <string name="myFragmentShowProduct">myFragmentShowProduct</string>
     <string name="quantity_to_be_prepared">Quantity to be prepared</string>
     <string name="staff_id">Staff ID</string>

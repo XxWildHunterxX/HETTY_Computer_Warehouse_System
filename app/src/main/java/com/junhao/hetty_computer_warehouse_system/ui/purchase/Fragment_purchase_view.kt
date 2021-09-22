@@ -2,10 +2,12 @@ package com.junhao.hetty_computer_warehouse_system.ui.purchase
 
 import android.app.AlertDialog
 import android.content.DialogInterface
+import android.graphics.Color
 import android.os.Bundle
 import android.renderscript.Sampler
 import android.view.*
 import android.widget.SearchView
+import android.widget.TextView
 import androidx.fragment.app.Fragment
 import android.widget.Toast
 import androidx.core.os.bundleOf
@@ -66,43 +68,43 @@ var database = FirebaseDatabase.getInstance()
                     recyclerView?.adapter = adapter
                     recyclerView.setHasFixedSize(true)
                     adapter.setOnItemClickListener((object:PurchaseAdapter.onItemClickListener{
-                        override fun onItemClick(position: Int) {
-                            val selectedid = purchaseArrayList!![position].purchaseID
+                        override fun onItemClick(purchaseID:String) {
                             val bundle = bundleOf(
-                                Pair("purchaseID", selectedid)
+                                Pair("purchaseID", purchaseID)
                             )
                             Navigation.findNavController(view!!).navigate(
                                 R.id.nav_purchase_view_details,
                                 bundle
                             )
-                            Toast.makeText(activity, "You selected purchaseID : $selectedid", Toast.LENGTH_LONG).show()
+                            Toast.makeText(activity, "You selected purchaseID : $purchaseID", Toast.LENGTH_LONG).show()
                         }
 
-                        override fun onDeleteClick(position: Int) {
+                        override fun onDeleteClick(purchaseID:String) {
                             AlertDialog.Builder(requireContext()).also{
                                 it.setTitle(getString(R.string.delete_confirmation))
                                 it.setPositiveButton(getString(R.string.yes),DialogInterface.OnClickListener{dialog,id ->
-                                    deletePurchase(purchaseArrayList!![position].purchaseID!!)
-                                    purchaseArrayList!!.removeAt(position)
-                                    adapter.notifyItemChanged(position)
+                                    deletePurchase(purchaseID)
+                                    purchaseRecycleList.adapter!!.notifyDataSetChanged()
 
                             })
-                                it.setNegativeButton("No",DialogInterface.OnClickListener{dialog,id->
+                                it.setNegativeButton(getString(R.string.no),DialogInterface.OnClickListener{dialog,id->
                                     Toast.makeText(activity, "Cancelled", Toast.LENGTH_LONG).show()
                                 })
                             }.create().show()
 
                         }
-                        override fun onUpdateClick(position: Int) {
-                            val purchaseID = purchaseArrayList!![position].purchaseID!!
-                            val bundle = bundleOf(
-                                Pair("purchaseID", purchaseID)
-                            )
-
-                            Navigation.findNavController(view!!).navigate(
-                                R.id.nav_purchase_update,
-                                bundle
-                            )
+                        override fun onUpdateClick(purchaseID:String,status:String) {
+                            if(status != "Pending"){
+                                Toast.makeText(activity, "Only Purchase Order In Pending status is able to edit", Toast.LENGTH_LONG).show()
+                            }else {
+                                val bundle = bundleOf(
+                                    Pair("purchaseID", purchaseID)
+                                )
+                                Navigation.findNavController(view!!).navigate(
+                                    R.id.nav_purchase_update,
+                                    bundle
+                                )
+                            }
                         }
                     }))
                 }
@@ -142,6 +144,7 @@ var database = FirebaseDatabase.getInstance()
                 } else {
                     tempArrayList!!.clear()
                     tempArrayList?.addAll(purchaseArrayList!!)
+
                     purchaseRecycleList.adapter!!.notifyDataSetChanged()
                 }
                 return true
@@ -155,6 +158,7 @@ var database = FirebaseDatabase.getInstance()
                 || it.purProductName!!.lowercase(Locale.getDefault()).contains(str)
                 || it.status!!.lowercase(Locale.getDefault()).contains(str)
                 || it.supplierName!!.lowercase(Locale.getDefault()).contains(str)
+                || it.requestDate!!.lowercase(Locale.getDefault()).contains(str)
             ) {
                 tempArrayList?.add(it)
             }
@@ -162,5 +166,4 @@ var database = FirebaseDatabase.getInstance()
         purchaseRecycleList.adapter!!.notifyDataSetChanged()
 
     }
-
 }

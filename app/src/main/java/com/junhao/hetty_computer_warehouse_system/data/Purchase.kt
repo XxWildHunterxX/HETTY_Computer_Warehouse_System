@@ -4,11 +4,15 @@ data class Purchase(
     val purchaseID :String?="",
     val purProductName: String?="",
     val purQty: String?="" ,
-    val purPrice : String?="",
+    val costPerUnit : String?="",
+    val totalCost:String?="",
     val supplierName:String?="",
     val supplierAddress:String?="",
     val supplierContact:String?="",
     val requestDate:String?="",
+    val acceptDate:String?="",
+    val rejectDate:String?="",
+    val deliverDate:String?="",
     val receivedDate:String?="",
     val status:String?=""
 )
