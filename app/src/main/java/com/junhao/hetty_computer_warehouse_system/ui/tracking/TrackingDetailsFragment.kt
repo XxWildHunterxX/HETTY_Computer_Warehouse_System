@@ -307,6 +307,8 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
                         UpdateCurrentLocationToTrackDetails(originLocation)
 
+                        addPolyLine(originLocation, destinationLocation)
+
                         for( no in 0..2){
 
                             mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
@@ -488,6 +490,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
 
                         refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseTrackDetail").orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener{
+                            @SuppressLint("SimpleDateFormat")
                             override fun onDataChange(snapshot6: DataSnapshot) {
                                 for(childSnapshot in snapshot6.children){
                                     trackDetailsID  = childSnapshot.key.toString()
