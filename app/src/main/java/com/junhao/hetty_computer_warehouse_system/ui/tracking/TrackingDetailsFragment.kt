@@ -1,30 +1,36 @@
 package com.junhao.hetty_computer_warehouse_system.ui.tracking
 
+import android.Manifest
 import android.annotation.SuppressLint
-import android.app.Notification
 import android.content.Context
+import android.content.Context.LOCATION_SERVICE
+import android.content.Intent
 import android.content.SharedPreferences
-import android.content.pm.ApplicationInfo
 import android.content.pm.PackageManager
 import android.graphics.*
-import android.graphics.BitmapFactory.decodeResource
-import android.os.AsyncTask
+import android.location.Location
+import android.location.LocationManager
 import android.os.Bundle
+import android.os.Looper
+import android.provider.Settings
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.Button
 import android.widget.FrameLayout
 import android.widget.TextView
+import android.widget.Toast
+import androidx.core.app.ActivityCompat
 import androidx.core.content.ContextCompat
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.beust.klaxon.*
+import com.google.android.gms.location.*
 import com.google.android.gms.maps.*
 import com.google.android.gms.maps.OnMapReadyCallback
 import com.google.android.gms.maps.model.*
-import com.google.android.libraries.places.api.Places
 import com.google.firebase.database.DataSnapshot
 import com.google.firebase.database.DatabaseError
 import com.google.firebase.database.FirebaseDatabase
@@ -32,16 +38,21 @@ import com.google.firebase.database.ValueEventListener
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.adapter.TrackingItemDetailsAdapter
 import com.junhao.hetty_computer_warehouse_system.data.TrackingItemDetails
+import kotlinx.android.synthetic.main.fragment_tracking_details.*
 import org.jetbrains.anko.async
 import org.jetbrains.anko.uiThread
 import java.net.URL
+import com.junhao.hetty_computer_warehouse_system.data.TrackingItem
+import java.text.SimpleDateFormat
+import java.util.*
+import kotlin.collections.ArrayList
 
 
 class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     val database = FirebaseDatabase.getInstance()
 
-        private val refWarehouse = database.getReference("Warehouse")
+    private val refWarehouse = database.getReference("Warehouse")
     private lateinit var eventListener : ValueEventListener
     var trackingItemDetailsList : ArrayList<TrackingItemDetails> ? = null
 
@@ -56,6 +67,10 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     //google map
     lateinit var googleMap: GoogleMap
+    lateinit var mFusedLocationClient: FusedLocationProviderClient
+    private val pERMISSION_ID = 42
+
+
 
     companion object {
         var mapFragment : SupportMapFragment?=null
@@ -71,6 +86,24 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_tracking_details, container, false)
 
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+
+        val btnLatestLocation = view.findViewById<Button>(R.id.btnLatestLocation)
+        val btnReachDestination = view.findViewById<Button>(R.id.btnReachDestination)
+
+
+        btnLatestLocation.setOnClickListener{
+
+            getLastLocation()
+
+        }
+
+        btnReachDestination.setOnClickListener{
+
+            reachDestination()
+        }
+
+
 
         return view
     }
@@ -78,6 +111,9 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+
+
 
 
         /* GET VALUE OF SELECTED ITEM */
@@ -99,6 +135,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
         eventListener = refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
             override fun onDataChange(snapshot1: DataSnapshot) {
+                trackingItemDetailsList!!.clear()
 
                 if(snapshot1!!.exists()){
                     for (c in snapshot1.children){
@@ -173,6 +210,8 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
                                             mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
 
+
+
                                         }else{
 
                                             mapFragment = (childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?)!!
@@ -231,6 +270,257 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
 
     }
+    // Get current location
+    @SuppressLint("MissingPermission")
+    private fun getLastLocation() {
+        if (checkPermissions()) {
+            if (isLocationEnabled()) {
+
+                mFusedLocationClient.lastLocation.addOnCompleteListener(requireActivity()) { task ->
+                    val location: Location? = task.result
+                    if (location == null) {
+                        requestNewLocationData()
+                    } else {
+                        originLocation = LatLng(location.latitude, location.longitude)
+                        mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
+
+                        UpdateCurrentLocationToTrackDetails(originLocation)
+
+                    }
+                }
+            } else {
+                Toast.makeText(requireContext(), "Turn on location", Toast.LENGTH_LONG).show()
+
+
+                val intent = Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS)
+                startActivity(intent)
+            }
+        } else {
+            requestPermissions()
+        }
+
+    }
+    @SuppressLint("MissingPermission")
+    private fun requestNewLocationData() {
+        val mLocationRequest = LocationRequest()
+        mLocationRequest.priority = LocationRequest.PRIORITY_HIGH_ACCURACY
+        mLocationRequest.interval = 0
+        mLocationRequest.fastestInterval = 0
+        mLocationRequest.numUpdates = 1
+
+        mFusedLocationClient = LocationServices.getFusedLocationProviderClient(requireActivity())
+        mFusedLocationClient.requestLocationUpdates(
+            mLocationRequest, mLocationCallback,
+            Looper.myLooper()
+        )
+    }
+
+    // If current location could not be located, use last location
+    private val mLocationCallback = object : LocationCallback() {
+        override fun onLocationResult(locationResult: LocationResult) {
+            val mLastLocation: Location = locationResult.lastLocation
+            originLocation = LatLng(mLastLocation.latitude, mLastLocation.longitude)
+
+
+
+        }
+    }
+
+
+    // function to check if GPS is on
+    private fun isLocationEnabled(): Boolean {
+        val locationManager: LocationManager = requireActivity().getSystemService(LOCATION_SERVICE) as LocationManager
+        return locationManager.isProviderEnabled(LocationManager.GPS_PROVIDER) || locationManager.isProviderEnabled(
+            LocationManager.NETWORK_PROVIDER
+        )
+    }
+
+    // Check if location permissions are
+    // granted to the application
+    private fun checkPermissions(): Boolean {
+        if (ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_COARSE_LOCATION) == PackageManager.PERMISSION_GRANTED &&
+            ActivityCompat.checkSelfPermission(requireContext(), Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED
+        ) {
+            return true
+        }
+        return false
+    }
+
+    // Request permissions if not granted before
+    private fun requestPermissions() {
+        ActivityCompat.requestPermissions(
+            requireActivity(),
+            arrayOf(Manifest.permission.ACCESS_COARSE_LOCATION, Manifest.permission.ACCESS_FINE_LOCATION),
+            pERMISSION_ID
+        )
+    }
+
+    // What must happen when permission is granted
+    override fun onRequestPermissionsResult(requestCode: Int, permissions: Array<String>, grantResults: IntArray) {
+        if (requestCode == pERMISSION_ID) {
+            if ((grantResults.isNotEmpty() && grantResults[0] == PackageManager.PERMISSION_GRANTED)) {
+                getLastLocation()
+            }
+        }
+    }
+
+    private fun UpdateCurrentLocationToTrackDetails(originLocation: LatLng) {
+
+        val getTrackingNumber = requireActivity().findViewById<TextView>(R.id.tvTrackingNumber)
+        val info: String = getTrackingNumber.text.toString()
+
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+        var trackDetailsID : String = ""
+
+        refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").child(info).addListenerForSingleValueEvent(object : ValueEventListener{
+            override fun onDataChange(snapshot4: DataSnapshot) {
+
+                refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseInvStatus").setValue("In Transit")
+
+                refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseTrackDetail").orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener{
+                    @SuppressLint("SimpleDateFormat")
+                    override fun onDataChange(snapshot3: DataSnapshot) {
+                        for(childSnapshot in snapshot3.children){
+                            trackDetailsID  = childSnapshot.key.toString()
+
+                            trackDetailsID = (Integer.parseInt(trackDetailsID) + 1).toString()
+
+                        }
+
+                        val formatter = SimpleDateFormat("dd-MM-yyyy")
+                        val formatterTime = SimpleDateFormat("HH:mm")
+                        val now = Date(System.currentTimeMillis() + 28800 * 1000)
+                        val trackDetailsDate = formatter.format(now)
+                        val trackDetailsTime= formatterTime.format(now)
+
+
+                        val trackDetailsDesc = "In Transit"
+
+
+                        val trackingItemDetailsList = TrackingItemDetails(trackDetailsDate, trackDetailsDesc, trackDetailsTime,
+                            originLocation.latitude, originLocation.longitude,trackDetailsID)
+
+
+                        refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseTrackDetail").child(
+                            trackDetailsID!!
+                        ).setValue(trackingItemDetailsList)
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+
+        })
+
+
+
+
+
+    }
+
+    private fun reachDestination(){
+        val getTrackingNumber = requireActivity().findViewById<TextView>(R.id.tvTrackingNumber)
+        val info: String = getTrackingNumber.text.toString()
+
+        val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+            "sharedPrefs",
+            Context.MODE_PRIVATE
+        )
+
+        val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+        var trackDetailsID : String = ""
+
+        refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").child(info).addListenerForSingleValueEvent(object : ValueEventListener {
+            override fun onDataChange(snapshot5: DataSnapshot) {
+                refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseInvStatus").setValue("Delivered")
+
+                val trackingWarehouseReq = snapshot5.getValue(TrackingItem::class.java)?.warehouseInvReq
+
+                refWarehouse.child(trackingWarehouseReq!!).addListenerForSingleValueEvent(object : ValueEventListener{
+                    override fun onDataChange(snapshot111: DataSnapshot) {
+                        val trackingWarehouseReqLatitude = snapshot111.child("latitude").getValue(Double::class.java)!!
+                        val trackingWarehouseReqLongitude = snapshot111.child("longitude").getValue(Double::class.java)!!
+
+
+                        refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseTrackDetail").orderByKey().limitToLast(1).addListenerForSingleValueEvent(object : ValueEventListener{
+                            override fun onDataChange(snapshot6: DataSnapshot) {
+                                for(childSnapshot in snapshot6.children){
+                                    trackDetailsID  = childSnapshot.key.toString()
+
+                                    trackDetailsID = (Integer.parseInt(trackDetailsID) + 1).toString()
+
+                                }
+
+                                val formatter = SimpleDateFormat("dd-MM-yyyy")
+                                val formatterTime = SimpleDateFormat("HH:mm")
+                                val now = Date(System.currentTimeMillis() + 28800 * 1000)
+                                val trackDetailsDate = formatter.format(now)
+                                val trackDetailsTime= formatterTime.format(now)
+
+
+                                val trackDetailsDesc = "Delivered"
+
+
+                                val trackingItemDetailsList = TrackingItemDetails(trackDetailsDate, trackDetailsDesc, trackDetailsTime,trackingWarehouseReqLatitude!!.toDouble(),trackingWarehouseReqLongitude!!.toDouble(),trackDetailsID)
+
+
+                                refWarehouse?.child(savedWarehouse!!).child("WarehouseInventory").child(info).child("warehouseTrackDetail").child(
+                                    trackDetailsID!!
+                                ).setValue(trackingItemDetailsList)
+
+                                originLocation = LatLng(trackingWarehouseReqLatitude.toDouble(), trackingWarehouseReqLongitude!!.toDouble())
+                                mapFragment!!.getMapAsync(this@TrackingDetailsFragment)
+
+
+
+                            }
+
+                            override fun onCancelled(error: DatabaseError) {
+                                TODO("Not yet implemented")
+                            }
+
+                        })
+
+
+
+
+                    }
+
+                    override fun onCancelled(error: DatabaseError) {
+                        TODO("Not yet implemented")
+                    }
+
+                })
+
+
+            }
+
+            override fun onCancelled(error: DatabaseError) {
+                TODO("Not yet implemented")
+            }
+        })
+
+    }
+
+
 
     override fun onMapReady(p0: GoogleMap?) {
 

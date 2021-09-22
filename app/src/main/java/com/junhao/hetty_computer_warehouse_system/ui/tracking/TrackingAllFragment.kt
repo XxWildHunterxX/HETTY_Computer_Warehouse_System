@@ -73,6 +73,7 @@ class TrackingAllFragment : Fragment() {
 
                                     for (w in snapshot2.children){
                                         val warehouseBarCode = w.child("warehouseInvProdBarcode").getValue(String::class.java)
+
                                         if(warehouseBarCode == barCode){
 
                                             val trackingItem = c.getValue(TrackingItem::class.java)

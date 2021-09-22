@@ -138,6 +138,11 @@
         android:label="Search Sales Product"
         tools:layout="@layout/fragment_search_sales_product" />
     <fragment
+        android:id="@+id/nav_showNotification"
+        android:name="com.junhao.hetty_computer_warehouse_system.ui.home.ShowNotification"
+        android:label="Notification"
+        tools:layout="@layout/fragment_show_notification" />
+    <fragment
         android:id="@+id/nav_updateSalesOrder"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.sales.UpdateSalesOrder"
         android:label="Sales Order Details"

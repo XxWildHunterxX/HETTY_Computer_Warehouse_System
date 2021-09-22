@@ -1,6 +1,8 @@
 package com.junhao.hetty_computer_warehouse_system.adapter
 
+import android.annotation.SuppressLint
 import android.content.Context
+import android.media.Image
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -40,15 +42,33 @@ class TrackingItemAdapter(val context: Context, private val TrackingItemList: Ar
         private val trackingItemInvNumber : TextView = itemView.findViewById(R.id.tvTrackingItemNumber)
         private val trackingItemInvStatus : TextView = itemView.findViewById(R.id.tvTrackingItemStatus)
 
+        /*
+        //For NOTIFICATION
+        private val notificationItemImage : ImageView = itemView.findViewById(R.id.imgNotification)
+        private val notificationItemName : TextView = itemView.findViewById(R.id.tvNotificationItemName)
+        private val notificationItemQty : TextView = itemView.findViewById(R.id.tvNotificationItemQty)
+        private val notificationItemMsg : TextView = itemView.findViewById(R.id.tvNotificationMsg)
 
+
+         */
+
+        @SuppressLint("SetTextI18n")
         fun bind(ti: TrackingItem, context: Context) {
             var imageUri : String? = null
             imageUri = ti.productImg
-            Picasso.get().load(imageUri).into(trackingItemImage);
+            Picasso.get().load(imageUri).into(trackingItemImage)
             trackingItemName?.text = ti.productName
             trackingItemInvNumber?.text = ti.warehouseInvNumber
             trackingItemInvStatus?.text = ti.warehouseInvStatus
 
+            /*
+            //FOR NOTIFICATION
+            Picasso.get().load(imageUri).into(notificationItemImage)
+            notificationItemName?.text = ti.productName
+            notificationItemQty?.text = ti.warehouseInvQty
+            notificationItemMsg?.text = ti.warehouseInvReq + " request the following item: "
+
+             */
         }
 
         init{
