@@ -563,32 +563,34 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                                 var nextDigit = 0
                                                 var rackNumber : String? = null
                                                 var found = 0
-                                                loop@for(i in 1 until 100){
-                                                    nextDigit += 1
-                                                    if(nextDigit < 10){
-                                                        rackNumber = nextLetter + "0" + nextDigit
-                                                    }else{
-
-                                                        rackNumber = nextLetter + nextDigit
-                                                    }
-
-
-                                                    if(found == 1)break@loop
-
-
-                                                }
-
-
+                                                var count = 0
                                                     refWarehouse.child(trackingWarehouseReq).child("product").addValueEventListener(object : ValueEventListener{
                                                         override fun onDataChange(snapshot9: DataSnapshot) {
                                                             if(snapshot9.exists()){
+                                                                loop@for(i in 1 until 100){
                                                                 loop2@for (z in snapshot9.children){
 
                                                                     val existRack = z.child("productRack").getValue(String::class.java)
 
+                                                                    if(count ==0){
+                                                                        nextDigit += 1
+                                                                        if(nextDigit < 10){
+                                                                            rackNumber = nextLetter + "0" + nextDigit
+                                                                            if(rackNumber != existRack){
+                                                                                found = 1
+                                                                                break@loop2
+                                                                            }
 
-
-                                                                    if(rackNumber != existRack){
+                                                                        }else{
+                                                                            rackNumber = nextLetter + nextDigit
+                                                                            if(rackNumber != existRack){
+                                                                                found = 1
+                                                                                break@loop2
+                                                                            }
+                                                                        }
+                                                                    }
+                                                                }
+                                                                    if(found == 1){
                                                                         productRack = rackNumber
 
                                                                         val productList = Product(productName, trackingWarehouseBarcode, productRack,productType,productPrice,productQuantity,productAlertQty,productAlertChk,productImg)
@@ -597,6 +599,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                                                             override fun onDataChange(snapshot: DataSnapshot) {
 
                                                                                 refWarehouse?.child(trackingWarehouseReq).child("product").child(productName).setValue(productList)
+
                                                                             }
 
                                                                             override fun onCancelled(error: DatabaseError) {
@@ -604,12 +607,10 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                                                             }
 
                                                                         })
-
-                                                                        found = 1
-                                                                        break@loop2
+                                                                        count=1
+                                                                        found = 0
+                                                                        break@loop
                                                                     }
-
-
                                                                 }
                                                             }
                                                         }
@@ -618,18 +619,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                                             TODO("Not yet implemented")
                                                         }
 
-
                                                     })
-
-
-
-
-
-
-
-
-
-
                                             }
                                         }
 

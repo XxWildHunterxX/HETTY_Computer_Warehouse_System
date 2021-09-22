@@ -304,7 +304,7 @@ class SelectReport : Fragment() {
         val reportItem = Table(columnReport)
         var totalPrice = 0.00
         var totalQty = 0
-        var totalSales = 1
+        var totalSales = 0
 
 
         for (i in salesorderList!!){
