@@ -160,7 +160,7 @@ class SentWarehouseProduct : Fragment() {
 
                         val formatter = SimpleDateFormat("dd-MM-yyyy")
                         val formatterTime = SimpleDateFormat("HH:mm")
-                        val now = Date(System.currentTimeMillis() + 28800 * 1000)
+                        val now = Date(System.currentTimeMillis())
                         val trackDate = formatter.format(now)
                         val trackDesc = "Pending"
                         val trackNoOrder = "1"

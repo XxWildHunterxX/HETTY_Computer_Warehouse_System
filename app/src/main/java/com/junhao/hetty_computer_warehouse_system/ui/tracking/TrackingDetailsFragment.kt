@@ -304,16 +304,18 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                         originLongitude = location.longitude
                         originLocation = LatLng(originLatitude, originLongitude)
 
-
                         UpdateCurrentLocationToTrackDetails(originLocation)
 
-                        addPolyLine(originLocation, destinationLocation)
-
-                        for( no in 0..2){
-
+                        //addPolyLine(originLocation, destinationLocation)
+                        for(i in 1..20){
+                            mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                            mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
+                            googleMap.clear()
                             mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
                             mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
                         }
+
+
                     }
                 }
             } else {
@@ -423,7 +425,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
                         val formatter = SimpleDateFormat("dd-MM-yyyy")
                         val formatterTime = SimpleDateFormat("HH:mm")
-                        val now = Date(System.currentTimeMillis() + 28800 * 1000)
+                        val now = Date(System.currentTimeMillis())
                         val trackDetailsDate = formatter.format(now)
                         val trackDetailsTime= formatterTime.format(now)
 
@@ -501,7 +503,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
                                 val formatter = SimpleDateFormat("dd-MM-yyyy")
                                 val formatterTime = SimpleDateFormat("HH:mm")
-                                val now = Date(System.currentTimeMillis() + 28800 * 1000)
+                                val now = Date(System.currentTimeMillis())
                                 val trackDetailsDate = formatter.format(now)
                                 val trackDetailsTime= formatterTime.format(now)
 
@@ -526,17 +528,16 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                                 originLocation = LatLng(originLatitude, originLongitude )
                                 googleMap!!.addPolyline(options).remove()
 
-                                addPolyLine(originLocation, destinationLocation)
+                               // addPolyLine(originLocation, destinationLocation)
 
 
-
-
-                                for( no in 0..2){
-
+                                for(i in 1..20){
+                                    mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
+                                    mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
+                                    googleMap.clear()
                                     mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
                                     mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
                                 }
-
 
 
                             }
