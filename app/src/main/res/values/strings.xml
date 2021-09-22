@@ -89,6 +89,7 @@
     <string name="delete_confirmation">Are you sure you want to delete?</string>
     <string name="update_confirmation">Are you sure you want to update?</string>
     <string name="create_confirmation">Are you sure you want to create?</string>
+    <string name="received_confirmation">Are you sure you want to receive?</string>
     <string name="yes">Yes</string>
     <string name="no">No</string>
 
