@@ -1,5 +1,6 @@
 package com.junhao.hetty_computer_warehouse_system.ui.home
 
+import android.annotation.SuppressLint
 import android.content.ActivityNotFoundException
 import android.content.Context
 import android.content.Intent
@@ -42,6 +43,7 @@ import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
 import kotlinx.coroutines.withContext
+import org.jetbrains.anko.activityManager
 import java.lang.Exception
 
 
@@ -144,9 +146,15 @@ class HomePage : AppCompatActivity() {
 
     }
 
-
     override fun onOptionsItemSelected(item: MenuItem): Boolean {
 
+        when(item.itemId){
+            R.id.action_settings -> {
+                val navControl = findNavController(R.id.nav_host_fragment_content_home_page2)
+                navControl.navigateUp()
+                navControl.navigate(R.id.nav_showNotification)
+            }
+        }
         return super.onOptionsItemSelected(item)
     }
 
