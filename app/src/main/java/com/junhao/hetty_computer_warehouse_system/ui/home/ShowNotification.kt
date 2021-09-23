@@ -49,7 +49,7 @@ class ShowNotification : Fragment() {
         // Inflate the layout for this fragment
         val view = inflater.inflate(R.layout.fragment_show_notification, container, false)
 
-
+        (activity as HomePage?)?.hideFloatingActionButton()
         notificationItemList = arrayListOf<TrackingItem>()
 
 
