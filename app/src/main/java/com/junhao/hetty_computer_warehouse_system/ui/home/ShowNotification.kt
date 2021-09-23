@@ -139,9 +139,16 @@ class ShowNotification : Fragment() {
 
                                                                     if(currentBarCode == currentWarehouseBarCode && currentWarehouseInvNumber == warehouseInvNumber) {
 
+                                                                        val updateStatus = mapOf<String,String>(
+                                                                            "warehouseInvStatus" to "Prepared"
+                                                                        )
 
-                                                                        exist2.ref.child("warehouseInvStatus").setValue("Prepared")
-                                                                        exist1.ref.child("productQuantity").setValue(calculateQty.toString())
+                                                                        exist2.ref.updateChildren(updateStatus)
+
+                                                                        val updateQty = mapOf<String,String>(
+                                                                            "productQuantity" to calculateQty.toString()
+                                                                        )
+                                                                        exist1.ref.updateChildren(updateQty)
 
 
                                                                         Toast.makeText(activity, "Request Accepted", Toast.LENGTH_LONG)
@@ -156,8 +163,7 @@ class ShowNotification : Fragment() {
                                                                             @RequiresApi(Build.VERSION_CODES.O)
                                                                             override fun onDataChange(snapshot3: DataSnapshot) {
                                                                                 for(childSnapshot in snapshot3.children){
-                                                                                    trackDetailsID  =
-                                                                                        childSnapshot.key.toString()
+                                                                                    trackDetailsID  = childSnapshot.key!!
 
 
                                                                                     if(trackDetailsID == "1"){
@@ -179,7 +185,7 @@ class ShowNotification : Fragment() {
                                                                                 val trackDetailsDesc = "Prepared"
 
 
-                                                                                val trackingItemDetailsList = TrackingItemDetails(trackDetailsDate, trackDetailsDesc, trackDetailsTime,trackDetailsLatitude,trackDetailsLongitude,trackDetailsID)
+                                                                                val trackingItemDetailsList = TrackingItemDetails(trackDetailsDate, trackDetailsDesc, trackDetailsTime,trackDetailsLatitude,trackDetailsLongitude,"2")
 
 
                                                                                 exist2.ref.child("warehouseTrackDetail").child(

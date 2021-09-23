@@ -49,8 +49,6 @@ class Fragment_Add_Item : Fragment() {
             Context.MODE_PRIVATE)
         val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
 
-        Toast.makeText(activity, savedWarehouse.toString(), Toast.LENGTH_LONG).show()
-
         myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("product")
 
         val patternBarcode = Regex("^123456\\d{4}\$")
