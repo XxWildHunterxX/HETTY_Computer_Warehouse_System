@@ -226,7 +226,7 @@ class Fragment_purchase_view_details : Fragment() {
                                 query.addListenerForSingleValueEvent(object:ValueEventListener{
                                     override fun onDataChange(snapshot: DataSnapshot) {
                                         for (child in snapshot.children){
-                                            child.ref.child("productQuantity").setValue(totalQty.toString)
+                                            child.ref.child("productQuantity").setValue(totalQty)
                                         }
                                     }
                                     override fun onCancelled(error: DatabaseError) {
