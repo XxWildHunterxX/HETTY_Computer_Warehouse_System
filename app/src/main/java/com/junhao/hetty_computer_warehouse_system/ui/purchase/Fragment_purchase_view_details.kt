@@ -131,7 +131,7 @@ class Fragment_purchase_view_details : Fragment() {
                     tv_receivedDate.isVisible = false
                     tvdeliverDate.isVisible = false
                     tv_deliverDate.isVisible = false
-                    tv_acceptDate.text = getString(R.string.request_date)
+                    tv_acceptDate.text = "Rejected Date"
                     tvacceptDate.text = it.child("rejectDate").value.toString()
                 } else if (it.child("status").value.toString() == "Accepted") {
                     tvreceivedDate.isVisible = false
@@ -217,10 +217,7 @@ class Fragment_purchase_view_details : Fragment() {
                             if (it.exists()) {
 
                             val orgQty = it.child("productQuantity").value.toString()
-                                Toast.makeText(
-                                    activity,
-                                    "quantity is : $orgQty", Toast.LENGTH_LONG
-                                ).show()
+
                             var totalQty = ((orgQty.toInt()) + (purchase.purQty!!).toInt()).toString()
                             val query: Query = proRef.orderByChild("productName").equalTo(purchase.purProductName!!)
                                 query.addListenerForSingleValueEvent(object:ValueEventListener{

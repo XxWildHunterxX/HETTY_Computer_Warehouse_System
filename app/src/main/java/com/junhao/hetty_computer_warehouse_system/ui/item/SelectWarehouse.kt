@@ -7,15 +7,19 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
+import androidx.cardview.widget.CardView
 import androidx.core.os.bundleOf
 import androidx.navigation.Navigation
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
 import kotlinx.android.synthetic.main.fragment_select_warehouse.view.*
+import org.w3c.dom.Text
 
 
 class SelectWarehouse : Fragment() {
 
+    var getSelectedWarehouse = ""
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -31,19 +35,18 @@ class SelectWarehouse : Fragment() {
         val savedWarehouse = sharedPreferences.getString("getWarehouse",null)
 
         if(savedWarehouse =="warehouse1"){
-            view.btnUp.text = "Warehouse 2"
-            view.btnDown.text = "Warehouse 3"
+            view.tvUp.text = "Warehouse 2"
+            view.tvDown.text = "Warehouse 3"
         }else if(savedWarehouse =="warehouse2"){
-            view.btnUp.text = "Warehouse 1"
-            view.btnDown.text = "Warehouse 3"
+            view.tvUp.text = "Warehouse 1"
+            view.tvDown.text = "Warehouse 3"
         }else{
-            view.btnUp.text = "Warehouse 1"
-            view.btnDown.text = "Warehouse 2"
+            view.tvUp.text = "Warehouse 1"
+            view.tvDown.text = "Warehouse 2"
         }
 
-        var getSelectedWarehouse = ""
-        view.btnUp.setOnClickListener {
-            if(view.btnUp.text == "Warehouse 1"){
+        view.cvUpWarehouse.setOnClickListener {
+            if(view.tvUp.text == "Warehouse 1"){
                 getSelectedWarehouse = "warehouse1"
             }else{
                 //2
@@ -65,8 +68,8 @@ class SelectWarehouse : Fragment() {
 
         }
 
-        view.btnDown.setOnClickListener {
-            if(view.btnDown.text == "Warehouse 3"){
+        view.cvDownWarehouse.setOnClickListener {
+            if(view.tvDown.text == "Warehouse 3"){
                 getSelectedWarehouse = "warehouse3"
             }else{
                 //2
@@ -92,5 +95,7 @@ class SelectWarehouse : Fragment() {
 
         return view
     }
+
+
 
 }

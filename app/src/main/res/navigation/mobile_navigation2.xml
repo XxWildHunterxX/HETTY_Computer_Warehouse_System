@@ -8,7 +8,7 @@
     <fragment
         android:id="@+id/nav_settings"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.login.SettingsFragment"
-        android:label="Settings" />
+        android:label="Account Settings" />
     <fragment
         android:id="@+id/nav_purchaseOrders"
         android:name="com.junhao.hetty_computer_warehouse_system.ui.purchase.Fragment_purchase_view"

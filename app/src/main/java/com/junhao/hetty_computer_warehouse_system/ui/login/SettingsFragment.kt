@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.*
+import androidx.cardview.widget.CardView
 import androidx.fragment.app.Fragment
 import androidx.lifecycle.Observer
 import androidx.lifecycle.ViewModelProvider
@@ -33,22 +34,6 @@ lateinit var pd : ProgressDialog
         auth = FirebaseAuth.getInstance()
 
         pd = ProgressDialog(activity)
-
-        val logout = view.findViewById<Button>(R.id.btnLogOut)
-
-        view.btnChangePassword.setOnClickListener {
-pd.setMessage("Changing Password")
-            showChangePasswordDialog()
-        }
-
-        logout.setOnClickListener {
-            pd.setMessage("Logging Out")
-            pd.show()
-            auth.signOut()
-            val intent = Intent(activity, LoginPage::class.java)
-
-            startActivity(intent)
-        }
 
 
         return view
@@ -131,6 +116,28 @@ pd.setMessage("Changing Password")
                 Toast.LENGTH_SHORT
             ).show()
         }
+
+    }
+
+    override fun onStart() {
+        super.onStart()
+
+        val cvChangePassword = view?.findViewById<CardView>(R.id.changePasswordCV)
+        val cvLogOut = view?.findViewById<CardView>(R.id.logOutCV)
+
+        cvChangePassword?.setOnClickListener {
+            pd.setMessage("Changing Password")
+            showChangePasswordDialog()
+        }
+        cvLogOut?.setOnClickListener {
+            pd.setMessage("Logging Out")
+            pd.show()
+            auth.signOut()
+            val intent = Intent(activity, LoginPage::class.java)
+
+            startActivity(intent)
+        }
+
 
     }
 

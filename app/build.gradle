@@ -11,7 +11,7 @@ android {
 
     defaultConfig {
         applicationId "com.junhao.hetty_computer_warehouse_system"
-        minSdk 19
+        minSdk 26
         targetSdk 30
         versionCode 1
         versionName "1.0"
@@ -43,6 +43,7 @@ android {
         viewBinding true
         dataBinding true
     }
+
 }
 dependencies {
 
