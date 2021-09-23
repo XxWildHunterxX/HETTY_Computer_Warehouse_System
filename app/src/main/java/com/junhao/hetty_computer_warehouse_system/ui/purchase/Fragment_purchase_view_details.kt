@@ -35,7 +35,7 @@ import androidx.core.content.ContextCompat
 import androidx.core.os.bundleOf
 import androidx.core.view.isVisible
 import androidx.navigation.Navigation
-import com.google.firebase.database.FirebaseDatabase
+import com.google.firebase.database.*
 import com.junhao.hetty_computer_warehouse_system.R
 import com.junhao.hetty_computer_warehouse_system.data.Purchase
 import com.junhao.hetty_computer_warehouse_system.ui.home.HomePage
@@ -72,6 +72,7 @@ class Fragment_purchase_view_details : Fragment() {
         val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
 
         val database = FirebaseDatabase.getInstance()
+        val proRef = database.getReference("Warehouse").child(savedWarehouse!!).child("product")
         val myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("Purchase")
         val purchaseID = arguments?.getString("purchaseID")
         if (checkPermission()) {
@@ -172,7 +173,6 @@ class Fragment_purchase_view_details : Fragment() {
                 R.id.nav_purchase_update,
                 bundle
             )
-
         }
 
         view.btn_delete.setOnClickListener {
@@ -202,6 +202,7 @@ class Fragment_purchase_view_details : Fragment() {
         }
 
         view.btnReceive.setOnClickListener {
+
             AlertDialog.Builder(requireContext()).also {
                 it.setTitle(getString(R.string.received_confirmation))
                 it.setPositiveButton(getString(R.string.yes),
@@ -210,6 +211,28 @@ class Fragment_purchase_view_details : Fragment() {
                         purchase.status = "Received"
                         purchase.receivedDate = DateFormat.getDateTimeInstance().format(Date())
                         myRef.child(purchaseID!!).setValue(purchase)
+
+
+                        proRef.child(purchase.purProductName!!).get().addOnSuccessListener {
+                            if (it.exists()) {
+
+                            val orgQty = it.child("productQuantity").value.toString()
+                                Toast.makeText(
+                                    activity,
+                                    "quantity is : $orgQty", Toast.LENGTH_LONG
+                                ).show()
+                            var totalQty = ((orgQty.toInt()) + (purchase.purQty!!).toInt()).toString()
+                            val query: Query = proRef.orderByChild("productName").equalTo(purchase.purProductName!!)
+                                query.addListenerForSingleValueEvent(object:ValueEventListener{
+                                    override fun onDataChange(snapshot: DataSnapshot) {
+                                        for (child in snapshot.children){
+                                            child.ref.child("productQuantity").setValue(totalQty.toString)
+                                        }
+                                    }
+                                    override fun onCancelled(error: DatabaseError) {
+                                    }
+                                })}
+                            }
                         receivedPurchase()
                         Navigation.findNavController(view!!).navigate(
                             R.id.nav_purchaseOrders
@@ -399,7 +422,7 @@ class Fragment_purchase_view_details : Fragment() {
 
         document.close()
 
-        Toast.makeText(context, "Successfully Generated!", Toast.LENGTH_SHORT).show()
+        Toast.makeText(context, "Invoice Generated!", Toast.LENGTH_SHORT).show()
     }
 
     private fun checkPermission(): Boolean {
