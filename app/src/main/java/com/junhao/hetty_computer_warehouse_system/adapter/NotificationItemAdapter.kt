@@ -22,6 +22,8 @@ class NotificationItemAdapter(val context: Context, private val NotificationItem
 
         fun onAcceptClick(productName: String, warehouseInvQty: String, warehouseInvNumber:String)
 
+        fun onDeclineClick(warehouseInvNumber:String)
+
 
     }
 
@@ -43,6 +45,7 @@ class NotificationItemAdapter(val context: Context, private val NotificationItem
             private var notificationItemInvNumber = ""
 
             private val notificationAcceptButton : Button = itemView.findViewById(R.id.btnNotificationAccept)
+            private val notificationDeclineButton : Button = itemView.findViewById(R.id.btnNotificationDecline)
 
 
 
@@ -75,6 +78,15 @@ class NotificationItemAdapter(val context: Context, private val NotificationItem
                     }
                 }
 
+                notificationDeclineButton.setOnClickListener {
+                    if (listener != null) {
+                        val position: Int = adapterPosition
+                        if (position != RecyclerView.NO_POSITION) {
+                            listener.onDeclineClick(notificationItemInvNumber)
+                        }
+
+                    }
+                }
 
 
 
