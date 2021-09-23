@@ -251,6 +251,10 @@ class ShowNotification : Fragment() {
                                                     Toast.makeText(activity, "Request Declined", Toast.LENGTH_SHORT)
                                                         .show()
 
+                                                    Navigation.findNavController(view).navigate(
+                                                        R.id.nav_showNotification
+                                                    )
+
                                                 }
 
                                                 override fun onCancelled(error: DatabaseError) {
