@@ -41,7 +41,7 @@
                 android:layout_marginStart="5dp"
                 android:text="Tan Jun Hao"
                 app:layout_constraintBottom_toBottomOf="@+id/textView5"
-                app:layout_constraintEnd_toStartOf="@+id/imgDeleteBtn"
+                app:layout_constraintEnd_toStartOf="@+id/btnLocationRack"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toEndOf="@+id/textView5"
                 app:layout_constraintTop_toTopOf="@+id/textView5"
