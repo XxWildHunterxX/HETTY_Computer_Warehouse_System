@@ -39,7 +39,7 @@ class ShowNotification : Fragment() {
     private val refWarehouse = database.getReference("Warehouse")
     var notificationItemList : ArrayList<TrackingItem> ? = null
     private lateinit var eventListener : ValueEventListener
-    private lateinit var eventListener2 : ValueEventListener
+    //private lateinit var eventListener2 : ValueEventListener
     var trackDetailsID: String = ""
 
     override fun onCreateView(
@@ -60,7 +60,7 @@ class ShowNotification : Fragment() {
 
         val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
 
-        refWarehouse?.child(savedWarehouse!!).child("product").addListenerForSingleValueEvent(object : ValueEventListener {
+        eventListener = refWarehouse?.child(savedWarehouse!!).child("product").addValueEventListener(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented")
             }
@@ -71,7 +71,7 @@ class ShowNotification : Fragment() {
 
                     for (c in snapshot.children){
                         val barCode = c.child("productBarcode").getValue(String::class.java)
-                      refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addListenerForSingleValueEvent(object : ValueEventListener{
+                        refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addListenerForSingleValueEvent(object : ValueEventListener{
                             override fun onDataChange(snapshot2: DataSnapshot) {
                                 if(snapshot2!!.exists()) {
 
@@ -300,12 +300,12 @@ class ShowNotification : Fragment() {
 
         return view
     }
-//    override fun onStop() {
-//        super.onStop()
-//        Log.d("TAG", "onStopShow")
-//
-//        refWarehouse.child("product").removeEventListener(eventListener)
-//        refWarehouse.child("WarehouseInventory").removeEventListener(eventListener2)
-//    }
+    override fun onStop() {
+        super.onStop()
+        Log.d("TAG","onStopShow")
+
+        refWarehouse.child("product").removeEventListener(eventListener)
+        //refWarehouse.child("WarehouseInventory").removeEventListener(eventListener2)
+    }
 
 }

@@ -3,7 +3,6 @@ package com.junhao.hetty_computer_warehouse_system.ui.tracking
 import android.content.Context
 import android.content.SharedPreferences
 import android.os.Bundle
-import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -29,7 +28,7 @@ class TrackingInTransitFragment : Fragment() {
 
     var trackingItemList : ArrayList<TrackingItem> ? = null
     private lateinit var eventListener : ValueEventListener
-    private lateinit var eventListener2 : ValueEventListener
+
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -67,7 +66,7 @@ class TrackingInTransitFragment : Fragment() {
                     for (c in snapshot.children){
                         val barCode = c.child("productBarcode").getValue(String::class.java)
 
-                        eventListener2 = refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
+                        refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
                             override fun onDataChange(snapshot2: DataSnapshot) {
                                 if(snapshot2!!.exists()) {
 
@@ -154,12 +153,6 @@ class TrackingInTransitFragment : Fragment() {
 
         return view
     }
-    override fun onStop() {
-        super.onStop()
-        Log.d("TAG","onStopShow")
 
-        refWarehouse.child("product").removeEventListener(eventListener)
-        refWarehouse.child("WarehouseInventory").removeEventListener(eventListener2)
-    }
 
 }

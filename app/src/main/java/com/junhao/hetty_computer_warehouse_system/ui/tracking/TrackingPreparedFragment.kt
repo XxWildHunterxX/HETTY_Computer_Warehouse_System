@@ -153,13 +153,6 @@ class TrackingPreparedFragment : Fragment() {
 
         return view
     }
-    override fun onStop() {
-        super.onStop()
-        Log.d("TAG","onStopShow")
-
-        refWarehouse.child("product").removeEventListener(eventListener)
-        refWarehouse.child("WarehouseInventory").removeEventListener(eventListener2)
-    }
 
 
 }
