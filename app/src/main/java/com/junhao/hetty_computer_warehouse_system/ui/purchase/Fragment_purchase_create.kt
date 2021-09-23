@@ -127,8 +127,7 @@ class Fragment_purchase_create : Fragment() {
                     it.setPositiveButton(getString(R.string.yes),
                         DialogInterface.OnClickListener{ dialog, id ->
                             var randomNum = ((1000..9000).random()).toString()
-                            //var purchaseID = "P$randomNum"
-                            var purchaseID = "P2519"
+                            var purchaseID = "P$randomNum"
                             myRef.child("$purchaseID").get().addOnSuccessListener {
                                 if (it.exists()) {
                                     randomNum = ((1000..9000).random()).toString()
