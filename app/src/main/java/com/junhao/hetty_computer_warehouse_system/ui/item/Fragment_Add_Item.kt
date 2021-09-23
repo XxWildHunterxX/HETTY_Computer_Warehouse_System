@@ -51,7 +51,16 @@ class Fragment_Add_Item : Fragment() {
 
         myRef = database.getReference("Warehouse").child(savedWarehouse!!).child("product")
 
-        val patternBarcode = Regex("^123456\\d{4}\$")
+        val patternBarcode :Regex
+
+        if(savedWarehouse == "warehouse1"){
+            patternBarcode = Regex("^123456\\d{4}\$")
+        }else if(savedWarehouse =="warehouse2"){
+            patternBarcode = Regex("^223456\\d{4}\$")
+        }else{
+            patternBarcode = Regex("^323456\\d{4}\$")
+        }
+
         val patternRack = Regex("^[ABC]-\\d{2}\$")
 
         view.addImgProduct.setOnClickListener {

@@ -306,7 +306,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
                         UpdateCurrentLocationToTrackDetails(originLocation)
 
                         //addPolyLine(originLocation, destinationLocation)
-                        for(i in 1..20){
+                        for(i in 1..50){
                             mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
                             mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
                             googleMap.clear()
@@ -531,7 +531,7 @@ class TrackingDetailsFragment : Fragment(), OnMapReadyCallback {
 
 
 
-                                for(i in 1..20){
+                                for(i in 1..50){
                                     mapFragment = childFragmentManager.findFragmentById(R.id.map) as SupportMapFragment?
                                     mapFragment!!.getMapAsync(this@TrackingDetailsFragment)// googleMap!!.addPolyline(options).remove()
                                     googleMap.clear()
