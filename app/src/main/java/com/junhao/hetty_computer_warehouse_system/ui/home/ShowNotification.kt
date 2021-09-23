@@ -60,7 +60,7 @@ class ShowNotification : Fragment() {
 
         val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
 
-        eventListener = refWarehouse?.child(savedWarehouse!!).child("product").addValueEventListener(object : ValueEventListener {
+        refWarehouse?.child(savedWarehouse!!).child("product").addListenerForSingleValueEvent(object : ValueEventListener {
             override fun onCancelled(p0: DatabaseError) {
                 TODO("not implemented")
             }
@@ -71,7 +71,7 @@ class ShowNotification : Fragment() {
 
                     for (c in snapshot.children){
                         val barCode = c.child("productBarcode").getValue(String::class.java)
-                        eventListener2= refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addValueEventListener(object : ValueEventListener{
+                      refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").addListenerForSingleValueEvent(object : ValueEventListener{
                             override fun onDataChange(snapshot2: DataSnapshot) {
                                 if(snapshot2!!.exists()) {
 
@@ -300,12 +300,12 @@ class ShowNotification : Fragment() {
 
         return view
     }
-    override fun onStop() {
-        super.onStop()
-        Log.d("TAG","onStopShow")
-
-        refWarehouse.child("product").removeEventListener(eventListener)
-        refWarehouse.child("WarehouseInventory").removeEventListener(eventListener2)
-    }
+//    override fun onStop() {
+//        super.onStop()
+//        Log.d("TAG", "onStopShow")
+//
+//        refWarehouse.child("product").removeEventListener(eventListener)
+//        refWarehouse.child("WarehouseInventory").removeEventListener(eventListener2)
+//    }
 
 }
