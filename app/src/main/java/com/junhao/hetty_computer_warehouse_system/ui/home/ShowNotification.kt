@@ -230,6 +230,39 @@ class ShowNotification : Fragment() {
                                             })
 
                                         }
+
+                                        override fun onDeclineClick(warehouseInvNumber: String) {
+
+
+                                            val sharedPreferences: SharedPreferences = requireActivity().getSharedPreferences(
+                                                "sharedPrefs",
+                                                Context.MODE_PRIVATE
+                                            )
+
+                                            val savedWarehouse = sharedPreferences.getString("getWarehouse", null)
+
+                                            val queryRef: Query = refWarehouse.child(savedWarehouse!!).child("WarehouseInventory").child(warehouseInvNumber)
+
+                                            queryRef.addListenerForSingleValueEvent(object : ValueEventListener {
+                                                override fun onDataChange(snapshot: DataSnapshot) {
+
+                                                    snapshot.ref.removeValue()
+
+                                                    Toast.makeText(activity, "Request Declined", Toast.LENGTH_SHORT)
+                                                        .show()
+
+                                                }
+
+                                                override fun onCancelled(error: DatabaseError) {
+                                                    TODO("Not yet implemented")
+                                                }
+
+
+                                            })
+
+
+
+                                        }
                                     })
 
 
